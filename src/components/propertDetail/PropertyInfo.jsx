@@ -13,7 +13,7 @@ const iconMap = {
 const PropertyInfo = ({ property }) => {
   return (
     <>
-      <div className="flex items-center gap-6 px-12 py-6 w-6xl border-t border-b border-gray-200 mb-8">
+      <div className="flex items-center gap-6 px-12 py-6 border-t border-b border-gray-200 mb-8">
         <div className="flex items-center gap-3">
           <span className="text-2xl">🛏️</span>
           <div>
@@ -37,7 +37,6 @@ const PropertyInfo = ({ property }) => {
         </div>
       </div>
 
-      {/* About */}
       {(() => {
         const description = property?.description ?? []
         const amenities = property?.amenities ?? []
@@ -45,7 +44,7 @@ const PropertyInfo = ({ property }) => {
 
         return (
           <>
-            <div className="mb-8 w-6xl px-12 text-justify">
+            <div className="mb-8 px-12 text-justify">
               <h2 className="text-2xl font-bold text-gray-900 mb-3">About this property</h2>
               {description.map((para, index) => (
                 <p key={index} className="text-gray-700 text-lg leading-relaxed mb-3">{para}</p>
@@ -53,8 +52,7 @@ const PropertyInfo = ({ property }) => {
               <button className="text-blue-600 text-lg font-medium hover:underline">Show more →</button>
             </div>
 
-            {/* Amenities */}
-            <div className="w-6xl px-12">
+            <div className="px-12">
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Amenities</h2>
                 <div className="grid grid-cols-3 gap-y-4 mb-5">
@@ -76,21 +74,20 @@ const PropertyInfo = ({ property }) => {
         )
       })()}
 
-        {/* Host */}
-        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <img src={property.hostImage} className="w-12 h-12 rounded-full" />
-            <div>
-              <p className="font-semibold text-gray-900 text-sm">Hosted by {property.hostName}</p>
-              <p className="text-xs text-gray-400">
-                Joined in {property.hostJoined} {property.isSuperhost && <>• <span className="text-blue-600">Superhost</span></>}
-              </p>
-            </div>
+      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <img src={property.hostImage} className="w-12 h-12 rounded-full" />
+          <div>
+            <p className="font-semibold text-gray-900 text-sm">Hosted by {property.hostName}</p>
+            <p className="text-xs text-gray-400">
+              Joined in {property.hostJoined} {property.isSuperhost && <>• <span className="text-blue-600">Superhost</span></>}
+            </p>
           </div>
-          <button className="bg-blue-600 text-white text-sm px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
-            Contact Owner
-          </button>
         </div>
+        <button className="bg-blue-600 text-white text-sm px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
+          Contact Owner
+        </button>
+      </div>
     </>
   )
 }

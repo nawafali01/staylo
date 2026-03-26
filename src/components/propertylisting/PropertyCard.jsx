@@ -6,6 +6,7 @@ const PropertyCard = ({ Properties }) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
+      
     navigate(`/property/${Properties.id}`)
   }
 

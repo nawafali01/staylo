@@ -15,13 +15,15 @@ const DetailPage = () => {
   return (
     <>
       <PropertyHeroDetail property={property} />
-      <div className='flex gap-8 px-6 py-8 max-w-8xl mx-auto'>
-        <div className="flex-1">
+      <div className='flex gap-8 px-6 py-8 max-w-7xl mx-auto w-full'>
+        <div className="flex-1 min-w-0">
           <PropertyInfo property={property} />
           <LocationMap property={property} />
         </div>
         <div className="w-80 shrink-0">
-          <BookingCard property={property} />
+          <div className="sticky top-6">
+            <BookingCard property={property} />
+          </div>
         </div>
       </div>
     </>

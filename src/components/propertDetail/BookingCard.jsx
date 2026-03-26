@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 const BookingCard = ({ property }) => {
+  const navigate = useNavigate()
   return (
     <div className="border border-gray-200 rounded-2xl p-6 shadow-md sticky top-24 bg-white">
 
@@ -66,9 +68,11 @@ const BookingCard = ({ property }) => {
       </div>
 
       {/* Book Button */}
-      <button className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-700 transition-colors text-sm mb-2">
-        Book Now
-      </button>
+      <button 
+  onClick={() => navigate(`/confirm-booking/${property.id}`)}
+  className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-700 transition-colors text-sm mb-2">
+  Book Now
+</button>
       <p className="text-center text-xs text-gray-400 mb-4">You won't be charged yet</p>
     </div>
   )

@@ -483,7 +483,7 @@ export const Properties = [
 export const navLinks = [
   { label: "Home", to: "/home" },
   { label: "About", to: "/about" },
-  { label: "Properties", to: "/home" }
+  { label: "Properties", to: "/properties" }
 ];
 
 export const locations = ["New York, USA", "London, UK", "Dubai, UAE", "Lahore, Pakistan"];

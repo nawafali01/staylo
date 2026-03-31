@@ -8,8 +8,9 @@ import SignUpPage from './components/auth/SignUpPage';
 import SignInPage from './components/auth/SignInPage';
 import Property from './pages/property/PropertyDetail';
 import ConfirmBookingLayout from './components/ConfirmBooking/ConfirmBookingLayout';
-import Contact from './pages/contact/Contact';
 import ContactPage from './pages/contact/Contact';
+import Dashboard from './pages/dashboard/DashboardPage';
+
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/property/:id" element={<><Navbar /><Property /><Footer /></>} />
         <Route path="/confirm-booking/:id" element={<><Navbar /><ConfirmBookingLayout /><Footer /></>} />
         <Route path="/contact" element={<><Navbar /><ContactPage /><Footer /></>} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );

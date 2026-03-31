@@ -490,3 +490,27 @@ export const navLinks = [
 export const locations = ["New York, USA", "London, UK", "Dubai, UAE", "Lahore, Pakistan"];
 export const priceRanges = ["1000 - 3000", "3000 - 5000", "5000 - 10000", "10000+"];
 export const propertyTypes = ["Modern Apartment", "Luxury Villa", "Studio Flat", "Office Space"];
+
+export const sidebarLinks = [
+  { label: "Dashboard", icon: "dashboard", path: "/dashboard" },
+  { label: "Bookings", icon: "bookings", path: "/bookings" },
+  { label: "Saved", icon: "saved", path: "/saved" },
+  { label: "Messages", icon: "messages", path: "/messages" },
+  { label: "Settings", icon: "settings", path: "/settings" },
+];
+export const dashboardStats = [
+  { icon: "calendar", value: 12, label: "Total Bookings", badge: "+2 This Week" },
+  { icon: "home", value: 2, label: "Upcoming Stays" },
+  { icon: "heart", value: 45, label: "Saved Properties" },
+  { icon: "mappin", value: 8, label: "Favorite Locations" },
+];
+export const recentBookings = [
+  { id: 1, name: "Harbor View Suite", location: "San Francisco, CA", dates: "Oct 12 - Oct 18", status: "BOOKED" },
+  { id: 2, name: "The Nordic Loft", location: "Seattle, WA", dates: "Sep 05 - Sep 12", status: "COMPLETED" },
+  { id: 3, name: "Canyon Retreat", location: "Aspen, CO", dates: "Aug 20 - Aug 25", status: "CANCELLED" },
+];
+
+export const savedProperties = [
+  { id: 1, name: "The Glass Pavilion", location: "Los Angeles, CA", price: 3200, beds: 2, baths: 2 },
+  { id: 2, name: "Skyline Loft", location: "San Diego, CA", price: 2850, beds: 1, baths: 1 },
+];

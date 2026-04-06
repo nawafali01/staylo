@@ -1,3 +1,36 @@
+import ahad from "../assets/userDashboardMessage/ahad.jpg";
+import fahad from "../assets/userDashboardMessage/fahad.jpg";
+import rohan from "../assets/userDashboardMessage/rohan.jpg";
+import sami from "../assets/userDashboardMessage/sami.jpg";
+import checkIcon from '../assets/svg/aboutPage/check.svg?raw';
+import phoneIcon from '../assets/svg/aboutPage/phone.svg?raw';
+import currencyIcon from '../assets/svg/aboutPage/currency.svg?raw';
+import buildingIcon from '../assets/svg/aboutPage/building.svg?raw';
+import {
+  RectangleStackIcon,
+  HomeModernIcon,
+  ScaleIcon,
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon,
+  CalendarIcon,
+  GlobeAltIcon,
+  HomeIcon,
+  HeartIcon,
+  KeyIcon,
+  Squares2X2Icon,
+  BookOpenIcon,
+  ChatBubbleOvalLeftIcon,
+  Cog6ToothIcon,
+  InboxIcon,
+  SparklesIcon,
+  ArrowsPointingOutIcon,
+  WifiIcon,
+   TruckIcon,
+  FireIcon,
+  SunIcon,
+} from '@heroicons/react/24/outline';
+
 export const Properties = [
   {
     id: 1,
@@ -483,9 +516,497 @@ export const Properties = [
 export const navLinks = [
   { label: "Home", to: "/home" },
   { label: "About", to: "/about" },
-  { label: "Properties", to: "/properties" }
+  { label: "Properties", to: "/properties" },
+   { label: "Contact", to: "/contact" }
 ];
 
 export const locations = ["New York, USA", "London, UK", "Dubai, UAE", "Lahore, Pakistan"];
 export const priceRanges = ["1000 - 3000", "3000 - 5000", "5000 - 10000", "10000+"];
 export const propertyTypes = ["Modern Apartment", "Luxury Villa", "Studio Flat", "Office Space"];
+
+export const sidebarLinks = [
+  { label: "Dashboard", icon: "dashboard", path: "/dashboard" },
+  { label: "Bookings", icon: "bookings", path: "/bookings" },
+  { label: "Saved", icon: "saved", path: "/saved" },
+  { label: "Messages", icon: "messages", path: "/messages" },
+  { label: "Settings", icon: "settings", path: "/settings" },
+];
+export const dashboardStats = [
+  { icon: "calendar", value: 12, label: "Total Bookings", badge: "+2 This Week" },
+  { icon: "home", value: 2, label: "Upcoming Stays" },
+  { icon: "heart", value: 45, label: "Saved Properties" },
+  { icon: "mappin", value: 8, label: "Favorite Locations" },
+];
+export const recentBookings = [
+  { id: 1, name: "Harbor View Suite", location: "San Francisco, CA", dates: "Oct 12 - Oct 18", status: "BOOKED" },
+  { id: 2, name: "The Nordic Loft", location: "Seattle, WA", dates: "Sep 05 - Sep 12", status: "COMPLETED" },
+  { id: 3, name: "Canyon Retreat", location: "Aspen, CO", dates: "Aug 20 - Aug 25", status: "CANCELLED" },
+];
+
+export const savedProperties = [
+  { id: 1, name: "The Glass Pavilion", location: "Los Angeles, CA", price: 3200, beds: 2, baths: 2 },
+  { id: 2, name: "Skyline Loft", location: "San Diego, CA", price: 2850, beds: 1, baths: 1 },
+];
+export const bookings = [
+  {
+    id: 1,
+    name: "Seaside Villa",
+    location: "Malibu, CA",
+    status: "BOOKED",
+    checkIn: "Oct 12, 2023",
+    checkOut: "Oct 18, 2023",
+    price: "$1,250",
+    image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=400&q=80",
+  },
+  {
+    id: 2,
+    name: "Urban Nordic Loft",
+    location: "Stockholm, SE",
+    status: "COMPLETED",
+    checkIn: "Aug 05, 2023",
+    checkOut: "Aug 10, 2023",
+    price: "$890",
+    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80",
+  },
+  {
+    id: 3,
+    name: "Mountain Retreat",
+    location: "Aspen, CO",
+    status: "CANCELLED",
+    checkIn: "Dec 20, 2023",
+    checkOut: "Dec 27, 2023",
+    price: "$1,800",
+    image: "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?w=400&q=80",
+  },
+];
+export const statusConfig = {
+  BOOKED: {
+    badge: "bg-blue-50 text-blue-600 border border-blue-200",
+    price: "text-blue-600",
+    priceLabel: "Total Price",
+    grayscale: false,
+  },
+  COMPLETED: {
+    badge: "bg-gray-100 text-gray-500 border border-gray-200",
+    price: "text-gray-900",
+    priceLabel: "Total Price",
+    grayscale: false,
+  },
+  CANCELLED: {
+    badge: "bg-red-50 text-red-500 border border-red-200",
+    price: "text-red-500",
+    priceLabel: "Refund Amount",
+    grayscale: true,
+  },
+};
+
+export const statusStyles = {
+  BOOKED:    "bg-blue-50 text-blue-600 border border-blue-200",
+  COMPLETED: "bg-gray-100 text-gray-500 border border-gray-200",
+  CANCELLED: "bg-red-50 text-red-500 border border-red-200",
+};
+
+export const priceStyles = {
+  blue:  "text-blue-600",
+  black: "text-gray-900",
+  red:   "text-red-500",
+};
+
+export const detailPropertySummaryAmenities = [
+  { icon: RectangleStackIcon, valueKey: 'beds', label: 'Bedrooms' },
+  { icon: HomeModernIcon, valueKey: 'baths', label: 'Baths' },
+  { icon: ScaleIcon, valueKey: 'sqft', label: 'sqft' },
+];
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+export const footerPlatformLinks = [
+  "Property Search",
+  "Lease & Rent",
+  "Investment Plans",
+  "Market Trends",
+  "Calculators",
+];
+
+export const footerCompanyLinks = [
+  "About Us",
+  "Our Team",
+  "Careers",
+  "Press Release",
+  "Privacy Policy",
+];
+
+export const footerSupportLinks = [
+  "Help Center",
+  "Contact Support",
+  "Feedback",
+];
+
+export const footerSections = [
+  { title: 'Platform', links: footerPlatformLinks },
+  { title: 'Company', links: footerCompanyLinks },
+  { title: 'Support', links: footerSupportLinks },
+];
+
+// ─── Home Featured Properties (PropertyCards) ─────────────────────────────────
+export const homeProperties = [
+  {
+    id: 1,
+    title: "Modern Luxury Villa",
+    price: "$2500",
+    status: "Available",
+    location: "Gulberg, Lahore",
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=500&q=80",
+    stats: [
+      { label: "3 Bed",      icon: "InboxIcon" },
+      { label: "2 Bath",     icon: "SparklesIcon" },
+      { label: "1200 sqft",  icon: "ArrowsPointingOutIcon" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Royal Apartment",
+    price: "$3500",
+    status: "Booked",
+    location: "DHA Phase 6, Karachi",
+    img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&q=80",
+    stats: [
+      { label: "2 Bed",     icon: "InboxIcon" },
+      { label: "2 Bath",    icon: "SparklesIcon" },
+      { label: "950 sqft",  icon: "ArrowsPointingOutIcon" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Sunset Penthouse",
+    price: "$1500",
+    status: "Available",
+    location: "E-11, Islamabad",
+    img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=500&q=80",
+    stats: [
+      { label: "4 Bed",      icon: "InboxIcon" },
+      { label: "4 Bath",     icon: "SparklesIcon" },
+      { label: "2500 sqft",  icon: "ArrowsPointingOutIcon" },
+    ],
+  },
+];
+
+export const propertyCardIconMap = {
+  InboxIcon,
+  SparklesIcon,
+  ArrowsPointingOutIcon,
+};
+
+export const propertyInfoIconMap = {
+  wifi: WifiIcon,
+  home: HomeIcon,
+  sparkles: SparklesIcon,
+  truck:  TruckIcon,
+  fire: FireIcon,
+  sun: SunIcon,
+};
+
+// ─── SignUp Panel Stats ────────────────────────────────────────────────────────
+export const signUpStats = [
+  { value: "15k+", label: "Active Properties" },
+  { value: "98%",  label: "Success Rate" },
+  { value: "50M+", label: "Trusted Users" },
+];
+
+// ─── Booking Calendar ─────────────────────────────────────────────────────────
+export const calendarDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+
+export const calendarDates = [
+  null, null,
+  1, 2, 3, 4, 5, 6,
+  7, 8, 9, 10, 11, 12, 13,
+  14, 15, 16, 17, 18, 19, 20,
+  21, 22, 23, 24, 25, 26, 27,
+  28, 29, 30, 31,
+];
+
+export const bookingCheckIn  = 5;
+export const bookingCheckOut = 10;
+
+// ─── Reservation Panel Fees ───────────────────────────────────────────────────
+export const serviceFee    = 450;
+export const occupancyTax  = 120;
+
+// ─── Booking Card ─────────────────────────────────────────────────────────────
+export const occupantOptions = ["1 Adult", "2 Adults", "Family"];
+
+// ─── Property Listing Filter ──────────────────────────────────────────────────
+export const bedroomOptions = ["Any", "+1", "+2", "+3", "+4"];
+
+export const propertyFilterTypes = [
+  "House",
+  "Apartment",
+  "Condo",
+  "TownHouse",
+];
+
+// ─── Features Section (Home) ──────────────────────────────────────────────────
+export const featuresData = [
+  {
+    id: 1,
+    icon: "globe",
+    title: "Browser listings",
+    desc: "Explore high-quality properties with verified virtual tours and detailed documentation.",
+  },
+  {
+    id: 2,
+    icon: "calendar",
+    title: "Instant Booking",
+    desc: "Secure your favorite spot instantly with our simplified digital contract system.",
+  },
+  {
+    id: 3,
+    icon: "key",
+    title: "Move in Ready",
+    desc: "Pick up your keys and enjoy your move-in ready, professionally managed home.",
+  },
+];
+
+// ─── Social Logins (SignInForm) ──────────────────────────────────────────────
+export const socialLogins = [
+  { name: "Google", icon: "https://www.svgrepo.com/show/355037/google.svg" },
+  { name: "Apple",  icon: "https://www.svgrepo.com/show/303108/apple-black-logo.svg" },
+];
+
+// ─── User Roles (SignUpForm) ─────────────────────────────────────────────────
+export const userRoles = [
+  { id: "tenant", label: "Tenant", icon: "UserIcon" },
+  { id: "owner",  label: "Owner",  icon: "BuildingOffice2Icon" },
+];
+
+// ─── Team Members (About Page) ───────────────────────────────────────────────
+export const teamMembers = [
+  { name: "Elena Vance", role: "Chief Curator", img: "https://randomuser.me/api/portraits/women/44.jpg" },
+  { name: "Julian Thorne", role: "Head of Architecture", img: "https://randomuser.me/api/portraits/men/32.jpg" },
+  { name: "Sarah Jenkins", role: "Director of Operations", img: "https://randomuser.me/api/portraits/women/68.jpg" },
+  { name: "Marcus Reed", role: "Tech Lead", img: "https://randomuser.me/api/portraits/men/75.jpg" },
+];
+
+// ─── Why Choose Us (About Page) ─────────────────────────────────────────────
+export const aboutFeatures = [
+  {
+    icon: "check",
+    title: "Vetted Design",
+    desc: "Every property undergoes a rigorous 50-point inspection focused on design, comfort, and structural integrity.",
+  },
+  {
+    icon: "phone",
+    title: "White-Glove Service",
+    desc: "Dedicated concierges available 24/7 to handle everything from maintenance requests to local recommendations.",
+  },
+  {
+    icon: "currency",
+    title: "Transparent Pricing",
+    desc: "No hidden fees or unexpected charges. What you see is exactly what you pay for your premium stay.",
+  },
+  {
+    icon: "building",
+    title: "Bespoke Spaces",
+    desc: "Access to exclusive architectural masterpieces that aren't listed on generic rental platforms.",
+  },
+];
+
+export const aboutFeatureIcons = {
+  check: checkIcon,
+  phone: phoneIcon,
+  currency: currencyIcon,
+  building: buildingIcon,
+};
+
+export const featureIconMap = {
+  globe: GlobeAltIcon,
+  calendar: CalendarIcon,
+  key: KeyIcon,
+};
+
+export const contactIconMap = {
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon,
+};
+
+export const signUpIconMap = {
+  UserIcon,
+  BuildingOffice2Icon,
+};
+
+export const sidebarIconMap = {
+  dashboard: Squares2X2Icon,
+  bookings: BookOpenIcon,
+  saved: HeartIcon,
+  messages: ChatBubbleOvalLeftIcon,
+  settings: Cog6ToothIcon,
+};
+
+export const dashboardStatsCardIconMap = {
+  calendar: CalendarIcon,
+  home: HomeIcon,
+  heart: HeartIcon,
+  mappin: MapPinIcon,
+};
+
+export const contactFormInitialValues = {
+  name: "",
+  email: "",
+  inquiry: "Property Management",
+  message: "",
+};
+
+export const contactInquiryOptions = [
+  "Property Management",
+  "Leasing Inquiry",
+  "Tenant Support",
+  "Investment Partnership",
+  "General Question",
+];
+
+// ─── Contact Info ───────────────────────────────────────────────────────────
+export const contactDetails = [
+  { label: "Email Us", value: "concierge@theledger.com", icon: "EnvelopeIcon" },
+  { label: "Call Us",  value: "+1 (555) 234-8890",      icon: "PhoneIcon" },
+  { label: "Visit Us", value: "450 Architectural Plaza\nSuite 1200, Manhattan, NY", icon: "MapPinIcon" },
+];
+
+export const contactHero = {
+  title: "Get in Touch",
+  description: "Whether you're a property owner looking for premium management or a tenant seeking your next home, our team is here to provide editorial-level service.",
+};
+
+export const contactOffice = {
+  image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80",
+  name: "Our Manhattan Office",
+};
+export const savedCardProperties = [
+  {
+    id: 1,
+    name: "The Glass Pavilion",
+    price: "$8,500",
+    location: "Aspen, Colorado",
+    beds: 4,
+    baths: 3.5,
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=500"
+  },
+  {
+    id: 2,
+    name: "Azure Horizon",
+    price: "$12,200",
+    location: "Malibu, California",
+    beds: 5,
+    baths: 4,
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500"
+  },
+  {
+    id: 3,
+    name: "Skyline Loft",
+    price: "$6,900",
+    location: "New York City, NY",
+    beds: 2,
+    baths: 2,
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500"
+  },
+];
+
+
+export const messages = [
+  {
+    id: 1,
+    name: "Sarah Jenkins",
+    initials: "SJ",
+    image: ahad,
+    subject: "Maintenance Request: Kitchen Faucet",
+    preview: "Hello Alex, the faucet in Unit 4B started leaking quite heavily this morning. Co...",
+    time: "TODAY, 10:24 AM",
+    unread: true,
+  },
+  {
+    id: 2,
+    name: "Mark Thompson",
+    initials: "MT",
+    image: fahad,
+    subject: "Question about Lease Renewal",
+    preview: "I received the renewal notice for the downtown loft. I had a few questions reg...",
+    time: "YESTERDAY, 4:45 PM",
+    unread: true,
+  },
+  {
+    id: 3,
+    name: "Elena Rodriguez",
+    initials: "ER",
+    image: rohan,
+    subject: "Parking Space Availability",
+    preview: "Thanks for the update on the guest parking rules. Everything is clear now.",
+    time: "OCT 24, 2023",
+    unread: false,
+  },
+  {
+    id: 4,
+    name: "David Kim",
+    initials: "DK",
+    image: sami,
+    subject: "Rent Payment Confirmation",
+    preview: "Just confirming that I've sent the payment for November via the portal. Let me know if you...",
+    time: "OCT 22, 2023",
+    unread: false,
+  },
+];
+
+export const DEFAULT_USER = {
+  fullName: "Name...",
+  phone: "+92 .........",
+  email: "nawafali@gmail.com",
+};
+
+export const DEFAULT_NOTIFICATIONS = {
+  emailNotif: true,
+  smsAlerts: false,
+  pushNotif: true,
+};
+
+export const DEFAULT_PRIVACY = {
+  profileVisible: true,
+};
+
+export const LANGUAGE_OPTIONS = [
+  "English (United States)",
+  "Urdu (Pakistan)",
+  "Arabic",
+  "French",
+];
+
+export const DEFAULT_LANGUAGE = "English (United States)";
+
+export const NOTIFICATION_ITEMS = [
+  { key: "emailNotif", icon: "✉️", label: "Email notifications" },
+  { key: "smsAlerts", icon: "💬", label: "SMS alerts" },
+  { key: "pushNotif", icon: "🔔", label: "Push notifications" },
+];
+
+export const TWO_FACTOR = {
+  title: "Two-Factor Authentication",
+  description:
+    "Add an extra layer of security to your account by requiring more than just a password to log in.",
+  buttonText: "Enable Now",
+};
+
+export const IDENTITY_BADGE = {
+  title: "Identity Verified",
+  description:
+    "Your account has been verified as a Premium Tier Agency. This increases trust by 85% among potential renters.",
+};
+
+export const settingsData = {
+  pageTitle: "Settings",
+  pageDesc: "Manage your account preferences and security.",
+  accountCardTitle: "Account Settings",
+  preferencesCardTitle: "Preferences",
+  visibilityTitle: "Profile Visibility",
+  visibilityDesc: "Allow others to see your listings",
+};
+
+
+
+

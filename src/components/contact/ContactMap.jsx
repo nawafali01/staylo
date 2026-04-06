@@ -1,7 +1,6 @@
 export default function ContactMap() {
   return (
     <div className="mt-20">
-      {/* Header */}
       <div className="flex items-end justify-between mb-1">
         <h2 className="text-[28px] font-semibold tracking-tight text-slate-900">
           Global Headquarters
@@ -13,8 +12,7 @@ export default function ContactMap() {
       <p className="text-slate-500 text-sm mb-5">
         Available for in-person consultations by appointment.
       </p>
- 
-      {/* Map */}
+
       <div className="rounded-2xl overflow-hidden h-72 relative border border-slate-200 group">
         <iframe
           title="The Ledger HQ"
@@ -24,8 +22,7 @@ export default function ContactMap() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
- 
-        {/* Pin Overlay */}
+
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[65%] flex flex-col items-center pointer-events-none">
           <div className="w-4 h-4 bg-blue-600 rounded-tl-full rounded-tr-full rounded-bl-full rotate-[-45deg] shadow-[0_2px_10px_rgba(37,99,235,0.5)]" />
           <div className="mt-2 bg-white border border-slate-200 text-slate-800 text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap">

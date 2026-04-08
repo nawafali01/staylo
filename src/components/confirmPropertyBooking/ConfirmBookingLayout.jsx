@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Properties } from "../../data";
+import { properties } from "../../data";
 import DetailPropertySummary from "./DetailPropertySummary";
 import ConfirmBookingHeader from "./ConfirmBookingHeader";
 import ConfirmReservationPanel from "./ConfirmReservationPanel";
@@ -9,7 +9,7 @@ import { getPropertyById } from "../../utils/feature";
 
 const ConfirmBookingLayout = () => {
   const { id } = useParams();
-  const property = getPropertyById(Properties, id);
+  const property = getPropertyById(properties, id);
 
   if (!property) return <p>Property not found!</p>;
 

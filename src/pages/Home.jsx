@@ -9,13 +9,11 @@ import HomePropertyCards from '../components/home/HomePropertyCards'
 
 const Home = () => {
   return (
-    <div>
-      
+    <>
       <HomeHero/>
       <HomeFeatures/>
       <HomePropertyCards />
-    
-    </div>
+    </>
   )
 }
 

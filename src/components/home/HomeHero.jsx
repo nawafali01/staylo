@@ -25,8 +25,8 @@ const HomeHero = () => {
   } = useHomeHero();
 
   return (
-    <section className="min-h-screen w-full bg-[linear-gradient(to_bottom,#60a5fa,#ffffff)] flex justify-center items-start px-5 py-10">
-      <div className="text-center max-w-5xl mt-20 flex flex-col items-center">
+    <section className=" w-full bg-[linear-gradient(to_bottom,#60a5fa,#ffffff)] flex justify-center items-start px-5 py-10">
+      <div className="text-center max-w-5xl md:mt-20 mt-8 flex flex-col items-center">
         <p className="inline-flex items-center gap-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/60 shadow-lg text-blue-600 text-sm uppercase font-semibold">
           <CheckBadgeIcon className="w-5 h-5 text-blue-500" /> PREMIUM PROPERTY
           MANAGEMENT
@@ -73,12 +73,13 @@ const HomeHero = () => {
             isOpen={activeDropdown === "property"}
             toggleDropdown={() => toggleDropdown("property")}
           />
-
-          <button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl md:rounded-full flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 ml-0 md:ml-2">
-            <MagnifyingGlassIcon className="w-5 h-5 stroke-2" />
-            <span className="font-bold">Search</span>
-          </button>
-        </div>
+         
+<button className="w-auto md:w-auto bg-blue-600  text-white px-6 py-2 md:px-10 md:py-4 rounded-xl md:rounded-full flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 ml-0 md:ml-2">
+  <MagnifyingGlassIcon className="w-5 h-5 stroke-2" />
+  <span className="font-bold">Search</span>
+</button>
+</div>
+       
       </div>
     </section>
   );

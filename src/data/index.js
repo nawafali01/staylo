@@ -26,12 +26,15 @@ import {
   SparklesIcon,
   ArrowsPointingOutIcon,
   WifiIcon,
-   TruckIcon,
+  TruckIcon,
   FireIcon,
   SunIcon,
+  UserIcon,
+  BuildingOfficeIcon,
+  CubeIcon,
 } from '@heroicons/react/24/outline';
 
-export const Properties = [
+export const properties = [
   {
     id: 1,
     title: "Sunset Valley Estates",
@@ -79,7 +82,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.4004!3d34.0736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBeverly+Hills+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 2,
     title: "Pacific Breeze Condo",
@@ -127,7 +129,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.7798!3d34.0259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMalibu+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 3,
     title: "Willow Creek House",
@@ -175,7 +176,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.1445!3d34.1478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPasadena+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 4,
     title: "Modern Oasis Villa",
@@ -223,7 +223,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-117.8265!3d33.6846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIrvine+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 5,
     title: "Brick Road Studio",
@@ -271,7 +270,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.4912!3d34.0195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSanta+Monica+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 6,
     title: "Canyon View Modern",
@@ -319,7 +317,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.4487!3d34.1514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSherman+Oaks+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 7,
     title: "Beverly Hills Bungalow",
@@ -367,7 +364,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.4004!3d34.0736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBeverly+Hills+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 8,
     title: "Downtown Loft",
@@ -415,7 +411,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.2437!3d34.0522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLos+Angeles+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 9,
     title: "Hillside Retreat",
@@ -463,7 +458,6 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-118.3287!3d34.1341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sHollywood+Hills+CA!5e0!3m2!1sen!2sus!4v1"
   },
-
   {
     id: 10,
     title: "Coastal Cottage",
@@ -511,13 +505,13 @@ export const Properties = [
     isVerified: true,
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7!2d-119.6982!3d34.4208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSanta+Barbara+CA!5e0!3m2!1sen!2sus!4v1"
   }
-]
+];
 
 export const navLinks = [
   { label: "Home", to: "/home" },
   { label: "About", to: "/about" },
   { label: "Properties", to: "/properties" },
-   { label: "Contact", to: "/contact" }
+  { label: "Contact", to: "/contact" }
 ];
 
 export const locations = ["New York, USA", "London, UK", "Dubai, UAE", "Lahore, Pakistan"];
@@ -531,12 +525,14 @@ export const sidebarLinks = [
   { label: "Messages", icon: "messages", path: "/messages" },
   { label: "Settings", icon: "settings", path: "/settings" },
 ];
+
 export const dashboardStats = [
   { icon: "calendar", value: 12, label: "Total Bookings", badge: "+2 This Week" },
   { icon: "home", value: 2, label: "Upcoming Stays" },
   { icon: "heart", value: 45, label: "Saved Properties" },
   { icon: "mappin", value: 8, label: "Favorite Locations" },
 ];
+
 export const recentBookings = [
   { id: 1, name: "Harbor View Suite", location: "San Francisco, CA", dates: "Oct 12 - Oct 18", status: "BOOKED" },
   { id: 2, name: "The Nordic Loft", location: "Seattle, WA", dates: "Sep 05 - Sep 12", status: "COMPLETED" },
@@ -547,6 +543,7 @@ export const savedProperties = [
   { id: 1, name: "The Glass Pavilion", location: "Los Angeles, CA", price: 3200, beds: 2, baths: 2 },
   { id: 2, name: "Skyline Loft", location: "San Diego, CA", price: 2850, beds: 1, baths: 1 },
 ];
+
 export const bookings = [
   {
     id: 1,
@@ -579,6 +576,7 @@ export const bookings = [
     image: "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?w=400&q=80",
   },
 ];
+
 export const statusConfig = {
   BOOKED: {
     badge: "bg-blue-50 text-blue-600 border border-blue-200",
@@ -618,7 +616,6 @@ export const detailPropertySummaryAmenities = [
   { icon: ScaleIcon, valueKey: 'sqft', label: 'sqft' },
 ];
 
-// ─── Footer ───────────────────────────────────────────────────────────────────
 export const footerPlatformLinks = [
   "Property Search",
   "Lease & Rent",
@@ -647,7 +644,6 @@ export const footerSections = [
   { title: 'Support', links: footerSupportLinks },
 ];
 
-// ─── Home Featured Properties (PropertyCards) ─────────────────────────────────
 export const homeProperties = [
   {
     id: 1,
@@ -700,19 +696,17 @@ export const propertyInfoIconMap = {
   wifi: WifiIcon,
   home: HomeIcon,
   sparkles: SparklesIcon,
-  truck:  TruckIcon,
+  truck: TruckIcon,
   fire: FireIcon,
   sun: SunIcon,
 };
 
-// ─── SignUp Panel Stats ────────────────────────────────────────────────────────
 export const signUpStats = [
   { value: "15k+", label: "Active Properties" },
   { value: "98%",  label: "Success Rate" },
   { value: "50M+", label: "Trusted Users" },
 ];
 
-// ─── Booking Calendar ─────────────────────────────────────────────────────────
 export const calendarDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 export const calendarDates = [
@@ -727,14 +721,11 @@ export const calendarDates = [
 export const bookingCheckIn  = 5;
 export const bookingCheckOut = 10;
 
-// ─── Reservation Panel Fees ───────────────────────────────────────────────────
-export const serviceFee    = 450;
-export const occupancyTax  = 120;
+export const serviceFee   = 450;
+export const occupancyTax = 120;
 
-// ─── Booking Card ─────────────────────────────────────────────────────────────
 export const occupantOptions = ["1 Adult", "2 Adults", "Family"];
 
-// ─── Property Listing Filter ──────────────────────────────────────────────────
 export const bedroomOptions = ["Any", "+1", "+2", "+3", "+4"];
 
 export const propertyFilterTypes = [
@@ -744,7 +735,6 @@ export const propertyFilterTypes = [
   "TownHouse",
 ];
 
-// ─── Features Section (Home) ──────────────────────────────────────────────────
 export const featuresData = [
   {
     id: 1,
@@ -766,19 +756,16 @@ export const featuresData = [
   },
 ];
 
-// ─── Social Logins (SignInForm) ──────────────────────────────────────────────
 export const socialLogins = [
   { name: "Google", icon: "https://www.svgrepo.com/show/355037/google.svg" },
   { name: "Apple",  icon: "https://www.svgrepo.com/show/303108/apple-black-logo.svg" },
 ];
 
-// ─── User Roles (SignUpForm) ─────────────────────────────────────────────────
 export const userRoles = [
   { id: "tenant", label: "Tenant", icon: "UserIcon" },
-  { id: "owner",  label: "Owner",  icon: "BuildingOffice2Icon" },
+  { id: "owner",  label: "Owner",  icon: "BuildingOfficeIcon" },
 ];
 
-// ─── Team Members (About Page) ───────────────────────────────────────────────
 export const teamMembers = [
   { name: "Elena Vance", role: "Chief Curator", img: "https://randomuser.me/api/portraits/women/44.jpg" },
   { name: "Julian Thorne", role: "Head of Architecture", img: "https://randomuser.me/api/portraits/men/32.jpg" },
@@ -786,7 +773,6 @@ export const teamMembers = [
   { name: "Marcus Reed", role: "Tech Lead", img: "https://randomuser.me/api/portraits/men/75.jpg" },
 ];
 
-// ─── Why Choose Us (About Page) ─────────────────────────────────────────────
 export const aboutFeatures = [
   {
     icon: "check",
@@ -831,7 +817,7 @@ export const contactIconMap = {
 
 export const signUpIconMap = {
   UserIcon,
-  BuildingOffice2Icon,
+  BuildingOfficeIcon,
 };
 
 export const sidebarIconMap = {
@@ -864,7 +850,6 @@ export const contactInquiryOptions = [
   "General Question",
 ];
 
-// ─── Contact Info ───────────────────────────────────────────────────────────
 export const contactDetails = [
   { label: "Email Us", value: "concierge@theledger.com", icon: "EnvelopeIcon" },
   { label: "Call Us",  value: "+1 (555) 234-8890",      icon: "PhoneIcon" },
@@ -880,6 +865,7 @@ export const contactOffice = {
   image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80",
   name: "Our Manhattan Office",
 };
+
 export const savedCardProperties = [
   {
     id: 1,
@@ -909,7 +895,6 @@ export const savedCardProperties = [
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500"
   },
 ];
-
 
 export const messages = [
   {
@@ -954,45 +939,45 @@ export const messages = [
   },
 ];
 
-export const DEFAULT_USER = {
+export const defaultUser = {
   fullName: "Name...",
   phone: "+92 .........",
   email: "nawafali@gmail.com",
 };
 
-export const DEFAULT_NOTIFICATIONS = {
+export const defaultNotifications = {
   emailNotif: true,
   smsAlerts: false,
   pushNotif: true,
 };
 
-export const DEFAULT_PRIVACY = {
+export const defaultPrivacy = {
   profileVisible: true,
 };
 
-export const LANGUAGE_OPTIONS = [
+export const languageOptions = [
   "English (United States)",
   "Urdu (Pakistan)",
   "Arabic",
   "French",
 ];
 
-export const DEFAULT_LANGUAGE = "English (United States)";
+export const defaultLanguage = "English (United States)";
 
-export const NOTIFICATION_ITEMS = [
+export const notificationItems = [
   { key: "emailNotif", icon: "✉️", label: "Email notifications" },
   { key: "smsAlerts", icon: "💬", label: "SMS alerts" },
   { key: "pushNotif", icon: "🔔", label: "Push notifications" },
 ];
 
-export const TWO_FACTOR = {
+export const twoFactor = {
   title: "Two-Factor Authentication",
   description:
     "Add an extra layer of security to your account by requiring more than just a password to log in.",
   buttonText: "Enable Now",
 };
 
-export const IDENTITY_BADGE = {
+export const identityBadge = {
   title: "Identity Verified",
   description:
     "Your account has been verified as a Premium Tier Agency. This increases trust by 85% among potential renters.",
@@ -1006,7 +991,3 @@ export const settingsData = {
   visibilityTitle: "Profile Visibility",
   visibilityDesc: "Allow others to see your listings",
 };
-
-
-
-

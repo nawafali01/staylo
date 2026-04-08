@@ -6,16 +6,13 @@ const PropertyDetailHero = ({ property }) => {
 
   return (
     <div className="py-6 px-12">
-      <div className="flex gap-4">
+      <div className="flex items-center gap-4">
         <div className="bg-green-300 rounded-full px-3">
           <p>{property?.status ?? "Unknown"}</p>
         </div>
-        <p className="text-blue-600">
-          ⭐ {property?.rating ?? "N/A"} ({property?.reviewCount ?? 0} reviews)
-        </p>
       </div>
 
-      <div className="flex justify-between items-start">
+      <div className="flex justify-between items-start mt-2">
         <div className="flex flex-col gap-1">
           <h1 className="text-black text-4xl font-bold">{property.title}</h1>
           <div className="flex items-center gap-1">
@@ -23,14 +20,15 @@ const PropertyDetailHero = ({ property }) => {
             <p>{property.location}</p>
           </div>
         </div>
-        <div className="flex flex-col items">
+        <div className="flex flex-col items-end">
+          <p className="text-blue-600 text-sm whitespace-nowrap">
+            ⭐ {property?.rating ?? "N/A"} ({property?.reviewCount ?? 0} reviews)
+          </p>
           <span className="text-blue-500 font-bold text-lg">
             ${property.price}{" "}
             <span className="text-sm font-normal text-gray-400">/mo</span>
           </span>
-          <p>
-            {formatBillsIncluded(property.billsIncluded)}
-          </p>
+          <p>{formatBillsIncluded(property.billsIncluded)}</p>
         </div>
       </div>
 

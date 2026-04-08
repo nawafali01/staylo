@@ -1,3 +1,7 @@
+import React from "react";
+import missionIcon from "../../assets/svg/aboutPage/mission.svg?raw";
+import visionIcon from "../../assets/svg/aboutPage/vision.svg?raw";
+
 export default function AboutStory() {
   return (
     <section className="py-24 px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -8,12 +12,13 @@ export default function AboutStory() {
           alt="Architecture"
           className="rounded-2xl w-full object-cover h-80"
         />
-        <div className="absolute bottom-4 left-4 bg-white rounded-xl px-5 py-3 shadow-lg">
-          <p className="text-3xl font-black text-gray-900">150+</p>
-          <p className="text-xs text-gray-500 mt-1">
-            Curated Properties across Europe and North America
-          </p>
-        </div>
+       <div className="absolute bottom-8 right-1 bg-white rounded-xl px-2 py-2 md:px-5 md:py-3 shadow-lg max-w-[120px] md:max-w-none">
+  <p className="text-sm md:text-3xl font-black text-gray-900">150+</p>
+  <p className="text-[10px] md:text-xs text-gray-500 mt-1">
+    Curated Properties across Europe and North America
+  </p>
+</div>
+
       </div>
 
       {/* Text */}
@@ -32,13 +37,10 @@ export default function AboutStory() {
         <div className="mt-6 space-y-4">
           <div className="flex gap-3">
             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-              <svg
-                className="w-4 h-4 text-blue-600"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9V9h2v4zm0-6H9V5h2v2z" />
-              </svg>
+              <span 
+                dangerouslySetInnerHTML={{ __html: missionIcon }} 
+                className="w-4 h-4 text-blue-600" 
+              />
             </div>
             <div>
               <p className="font-semibold text-gray-900 text-sm">
@@ -54,25 +56,10 @@ export default function AboutStory() {
 
           <div className="flex gap-3">
             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-              <svg
-                className="w-4 h-4 text-blue-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
+              <span 
+                dangerouslySetInnerHTML={{ __html: visionIcon }} 
+                className="w-4 h-4 text-blue-600" 
+              />
             </div>
             <div>
               <p className="font-semibold text-gray-900 text-sm">

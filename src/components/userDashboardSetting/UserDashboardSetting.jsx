@@ -7,8 +7,8 @@ import AccountSettingsToggle from "./AccountSettingsToggle";
 import AccountSettingsSecurity from "./AccountSettingsSecurity";
 import AccountSettingsBadge from "./AccountSettingsBadge";
 import {
-  LANGUAGE_OPTIONS,
-  NOTIFICATION_ITEMS,
+  languageOptions,
+  notificationItems,
   settingsData,
 } from "../../data/index";
 import { useUserDashboardSetting } from "../../utils/feature";
@@ -115,7 +115,7 @@ const UserDashboardSetting = () => {
                   NOTIFICATIONS
                 </p>
                 <div className="flex flex-col gap-4 mb-6">
-                  {NOTIFICATION_ITEMS.map((item) => (
+                  {notificationItems.map((item) => (
                     <AccountSettingsRow
                       key={item.key}
                       icon={item.icon}
@@ -153,7 +153,7 @@ const UserDashboardSetting = () => {
                     onChange={(e) => setLanguage(e.target.value)}
                     className="w-full px-3.5 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 outline-none appearance-none cursor-pointer bg-white"
                   >
-                    {LANGUAGE_OPTIONS.map((lang) => (
+                    {languageOptions.map((lang) => (
                       <option key={lang}>{lang}</option>
                     ))}
                   </select>

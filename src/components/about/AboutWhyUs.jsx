@@ -4,10 +4,10 @@ export default function AboutWhyUs() {
   return (
     <section className="bg-gray-50 py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900 text-center">
+        <h2 className="text-3xl font-bold text-gray-900 text-start">
           Why Choose Us
         </h2>
-        <div className="mt-2 w-10 h-0.5 bg-blue-600 mx-auto"></div>
+        
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {aboutFeatures.map((f) => (

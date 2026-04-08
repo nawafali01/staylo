@@ -1,4 +1,4 @@
-import { IDENTITY_BADGE } from "../../data/index";
+import { identityBadge } from "../../data/index";
 
 const AccountSettingsBadge = () => {
   return (
@@ -9,10 +9,10 @@ const AccountSettingsBadge = () => {
 
       <div>
         <p className="font-bold text-sm text-gray-900 mb-1">
-          {IDENTITY_BADGE.title}
+          {identityBadge.title}
         </p>
         <p className="text-sm text-gray-500 leading-relaxed">
-          {IDENTITY_BADGE.description}
+          {identityBadge.description}
         </p>
       </div>
     </div>

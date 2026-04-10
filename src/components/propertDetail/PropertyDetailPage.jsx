@@ -17,13 +17,13 @@ const PropertyDetailPage = () => {
   return (
     <>
       <PropertyDetailHero property={property} />
-      <div className="flex gap-8 px-6 py-8 max-w-7xl mx-auto w-full">
+      <div className="flex flex-col md:flex-row gap-8 px-4 md:px-6 py-8 max-w-7xl mx-auto w-full">
         <div className="flex-1 min-w-0">
           <PropertyDetailInfo property={property} />
           <PropertyDetailMap property={property} />
         </div>
-        <div className="w-80 shrink-0">
-          <div className="sticky top-6">
+        <div className="w-full md:w-80 shrink-0">
+          <div className="md:sticky md:top-6">
             <PropertyDetailBooking property={property} />
           </div>
         </div>

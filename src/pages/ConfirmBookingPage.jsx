@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { Properties } from '../data'
+import { properties } from '../data'
 import DetailPropertySummary from '../components/confirmPropertyBooking/DetailPropertySummary'
 import ConfirmBookingHeader from '../components/confirmPropertyBooking/ConfirmBookingHeader'
 import ConfirmReservationPanel from '../components/confirmPropertyBooking/ConfirmReservationPanel'
@@ -8,12 +8,12 @@ import ConfirmBookingCalendar from '../components/confirmPropertyBooking/Confirm
 
 const ConfirmBookingPage = () => {
   const { id } = useParams()
-  const property = Properties.find(p => p.id === parseInt(id))
+  const property = properties.find(p => p.id === parseInt(id))
 
   if (!property) return <p>Property not found!</p>
 
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-8 max-w-5xl mx-auto">
+    <>
       <ConfirmBookingHeader/>
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6">
         <div className="flex flex-col gap-5">
@@ -24,7 +24,7 @@ const ConfirmBookingPage = () => {
           <ConfirmReservationPanel property={property}/>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

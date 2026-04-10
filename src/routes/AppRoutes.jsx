@@ -9,7 +9,7 @@ import SignInPage from '../pages/auth/SignInPage';
 import PropertyDetail from '../pages/PropertyDetail';
 import ConfirmBookingPage from '../pages/ConfirmBookingPage';
 import ContactPage from '../pages/Contact';
-import DashboardPage from '../pages/DashboardPage';
+import UserDashboardPage from '../pages/UserDashboardPage';
 import UserDashboardBooking from '../pages/UserDashboardBooking';
 import UserDashboardSaved from '../pages/UserDashboardSaved';
 import UserDashboardMessagesPage from '../pages/UserDashboardMessages';
@@ -31,7 +31,7 @@ const AppRoutes = () => {
       <Route path="/property/:id" element={<><Navbar /><PropertyDetail /><Footer /></>} />
       <Route path="/confirm-booking/:id" element={<><Navbar /><ConfirmBookingPage /><Footer /></>} />
       <Route path="/contact" element={<><Navbar /><ContactPage /><Footer /></>} />
-      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/dashboard" element={<UserDashboardPage />} />
       <Route path="/bookings" element={<UserDashboardBooking />} />
       <Route path="/saved" element={<UserDashboardSaved />} />
       <Route path="/messages" element={<UserDashboardMessagesPage />} />

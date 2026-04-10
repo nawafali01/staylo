@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   contactFormInitialValues,
-  DEFAULT_USER,
-  DEFAULT_NOTIFICATIONS,
-  DEFAULT_PRIVACY,
-  DEFAULT_LANGUAGE,
-  Properties,
+  defaultUser,
+  defaultNotifications,
+  defaultPrivacy,
+  defaultLanguage,
+  properties,
 } from "../data/index";
 
 export const getStyle = (date, checkIn, checkOut) => {
@@ -96,14 +96,14 @@ export const useContactForm = () => {
 };
 
 export const useUserDashboardSetting = () => {
-  const [fullName, setFullName] = useState(DEFAULT_USER.fullName);
-  const [phone, setPhone] = useState(DEFAULT_USER.phone);
-  const [email, setEmail] = useState(DEFAULT_USER.email);
-  const [notifications, setNotifications] = useState(DEFAULT_NOTIFICATIONS);
+  const [fullName, setFullName] = useState(defaultUser.fullName);
+  const [phone, setPhone] = useState(defaultUser.phone);
+  const [email, setEmail] = useState(defaultUser.email);
+  const [notifications, setNotifications] = useState(defaultNotifications);
   const [profileVisible, setProfileVisible] = useState(
-    DEFAULT_PRIVACY.profileVisible,
+    defaultPrivacy.profileVisible,
   );
-  const [language, setLanguage] = useState(DEFAULT_LANGUAGE);
+  const [language, setLanguage] = useState(defaultLanguage);
 
   const handleNotifChange = (key) => (val) => {
     setNotifications((prev) => ({ ...prev, [key]: val }));
@@ -143,7 +143,7 @@ export const formatBillsIncluded = (included) => {
 
 export const usePropertyDetail = () => {
   const { id } = useParams();
-  const property = getPropertyById(Properties, id);
+  const property = getPropertyById(properties, id);
   return { property };
 };
 

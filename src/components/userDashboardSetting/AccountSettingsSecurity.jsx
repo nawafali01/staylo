@@ -1,4 +1,4 @@
-import { TWO_FACTOR } from "../../data/index";
+import { twoFactor } from "../../data/index";
 
 const AccountSettingsSecurity = ({ onEnable }) => {
   return (
@@ -11,16 +11,16 @@ const AccountSettingsSecurity = ({ onEnable }) => {
 
     
       <h3 className="text-white font-bold text-lg mb-2">
-        {TWO_FACTOR.title}
+        {twoFactor.title}
       </h3>
       <p className="text-blue-200 text-sm mb-5 max-w-sm">
-        {TWO_FACTOR.description}
+        {twoFactor.description}
       </p>
       <button
         onClick={onEnable}
         className="bg-white text-blue-600 font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-blue-50 transition duration-200"
       >
-        {TWO_FACTOR.buttonText}
+        {twoFactor.buttonText}
       </button>
     </div>
   );

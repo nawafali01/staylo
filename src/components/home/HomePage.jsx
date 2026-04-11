@@ -5,11 +5,11 @@ import HomePropertyCards from "./HomePropertyCards";
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <HomeHero />
       <HomeFeatures />
       <HomePropertyCards />
-    </div>
+    </>
   );
 };
 

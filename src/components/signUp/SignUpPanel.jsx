@@ -1,6 +1,6 @@
 import React from "react";
 import { HomeIcon } from "@heroicons/react/24/outline";
-import signUpBg from "../../assets/svg/signup/signup.svg";
+import signUpBg from "../../assets/svg/signin.svg";
 import { signUpStats } from "../../data/index";
 
 const SignUpPanel = () => {

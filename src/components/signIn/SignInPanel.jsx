@@ -1,5 +1,5 @@
 import React from "react";
-import signInBg from "../../assets/svg/sign in/signin.svg";
+import signInBg from "../../assets/svg/signup.svg";
 
 const SignInPanel = () => {
   return (

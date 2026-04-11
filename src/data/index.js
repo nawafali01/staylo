@@ -2,10 +2,10 @@ import ahad from "../assets/userDashboardMessage/ahad.jpg";
 import fahad from "../assets/userDashboardMessage/fahad.jpg";
 import rohan from "../assets/userDashboardMessage/rohan.jpg";
 import sami from "../assets/userDashboardMessage/sami.jpg";
-import checkIcon from '../assets/svg/aboutPage/check.svg?raw';
-import phoneIcon from '../assets/svg/aboutPage/phone.svg?raw';
-import currencyIcon from '../assets/svg/aboutPage/currency.svg?raw';
-import buildingIcon from '../assets/svg/aboutPage/building.svg?raw';
+import checkIcon from '../assets/svg/check.svg';
+import phoneIcon from '../assets/svg/phone.svg';
+import currencyIcon from '../assets/svg/phone.svg';
+import buildingIcon from '../assets/svg/building.svg';
 import {
   RectangleStackIcon,
   HomeModernIcon,

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Filter from "../components/propertyListingCard/Filter";
 import PropertySearch from "../components/propertyListingCard/PropertySearch.jsx";
 import PropertyCard from "../components/propertyListingCard/PropertyCard.jsx";
-import { properties } from "../data/index.js";
+import { properties } from "../../data/index.js";
 import { AdjustmentsHorizontalIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const PropertyListing = () => {

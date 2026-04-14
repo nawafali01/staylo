@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { properties } from '../data'
+import { properties } from '../../data'
 import DetailPropertySummary from '../components/confirmPropertyBooking/DetailPropertySummary'
 import ConfirmBookingHeader from '../components/confirmPropertyBooking/ConfirmBookingHeader'
 import ConfirmReservationPanel from '../components/confirmPropertyBooking/ConfirmReservationPanel'

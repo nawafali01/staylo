@@ -3,7 +3,6 @@ import { ArrowRightIcon, MapPinIcon, InboxIcon, SparklesIcon, ArrowsPointingOutI
 const HomePropertyCards = () => {
   return (
     <section className="p-10 max-w-7xl mx-auto">
-      {/* Top Header */}
       <div className="flex justify-between items-end mb-10">
         <header>
           <h2 className="text-3xl font-bold mb-4 text-gray-900 transition hover:text-blue-500 cursor-pointer">
@@ -16,7 +15,6 @@ const HomePropertyCards = () => {
         </Link>
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {properties.map((property) => (
           <article key={property.id} className="group border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-white">
@@ -28,7 +26,6 @@ const HomePropertyCards = () => {
                 className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
-              {/* Status Badge */}
               <div className={`absolute top-4 left-4 z-20 transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-[-10px] group-hover:translate-y-0
                 px-3 py-1 rounded-md flex items-center gap-2 shadow-lg font-bold text-[10px] tracking-wider uppercase
                 ${property.status === 'Available' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
@@ -38,7 +35,6 @@ const HomePropertyCards = () => {
                 <span>{property.status}</span>
               </div>
 
-              {/* Price Box */}
               <div className="absolute bottom-4 right-4 text-white/90 backdrop-blur-sm bg-blue-600 px-4 py-1.5 rounded-full font-bold text-sm shadow-lg">
                 {property.price}
                 <span className="text-[10px] font-medium ml-1 text-blue-100">/mo</span>
@@ -57,7 +53,6 @@ const HomePropertyCards = () => {
 
               <div className="border-t border-gray-100 mb-5"></div>
 
-              {/* Footer Stats */}
               <footer className="flex justify-between text-gray-600">
                 {property.stats.map((stat, index) => {
                   const Icon = stat.icon;

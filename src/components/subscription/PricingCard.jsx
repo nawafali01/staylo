@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SimpleCheckIcon } from "../../assets/svg";
 
-// PricingCard — single plan card
 const PricingCard = ({ plan, isAnnual }) => {
   const navigate = useNavigate();
   const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
@@ -13,7 +12,6 @@ const PricingCard = ({ plan, isAnnual }) => {
 
   return (
     <div className="relative flex flex-col">
-      {/* Most Popular Badge */}
       {plan.isMostPopular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
           <span className="bg-blue-600 text-white text-xs font-semibold tracking-widest px-5 py-1.5 rounded-full uppercase">
@@ -28,15 +26,12 @@ const PricingCard = ({ plan, isAnnual }) => {
           : "border border-gray-200"
           }`}
       >
-        {/* Tier Label */}
         <p className="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">
           {plan.tier}
         </p>
 
-        {/* Plan Name */}
         <h2 className="text-3xl font-bold text-gray-900 mb-1">{plan.name}</h2>
 
-        {/* Tagline / Save Badge */}
         <div className="mb-5 h-6">
           {plan.saveBadge && isAnnual ? (
             <span className="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
@@ -46,8 +41,6 @@ const PricingCard = ({ plan, isAnnual }) => {
             <p className="text-sm text-gray-500">{plan.tagline}</p>
           ) : null}
         </div>
-
-        {/* Price */}
         <div className="mb-2">
           <span className="text-5xl font-extrabold text-gray-900">
             ${price}
@@ -60,17 +53,14 @@ const PricingCard = ({ plan, isAnnual }) => {
           )}
         </div>
 
-        {/* Annual Billed Note */}
         {plan.annualBilled && isAnnual && (
           <p className="text-xs text-gray-400 tracking-widest mb-5">
             {plan.annualBilled}
           </p>
         )}
 
-        {/* Divider */}
         <hr className="border-gray-100 my-5" />
 
-        {/* Features List */}
         <ul className="flex flex-col gap-3 mb-8 flex-1">
           {plan.features.map((feature, index) => (
             <li
@@ -85,7 +75,6 @@ const PricingCard = ({ plan, isAnnual }) => {
           ))}
         </ul>
 
-        {/* CTA Button */}
         <button
           onClick={handleSubscribe}
           className={`w-full py-3 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-200 ${plan.ctaVariant === "solid"

@@ -1,7 +1,7 @@
 import React from "react";
 import { HomeIcon } from "@heroicons/react/24/outline";
 import signUpBg from "../../../assets/svg/signin.svg";
-import { signUpStats } from "../../../data/index";
+import { signUpStats } from "../../../data";
 
 const SignUpPanel = () => {
   return (

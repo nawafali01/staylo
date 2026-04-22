@@ -11,27 +11,22 @@ import {
 const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
   if (!isOpen || !booking) return null;
 
-  // Calculate nights logic
   const calculateNights = (dateRange) => {
-    // Basic logic to extract nights if provided or default to formatted stay
-    return 6; 
+    return 6;
   };
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 transition-opacity"
         onClick={onClose}
       />
 
-      {/* Modal */}
       <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
         <div
           className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto border border-slate-200"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header */}
           <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-100 px-8 py-6 flex items-start justify-between rounded-t-3xl z-10">
             <div className="flex items-center gap-4">
               <div className="bg-blue-50 p-3 rounded-2xl">
@@ -58,11 +53,8 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
             </button>
           </div>
 
-          {/* Content */}
           <div className="p-8 space-y-8">
-            {/* Tenant & Property Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Tenant Info */}
               <div className="bg-gradient-to-br from-blue-50/50 to-slate-50/50 rounded-3xl p-6 border border-blue-100/50 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100/20 rounded-full -mr-16 -mt-16 blur-3xl"></div>
                 <div className="flex items-center gap-5 mb-6 relative">
@@ -93,7 +85,6 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
                 </div>
               </div>
 
-              {/* Property & Duration */}
               <div className="space-y-4">
                 <div className="bg-slate-50 rounded-3xl p-6 border border-slate-200/60 relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-slate-200/20 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-blue-100/30 transition-colors duration-500"></div>
@@ -107,7 +98,7 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-6 text-white shadow-xl shadow-blue-200 relative overflow-hidden">
-                   <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mb-16 blur-2xl"></div>
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mb-16 blur-2xl"></div>
                   <h4 className="text-[10px] font-black uppercase tracking-[0.2em] mb-2 opacity-80">
                     Stay Duration
                   </h4>
@@ -116,7 +107,6 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
               </div>
             </div>
 
-            {/* Check-in/Check-out */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:border-green-100 transition-colors duration-300">
                 <div className="flex items-center gap-3 mb-4">
@@ -131,8 +121,8 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
                   {booking.dates.split(' - ')[0]}
                 </p>
                 <p className="text-xs text-slate-400 mt-2 font-bold uppercase tracking-wider flex items-center gap-1.5">
-                   <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                   After 3:00 PM
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  After 3:00 PM
                 </p>
               </div>
               <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:border-red-100 transition-colors duration-300">
@@ -148,13 +138,12 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
                   {booking.dates.split(' - ')[1]}
                 </p>
                 <p className="text-xs text-slate-400 mt-2 font-bold uppercase tracking-wider flex items-center gap-1.5">
-                   <div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>
-                   Before 11:00 AM
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>
+                  Before 11:00 AM
                 </p>
               </div>
             </div>
 
-            {/* Cost Breakdown */}
             <div className="bg-slate-50/50 rounded-3xl p-8 border border-slate-100">
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-white p-2 rounded-xl shadow-sm border border-slate-100">
@@ -180,7 +169,6 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
               </div>
             </div>
 
-            {/* Special Request */}
             {booking.specialRequest && (
               <div className="bg-orange-50/80 border-l-4 border-orange-400 rounded-3xl p-6">
                 <h4 className="text-[10px] font-black text-orange-900 uppercase tracking-[0.2em] mb-3">
@@ -193,7 +181,6 @@ const BookingDetailsModal = ({ isOpen, onClose, booking }) => {
             )}
           </div>
 
-          {/* Footer Actions */}
           <div className="sticky bottom-0 bg-white/95 backdrop-blur-md border-t border-slate-100 px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-b-3xl">
             <button
               onClick={onClose}

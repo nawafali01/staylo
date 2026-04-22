@@ -13,15 +13,11 @@ const ConfirmBookingCalendar = () => {
       <h2 className="text-base font-semibold text-gray-900 mb-4">
         Booking Calendar
       </h2>
-
-
       <div className="flex items-center justify-center gap-6 mb-4">
         <button className="text-gray-400 hover:text-gray-700 text-lg">‹</button>
         <span className="text-sm font-medium text-gray-900">October 2024</span>
         <button className="text-gray-400 hover:text-gray-700 text-lg">›</button>
       </div>
-
-
       <div className="grid grid-cols-7 mb-2">
         {calendarDays.map((day) => (
           <div key={day} className="text-center text-xs text-gray-400 py-1">
@@ -29,7 +25,6 @@ const ConfirmBookingCalendar = () => {
           </div>
         ))}
       </div>
-
       <div className="grid grid-cols-7">
         {calendarDates.map((date, i) => (
           <div

@@ -19,14 +19,12 @@ const SignInForm = () => {
     setError("");
     setLoading(true);
 
-    // Testing ke liye password set kiya hai
     const correctPassword = "admin123";
 
     try {
-      // Fake delay for realistic feel
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Password Check logic
+
       if (password !== correctPassword) {
         throw new Error("Email ya password galat hai");
       }
@@ -35,7 +33,7 @@ const SignInForm = () => {
         id: 1,
         email: email,
         name: "Test User",
-        role: "admin", // Isay 'owner' ya 'user' karke testing kar sakte hain
+        role: "admin",
       };
       const fakeToken = "dummy-token-123";
 
@@ -46,7 +44,6 @@ const SignInForm = () => {
         }),
       );
 
-      // Role based redirection
       if (fakeUser.role === "admin") {
         navigate("/admin/dashboard");
       } else if (fakeUser.role === "owner") {
@@ -72,7 +69,6 @@ const SignInForm = () => {
             Please enter your details to sign in
           </p>
 
-          {/* Error Message UI */}
           {error && (
             <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl animate-pulse">
               {error}

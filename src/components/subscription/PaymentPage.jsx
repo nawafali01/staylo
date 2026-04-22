@@ -6,7 +6,6 @@ import { pricingPlans, STRIPE_PUBLIC_KEY } from "../../data";
 import CheckoutForm from "./CheckoutForm";
 import { SimpleCheckIcon } from "../../assets/svg";
 
-// Initialize Stripe outside of component to avoid recreating it on every render
 const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 
 const PaymentPage = () => {
@@ -24,8 +23,7 @@ const PaymentPage = () => {
     <div className="min-h-screen bg-gray-50 py-20 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 items-start">
-          
-          {/* Order Summary */}
+
           <div className="w-full lg:w-5/12 space-y-8">
             <div>
               <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
@@ -85,18 +83,16 @@ const PaymentPage = () => {
             </div>
           </div>
 
-          {/* Checkout Form Container */}
           <div className="w-full lg:w-7/12">
             <div className="bg-white rounded-3xl p-8 lg:p-12 border border-gray-100 shadow-2xl shadow-gray-200/40 relative overflow-hidden">
-              {/* Decorative Gradient */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-50"></div>
-              
+
               <div className="relative">
                 <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
                   Payment Details
                   <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
                 </h3>
-                
+
                 <Elements stripe={stripePromise}>
                   <CheckoutForm planPrice={price} planName={selectedPlan.name} />
                 </Elements>
@@ -104,9 +100,9 @@ const PaymentPage = () => {
             </div>
 
             <p className="text-center text-gray-400 text-sm mt-8 px-10">
-              By completing your subscription, you agree to Staylo's 
-              <a href="#" className="text-blue-600 font-semibold hover:underline mx-1">Terms of Service</a> 
-              and 
+              By completing your subscription, you agree to Staylo's
+              <a href="#" className="text-blue-600 font-semibold hover:underline mx-1">Terms of Service</a>
+              and
               <a href="#" className="text-blue-600 font-semibold hover:underline mx-1">Privacy Policy</a>.
             </p>
           </div>

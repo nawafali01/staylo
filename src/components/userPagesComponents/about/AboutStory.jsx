@@ -4,7 +4,6 @@ import { MissionIcon, VisionIcon } from "../../../assets/svg";
 export default function AboutStory() {
   return (
     <section className="py-24 px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      {/* Image */}
       <div className="relative">
         <img
           src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80"
@@ -19,7 +18,6 @@ export default function AboutStory() {
         </div>
       </div>
 
-      {/* Text */}
       <div>
         <h2 className="text-3xl font-bold text-gray-900">
           The Story of Curation
@@ -35,7 +33,7 @@ export default function AboutStory() {
         <div className="mt-6 space-y-4">
           <div className="flex gap-3">
             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-                <MissionIcon className="w-4 h-4 text-blue-600" />
+              <MissionIcon className="w-4 h-4 text-blue-600" />
             </div>
             <div>
               <p className="font-semibold text-gray-900 text-sm">
@@ -51,7 +49,7 @@ export default function AboutStory() {
 
           <div className="flex gap-3">
             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-                <VisionIcon className="w-4 h-4 text-blue-600" />
+              <VisionIcon className="w-4 h-4 text-blue-600" />
             </div>
             <div>
               <p className="font-semibold text-gray-900 text-sm">

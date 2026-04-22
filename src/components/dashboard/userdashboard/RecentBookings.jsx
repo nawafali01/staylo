@@ -1,5 +1,6 @@
 import React from "react";
 import { recentBookings } from "../../../data/index";
+import { getRecentBookingStatusStyle } from "../../../utils/feature";
 
 export default function RecentBookings() {
   return (
@@ -38,13 +39,7 @@ export default function RecentBookings() {
                 </td>
                 <td className="px-6 py-4 text-center">
                   <span
-                    className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${
-                      booking.status === "BOOKED"
-                        ? "bg-blue-50 text-blue-600 border-blue-100"
-                        : booking.status === "COMPLETED"
-                          ? "bg-green-50 text-green-600 border-green-100"
-                          : "bg-red-50 text-red-600 border-red-100"
-                    }`}
+                    className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${getRecentBookingStatusStyle(booking.status)}`}
                   >
                     {booking.status}
                   </span>

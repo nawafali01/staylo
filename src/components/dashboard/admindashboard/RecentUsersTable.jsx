@@ -1,5 +1,5 @@
 import React from "react";
-import { recentUsers } from "../../../data";
+import { adminRecentUsers } from "../../../data";
 
 const RecentUsersTable = () => {
   return (
@@ -21,7 +21,7 @@ const RecentUsersTable = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {recentUsers.map((user) => (
+            {adminRecentUsers.map((user) => (
               <tr key={user.id} className="hover:bg-gray-50 transition-colors">
                 <td className="py-4">
                   <div className="flex items-center gap-3">

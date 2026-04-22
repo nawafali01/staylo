@@ -2,16 +2,12 @@ import ahad from "../assets/userDashboardMessage/ahad.jpg";
 import fahad from "../assets/userDashboardMessage/fahad.jpg";
 import rohan from "../assets/userDashboardMessage/rohan.jpg";
 import sami from "../assets/userDashboardMessage/sami.jpg";
-import checkIcon from '../assets/svg/check.svg';
-import phoneIcon from '../assets/svg/phone.svg';
-import currencyIcon from '../assets/svg/phone.svg';
-import buildingIcon from '../assets/svg/building.svg';
+import { CheckIcon, PhoneIcon, CurrencyIcon, BuildingIcon } from '../assets/svg';
 import {
   RectangleStackIcon,
   HomeModernIcon,
   ScaleIcon,
   EnvelopeIcon,
-  PhoneIcon,
   MapPinIcon,
   CalendarIcon,
   GlobeAltIcon,
@@ -32,7 +28,46 @@ import {
   UserIcon,
   BuildingOfficeIcon,
   CubeIcon,
+  ClipboardDocumentListIcon,
+  ChatBubbleLeftIcon,
+  BellIcon,
+  UsersIcon,
+  ClipboardDocumentCheckIcon,
+  RectangleGroupIcon,
+  ChatBubbleLeftRightIcon,
+  ChartBarIcon,
+  BuildingOffice2Icon,
 } from '@heroicons/react/24/outline';
+
+export const aboutFeatureIconList = {
+  CheckIcon,
+  PhoneIcon,
+  CurrencyIcon,
+  BuildingIcon
+};
+
+export const aboutFeatures = [
+  {
+    icon: "CheckIcon",
+    title: "Vetted Design",
+    description: "Every property undergoes a rigorous 50-point inspection focused on design, comfort, and structural integrity."
+  },
+  {
+    icon: "PhoneIcon",
+    title: "White-Glove Service",
+    description: "Dedicated concierges available 24/7 to handle everything from maintenance requests to local recommendations."
+  },
+  {
+    icon: "CurrencyIcon",
+    title: "Transparent Pricing",
+    description: "No hidden fees or unexpected charges. What you see is exactly what you pay for your premium stay."
+  },
+  {
+    icon: "BuildingIcon",
+    title: "Bespoke Spaces",
+    description: "Access to exclusive architectural masterpieces that aren't listed on generic rental platforms."
+  }
+];
 
 export const properties = [
   {
@@ -438,7 +473,7 @@ export const properties = [
     areaType: "Total estate area",
     description: [
       "A celebrity-style retreat perched high in the Hollywood Hills with iconic views of the LA skyline and the famous Hollywood sign. Complete privacy with 24/7 security.",
-      "Features an infinity edge pool, outdoor kitchen, home cinema, and spa. This is the pinnacle of Hollywood luxury living — designed for those who accept nothing but the best."
+      "Features an infinity edge pool, outdoor kitchen, home cinema, and spa. This is the pinnacle of Hollywood luxury living â€” designed for those who accept nothing but the best."
     ],
     amenities: [
       { label: "Fast WiFi", icon: "wifi" },
@@ -516,22 +551,16 @@ export const navLinks = [
 
 export const locations = ["New York, USA", "London, UK", "Dubai, UAE", "Lahore, Pakistan"];
 export const priceRanges = ["1000 - 3000", "3000 - 5000", "5000 - 10000", "10000+"];
-export const propertyTypes = ["Modern Apartment", "Luxury Villa", "Studio Flat", "Office Space"];
+export const propertyTypeNames = ["Modern Apartment", "Luxury Villa", "Studio Flat", "Office Space"];
 
 export const sidebarLinks = [
-  { label: "Dashboard", icon: "dashboard", path: "/dashboard" },
-  { label: "Bookings", icon: "bookings", path: "/bookings" },
-  { label: "Saved", icon: "saved", path: "/saved" },
-  { label: "Messages", icon: "messages", path: "/messages" },
-  { label: "Settings", icon: "settings", path: "/settings" },
+  { label: "Dashboard", icon: RectangleGroupIcon, path: "/dashboard" },
+  { label: "Bookings", icon: CalendarIcon, path: "/dashboard/bookings" },
+  { label: "Saved", icon: HeartIcon, path: "/dashboard/saved" },
+  { label: "Messages", icon: ChatBubbleLeftRightIcon, path: "/dashboard/messages" },
+  { label: "Settings", icon: Cog6ToothIcon, path: "/dashboard/settings" },
 ];
 
-export const dashboardStats = [
-  { icon: "calendar", value: 12, label: "Total Bookings", badge: "+2 This Week" },
-  { icon: "home", value: 2, label: "Upcoming Stays" },
-  { icon: "heart", value: 45, label: "Saved Properties" },
-  { icon: "mappin", value: 8, label: "Favorite Locations" },
-];
 
 export const recentBookings = [
   { id: 1, name: "Harbor View Suite", location: "San Francisco, CA", dates: "Oct 12 - Oct 18", status: "BOOKED" },
@@ -599,15 +628,15 @@ export const statusConfig = {
 };
 
 export const statusStyles = {
-  BOOKED:    "bg-blue-50 text-blue-600 border border-blue-200",
+  BOOKED: "bg-blue-50 text-blue-600 border border-blue-200",
   COMPLETED: "bg-gray-100 text-gray-500 border border-gray-200",
   CANCELLED: "bg-red-50 text-red-500 border border-red-200",
 };
 
 export const priceStyles = {
-  blue:  "text-blue-600",
+  blue: "text-blue-600",
   black: "text-gray-900",
-  red:   "text-red-500",
+  red: "text-red-500",
 };
 
 export const detailPropertySummaryAmenities = [
@@ -616,33 +645,7 @@ export const detailPropertySummaryAmenities = [
   { icon: ScaleIcon, valueKey: 'sqft', label: 'sqft' },
 ];
 
-export const footerPlatformLinks = [
-  "Property Search",
-  "Lease & Rent",
-  "Investment Plans",
-  "Market Trends",
-  "Calculators",
-];
 
-export const footerCompanyLinks = [
-  "About Us",
-  "Our Team",
-  "Careers",
-  "Press Release",
-  "Privacy Policy",
-];
-
-export const footerSupportLinks = [
-  "Help Center",
-  "Contact Support",
-  "Feedback",
-];
-
-export const footerSections = [
-  { title: 'Platform', links: footerPlatformLinks },
-  { title: 'Company', links: footerCompanyLinks },
-  { title: 'Support', links: footerSupportLinks },
-];
 
 export const homeProperties = [
   {
@@ -653,9 +656,9 @@ export const homeProperties = [
     location: "Gulberg, Lahore",
     img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=500&q=80",
     stats: [
-      { label: "3 Bed",      icon: "InboxIcon" },
-      { label: "2 Bath",     icon: "SparklesIcon" },
-      { label: "1200 sqft",  icon: "ArrowsPointingOutIcon" },
+      { label: "3 Bed", icon: "InboxIcon" },
+      { label: "2 Bath", icon: "SparklesIcon" },
+      { label: "1200 sqft", icon: "ArrowsPointingOutIcon" },
     ],
   },
   {
@@ -666,9 +669,9 @@ export const homeProperties = [
     location: "DHA Phase 6, Karachi",
     img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&q=80",
     stats: [
-      { label: "2 Bed",     icon: "InboxIcon" },
-      { label: "2 Bath",    icon: "SparklesIcon" },
-      { label: "950 sqft",  icon: "ArrowsPointingOutIcon" },
+      { label: "2 Bed", icon: "InboxIcon" },
+      { label: "2 Bath", icon: "SparklesIcon" },
+      { label: "950 sqft", icon: "ArrowsPointingOutIcon" },
     ],
   },
   {
@@ -679,9 +682,9 @@ export const homeProperties = [
     location: "E-11, Islamabad",
     img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=500&q=80",
     stats: [
-      { label: "4 Bed",      icon: "InboxIcon" },
-      { label: "4 Bath",     icon: "SparklesIcon" },
-      { label: "2500 sqft",  icon: "ArrowsPointingOutIcon" },
+      { label: "4 Bed", icon: "InboxIcon" },
+      { label: "4 Bath", icon: "SparklesIcon" },
+      { label: "2500 sqft", icon: "ArrowsPointingOutIcon" },
     ],
   },
 ];
@@ -703,7 +706,7 @@ export const propertyInfoIconMap = {
 
 export const signUpStats = [
   { value: "15k+", label: "Active Properties" },
-  { value: "98%",  label: "Success Rate" },
+  { value: "98%", label: "Success Rate" },
   { value: "50M+", label: "Trusted Users" },
 ];
 
@@ -718,10 +721,10 @@ export const calendarDates = [
   28, 29, 30, 31,
 ];
 
-export const bookingCheckIn  = 5;
+export const bookingCheckIn = 5;
 export const bookingCheckOut = 10;
 
-export const serviceFee   = 450;
+export const serviceFee = 450;
 export const occupancyTax = 120;
 
 export const occupantOptions = ["1 Adult", "2 Adults", "Family"];
@@ -735,36 +738,11 @@ export const propertyFilterTypes = [
   "TownHouse",
 ];
 
-export const featuresData = [
-  {
-    id: 1,
-    icon: "globe",
-    title: "Browser listings",
-    desc: "Explore high-quality properties with verified virtual tours and detailed documentation.",
-  },
-  {
-    id: 2,
-    icon: "calendar",
-    title: "Instant Booking",
-    desc: "Secure your favorite spot instantly with our simplified digital contract system.",
-  },
-  {
-    id: 3,
-    icon: "key",
-    title: "Move in Ready",
-    desc: "Pick up your keys and enjoy your move-in ready, professionally managed home.",
-  },
-];
 
-export const socialLogins = [
-  { name: "Google", icon: "https://www.svgrepo.com/show/355037/google.svg" },
-  { name: "Apple",  icon: "https://www.svgrepo.com/show/303108/apple-black-logo.svg" },
-];
 
-export const userRoles = [
-  { id: "tenant", label: "Tenant", icon: "UserIcon" },
-  { id: "owner",  label: "Owner",  icon: "BuildingOfficeIcon" },
-];
+
+
+
 
 export const teamMembers = [
   { name: "Elena Vance", role: "Chief Curator", img: "https://randomuser.me/api/portraits/women/44.jpg" },
@@ -773,60 +751,10 @@ export const teamMembers = [
   { name: "Marcus Reed", role: "Tech Lead", img: "https://randomuser.me/api/portraits/men/75.jpg" },
 ];
 
-export const aboutFeatures = [
-  {
-    icon: "check",
-    title: "Vetted Design",
-    desc: "Every property undergoes a rigorous 50-point inspection focused on design, comfort, and structural integrity.",
-  },
-  {
-    icon: "phone",
-    title: "White-Glove Service",
-    desc: "Dedicated concierges available 24/7 to handle everything from maintenance requests to local recommendations.",
-  },
-  {
-    icon: "currency",
-    title: "Transparent Pricing",
-    desc: "No hidden fees or unexpected charges. What you see is exactly what you pay for your premium stay.",
-  },
-  {
-    icon: "building",
-    title: "Bespoke Spaces",
-    desc: "Access to exclusive architectural masterpieces that aren't listed on generic rental platforms.",
-  },
-];
 
-export const aboutFeatureIcons = {
-  check: checkIcon,
-  phone: phoneIcon,
-  currency: currencyIcon,
-  building: buildingIcon,
-};
 
-export const featureIconMap = {
-  globe: GlobeAltIcon,
-  calendar: CalendarIcon,
-  key: KeyIcon,
-};
 
-export const contactIconMap = {
-  EnvelopeIcon,
-  PhoneIcon,
-  MapPinIcon,
-};
 
-export const signUpIconMap = {
-  UserIcon,
-  BuildingOfficeIcon,
-};
-
-export const sidebarIconMap = {
-  dashboard: Squares2X2Icon,
-  bookings: BookOpenIcon,
-  saved: HeartIcon,
-  messages: ChatBubbleOvalLeftIcon,
-  settings: Cog6ToothIcon,
-};
 
 export const dashboardStatsCardIconMap = {
   calendar: CalendarIcon,
@@ -850,21 +778,14 @@ export const contactInquiryOptions = [
   "General Question",
 ];
 
-export const contactDetails = [
-  { label: "Email Us", value: "concierge@theledger.com", icon: "EnvelopeIcon" },
-  { label: "Call Us",  value: "+1 (555) 234-8890",      icon: "PhoneIcon" },
-  { label: "Visit Us", value: "450 Architectural Plaza\nSuite 1200, Manhattan, NY", icon: "MapPinIcon" },
-];
+
 
 export const contactHero = {
   title: "Get in Touch",
   description: "Whether you're a property owner looking for premium management or a tenant seeking your next home, our team is here to provide editorial-level service.",
 };
 
-export const contactOffice = {
-  image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80",
-  name: "Our Manhattan Office",
-};
+
 
 export const savedCardProperties = [
   {
@@ -965,11 +886,10 @@ export const languageOptions = [
 export const defaultLanguage = "English (United States)";
 
 export const notificationItems = [
-  { key: "emailNotif", icon: "✉️", label: "Email notifications" },
-  { key: "smsAlerts", icon: "💬", label: "SMS alerts" },
-  { key: "pushNotif", icon: "🔔", label: "Push notifications" },
+  { key: "emailNotif", icon: EnvelopeIcon, label: "Email notifications" },
+  { key: "smsAlerts", icon: ChatBubbleLeftIcon, label: "SMS alerts" },
+  { key: "pushNotif", icon: BellIcon, label: "Push notifications" },
 ];
-
 export const twoFactor = {
   title: "Two-Factor Authentication",
   description:
@@ -990,4 +910,1363 @@ export const settingsData = {
   preferencesCardTitle: "Preferences",
   visibilityTitle: "Profile Visibility",
   visibilityDesc: "Allow others to see your listings",
+};
+// admin data
+
+
+export const recentActivity = [
+  { id: 1, userName: "Jane Doe", userImage: "https://randomuser.me/api/portraits/women/44.jpg", action: "requested a booking for", target: "Azure Penthouse", time: "2 hours ago", status: "PENDING" },
+  { id: 2, userName: "Marcus Chen", userImage: "https://randomuser.me/api/portraits/men/32.jpg", action: "added a new property", target: "'Sunset Villa'", time: "5 hours ago", status: "APPROVED" },
+  { id: 3, userName: "Sarah Miller", userImage: "https://randomuser.me/api/portraits/women/68.jpg", action: "verified her identity documents", target: "", time: "Yesterday", status: "APPROVED" },
+  { id: 4, userName: "Robert Fox", userImage: "https://randomuser.me/api/portraits/men/75.jpg", action: "reported a maintenance issue at", target: "Oakwood Loft", time: "Yesterday", status: "HIGH" },
+];
+
+export const adminPriorityProperties = [
+  { id: 1, title: "The Nordic Glasshouse", location: "Oslo, Norway", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800", tag: "MANAGED", status: "Occupied" },
+  { id: 2, title: "Sahara Oasis Lodge", location: "Marrakesh, Morocco", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800", tag: "REVIEW NEEDED", status: "Pending Review" },
+];
+
+export const adminRecentUsers = [
+  { id: 1, name: "Emily Lawson", email: "emily.l@arch.com", initials: "EL", role: "Property Owner", status: "Verified" },
+  { id: 2, name: "Tobias Klein", email: "tobias.k@web.de", initials: "TK", role: "Renter", status: "Onboarding" },
+];
+
+export const adminSidebarLinks = [
+  { label: "Dashboard", icon: Squares2X2Icon, path: "/admin/dashboard" },
+  { label: "Properties", icon: HomeIcon, path: "/admin/property" },
+  { label: "Bookings", icon: CalendarIcon, path: "/admin/bookings" },
+  { label: "Users", icon: UserIcon, path: "/admin/users" },
+  { label: "Reports", icon: ChartBarIcon, path: "/admin/reports" },
+];
+export const userStatistics = [
+  { title: "TOTAL USERS", value: "1,284", trend: "12% this month", trendUp: true, icon: "↗", color: "text-green-600" },
+  { title: "PROPERTY OWNERS", value: "156", trend: "Stable growth", trendUp: false, icon: "—", color: "text-gray-500" },
+  { title: "ACTIVE NOW", value: "42", trend: "Live monitoring", trendUp: true, icon: "◈", color: "text-blue-600" },
+  { title: "PENDING VERIFICATION", value: "8", trend: "Action required", trendUp: false, icon: "!", color: "text-orange-600" },
+];
+
+export const usersList = [
+  { id: 1, name: "Julianne Moore", email: "j.moore@studioarch.com", avatar: "https://randomuser.me/api/portraits/women/44.jpg", role: "Owner", status: "Active" },
+  { id: 2, name: "Marcus Thorne", email: "m.thorne@vanguard.io", avatar: "https://randomuser.me/api/portraits/men/32.jpg", role: "User", status: "Inactive" },
+  { id: 3, name: "Elena Rossi", email: "elena.r@estatemanage.com", avatar: "https://randomuser.me/api/portraits/women/68.jpg", role: "Owner", status: "Active" },
+  { id: 4, name: "David Chen", email: "d.chen@luxeliving.com", avatar: "https://randomuser.me/api/portraits/men/75.jpg", role: "User", status: "Active" },
+];
+
+export const propertiesData = [
+  { id: 1, title: "Modernist Retreat", location: "Oslo, Norway", price: "3,200", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800", status: "APPROVED", hostName: "Jane Doe", hostImage: "https://randomuser.me/api/portraits/women/44.jpg" },
+  { id: 2, title: "Concrete Haven", location: "Berlin, Germany", price: "2,850", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800", status: "PENDING", hostName: "Unknown", hostImage: "" },
+  { id: 3, title: "Glass Sanctuary", location: "Stockholm, Sweden", price: "4,500", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800", status: "APPROVED", hostName: "John Doe", hostImage: "https://randomuser.me/api/portraits/women/68.jpg" },
+  { id: 4, title: "Nordic Loft", location: "Helsinki, Finland", price: "1,950", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800", status: "REJECTED", hostName: "Unknown", hostImage: "" },
+];
+
+export const statsPropertyData = [
+  { id: 1, label: "PORTFOLIO GROWTH", value: "+24.8%", subtitle: "this quarter", variant: "primary", icon: "TrendingUp" },
+  { id: 2, label: "TOTAL LISTINGS", value: "142", subtitle: "", variant: "default" },
+  { id: 3, label: "OCCUPANCY RATE", value: "94%", subtitle: "", variant: "default" }
+];
+
+export const bookingsData = {
+  stats: {
+    totalRevenue: "124500.00",
+    revenueChange: "12.5",
+    totalBookings: "842",
+    totalLocations: "24",
+    activeBookings: "38"
+  },
+  bookings: [
+    { id: 1, property: { image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800", name: "Azure Heights Villa", location: "Malibu, CA" }, guest: { name: "Eleanor Shellstrop", email: "eleanor.s@example.com", avatar: "https://randomuser.me/api/portraits/women/44.jpg" }, bookingDates: { checkIn: "Oct 12", checkOut: "Oct 18, 2023", nights: "6 Nights" }, payment: "PAID", status: "Booked" },
+    { id: 2, property: { image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800", name: "The Glass Penthouse", location: "New York, NY" }, guest: { name: "Jason Doe", email: "jason.d@webmail.com", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, bookingDates: { checkIn: "Nov 05", checkOut: "Nov 10, 2023", nights: "5 Nights" }, payment: "PARTIALLY PAID", status: "Booked" },
+    { id: 3, property: { image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800", name: "Seaside Retreat", location: "Miami, FL" }, guest: { name: "Chidi Peterson", email: "chidi.p@domain.com", avatar: "https://randomuser.me/api/portraits/men/75.jpg" }, bookingDates: { checkIn: "Sep 20", checkOut: "Sep 25, 2023", nights: "5 Nights" }, payment: "PAID", status: "Completed" },
+    { id: 4, property: { image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800", name: "Pine Forest Cabin", location: "Aspen, CO" }, guest: { name: "Tahani Hadid", email: "tahani.h@luxury.com", avatar: "https://randomuser.me/api/portraits/women/68.jpg" }, bookingDates: { checkIn: "Dec 22", checkOut: "Dec 30, 2023", nights: "8 Nights" }, payment: "UNPAID", status: "Cancelled" },
+  ]
+};
+
+export const bookingFilterTabs = ["All", "Booked", "Completed", "Cancelled"];
+export const tableHeaders = ["PROPERTY", "GUEST", "BOOKING DATES", "PAYMENT", "STATUS", "ACTION"];
+
+export const filterTabs = [
+  { id: "all", label: "All Units" },
+  { id: "residential", label: "Residential" },
+  { id: "commercial", label: "Commercial" }
+];
+
+export const userData = {
+  userName: "Alex Rivers",
+  userRole: "Property Admin",
+  userImage: "https://randomuser.me/api/portraits/men/32.jpg",
+  searchPlaceholder: "Search users, roles, or status..."
+};
+
+
+export const reportStats = [
+  {
+    id: 1,
+    label: "TOTAL REVENUE",
+    value: "$428,500",
+    badge: "+12.5%",
+    badgeType: "up",
+    subtitle: "vs $380,800 last quarter",
+    highlighted: false,
+  },
+  {
+    id: 2,
+    label: "TOTAL BOOKINGS",
+    value: "1,284",
+    badge: "+8.2%",
+    badgeType: "up",
+    subtitle: "New leases this month",
+    highlighted: false,
+  },
+  {
+    id: 3,
+    label: "ACTIVE USERS",
+    value: "8,420",
+    badge: "Stable",
+    badgeType: "stable",
+    subtitle: "Active tenant portal users",
+    highlighted: false,
+  },
+  {
+    id: 4,
+    label: "GROWTH RATE",
+    value: "24.8%",
+    badge: "↗",
+    badgeType: "highlight",
+    subtitle: "YoY Portfolio expansion",
+    highlighted: true,
+  },
+];
+
+export const monthlyRevenueData = [
+  { month: "JAN", value: 28000, active: false },
+  { month: "FEB", value: 22000, active: false },
+  { month: "MAR", value: 31000, active: false },
+  { month: "APR", value: 38000, active: true },
+  { month: "MAY", value: 25000, active: false },
+  { month: "JUN", value: 30000, active: false },
+  { month: "JUL", value: 35000, active: false },
+  { month: "AUG", value: 52000, active: true },
+  { month: "SEP", value: 29000, active: false },
+  { month: "OCT", value: 27000, active: false },
+  { month: "NOV", value: 33000, active: false },
+  { month: "DEC", value: 26000, active: false },
+];
+
+export const revenueChartTabs = ["Monthly", "Quarterly"];
+
+export const portfolioHealthMetrics = [
+  { label: "Occupancy Rate", value: 94, color: "bg-blue-600", textColor: "text-blue-600" },
+  { label: "Maintenance Efficiency", value: 88, color: "bg-orange-500", textColor: "text-orange-500" },
+];
+
+export const portfolioUserGrowth = {
+  label: "User Growth",
+  value: "+18%",
+  textColor: "text-green-600",
+  sparklinePoints: "0,60 30,50 60,45 90,55 120,38 150,30 180,25 210,35 240,20",
+};
+
+export const aiInsightsData = {
+  heading: "AI Insights",
+  body: "Based on current trends, your portfolio is expected to hit",
+  highlight: "$500k ARR",
+  body2: "by next month. We recommend reviewing vacancy rates in the",
+  location: "Downtown District",
+  body3: "as turnover is slightly higher than market average.",
+  topPerformerLabel: "TOP PERFORMER",
+  topPerformerName: "Lumina Suites",
+  topPerformerStat: "98% Retention Rate",
+  topPerformerImage:
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80",
+};
+
+export const upcomingRenewals = [
+  {
+    id: 1,
+    name: "Sarah Jenkins",
+    unit: "Apartment 4B",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    daysLeft: 3,
+    urgency: "critical",
+  },
+  {
+    id: 2,
+    name: "Marcus Thorne",
+    unit: "Loft 12",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    daysLeft: 12,
+    urgency: "warning",
+  },
+  {
+    id: 3,
+    name: "Elena Rodriguez",
+    unit: "Studio 201",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    daysLeft: 15,
+    urgency: "normal",
+  },
+];
+
+export const reportNavTitle = "Reports & Analytics";
+export const reportSearchPlaceholder = "Search analytics...";
+
+export const bedRoomOptions = [
+  { value: '1', label: '1 Bedroom' },
+  { value: '2', label: '2 Bedrooms' },
+  { value: '3', label: '3 Bedrooms' },
+  { value: '4', label: '4 Bedrooms' },
+  { value: '5', label: '5+ Bedrooms' }
+];
+
+export const bathRoomOptions = [
+  { value: '1', label: '1 Bathroom' },
+  { value: '2', label: '2 Bathrooms' },
+  { value: '3', label: '3 Bathrooms' },
+  { value: '4', label: '4 Bathrooms' },
+  { value: '5', label: '5+ Bathrooms' }
+];
+
+export const initialFormData = {
+  title: '',
+  monthlyRent: '',
+  location: '',
+  bedrooms: '3',
+  bathrooms: '2',
+  description: ''
+};
+
+// OwnerDashboar Content
+
+export const ownerSidebarLinks = [
+  { label: "Dashboard", icon: Squares2X2Icon, path: "/owner/dashboard" },
+  { label: "Properties", icon: BuildingOffice2Icon, path: "/owner/properties" },
+  { label: "Users", icon: UsersIcon, path: "/owner/users" },
+  { label: "Bookings", icon: CalendarIcon, path: "/owner/bookings" },
+  { label: "Reports", icon: ChartBarIcon, path: "/owner/reports" },
+];
+export const ownerDashboardStats = {
+  totalUsers: {
+    count: 1240,
+    label: "TOTAL USERS",
+    changePercent: "+12%",
+    color: "#E3F2FD"
+  },
+  totalProperties: {
+    count: 450,
+    label: "TOTAL PROPERTIES",
+    changePercent: "+5.4%",
+    color: "#E8F5E9"
+  },
+  totalBookings: {
+    count: 820,
+    label: "TOTAL BOOKINGS",
+    changePercent: "+22%",
+    color: "#F3E5F5"
+  },
+  pendingApprovals: {
+    count: 15,
+    label: "PENDING APPROVALS",
+    tag: "High Priority",
+    color: "#FFF3E0"
+  }
+};
+
+export const recentActivities = [
+  {
+    id: 1,
+    user: "Jane Doe",
+    action: "requested a booking for Azure Penthouse",
+    time: "2 hours ago",
+    status: "PENDING",
+    statusColor: "#FFF3E0"
+  },
+  {
+    id: 2,
+    user: "Marcus Chen",
+    action: "added a new property 'Sunset Villa'",
+    time: "5 hours ago",
+    status: "APPROVED",
+    statusColor: "#E3F2FD"
+  },
+  {
+    id: 3,
+    user: "Sarah Miller",
+    action: "verified her identity documents",
+    time: "Yesterday",
+    status: "APPROVED",
+    statusColor: "#E3F2FD"
+  },
+  {
+    id: 4,
+    user: "Robert Fox",
+    action: "reported a maintenance issue at Oakwood Loft",
+    time: "Yesterday",
+    status: "HIGH",
+    statusColor: "#FFEBEE"
+  }
+];
+
+export const ownerPriorityProperties = [
+  {
+    id: 1,
+    name: "The Nordic Glasshouse",
+    location: "Oslo, Norway",
+    image: "nordic-glasshouse.jpg",
+    status: "MANAGED",
+    statusLabel: "Occupied",
+    statusColor: "#2196F3"
+  },
+  {
+    id: 2,
+    name: "Sahara Oasis Lodge",
+    location: "Marrakesh, Morocco",
+    image: "sahara-oasis.jpg",
+    status: "REVIEW NEEDED",
+    statusLabel: "Pending Review",
+    statusColor: "#FF9800"
+  }
+];
+
+export const ownerRecentUsers = [
+  {
+    id: 1,
+    name: "Emily Lawson",
+    email: "emily.l@arch.com",
+    initials: "EL",
+    role: "Property Owner",
+    status: "Verified",
+    statusColor: "#E3F2FD"
+  },
+  {
+    id: 2,
+    name: "Tobias Klein",
+    email: "tobias.k@web.de",
+    initials: "TK",
+    role: "Renter",
+    status: "Onboarding",
+    statusColor: "#F5F5F5"
+  }
+];
+
+export const colors = {
+  primary: "#1976D2",
+  secondary: "#424242",
+  success: "#4CAF50",
+  warning: "#FF9800",
+  error: "#F44336",
+  info: "#2196F3",
+
+  backgrounds: {
+    users: "#E3F2FD",
+    properties: "#E8F5E9",
+    bookings: "#F3E5F5",
+    approvals: "#FFF3E0"
+  },
+
+  status: {
+    pending: "#FFF3E0",
+    approved: "#E3F2FD",
+    high: "#FFEBEE",
+    verified: "#E3F2FD",
+    onboarding: "#F5F5F5"
+  }
+};
+
+export const navigationItems = [
+  { id: "dashboard", label: "Dashboard" },
+  { id: "properties", label: "Properties" },
+  { id: "users", label: "Users" },
+  { id: "bookings", label: "Bookings" },
+  { id: "reports", label: "Reports" }
+];
+
+export const userInfo = {
+  name: "Alexander Wright",
+  role: "Premium Management"
+};
+
+export const adminDashboardStats = {
+  totalUsers: {
+    count: 1240,
+    label: "TOTAL USERS",
+    changePercent: "+12%",
+    color: "#E3F2FD", // Light Blue
+    icon: UsersIcon
+  },
+  totalProperties: {
+    count: 450,
+    label: "TOTAL PROPERTIES",
+    changePercent: "+5.4%",
+    color: "#E8F5E9", // Light Green
+    icon: HomeIcon
+  },
+  totalBookings: {
+    count: 820,
+    label: "TOTAL BOOKINGS",
+    changePercent: "+22%",
+    color: "#F3E5F5", // Light Purple
+    icon: CalendarIcon
+  },
+  pendingApprovals: {
+    count: 15,
+    label: "PENDING APPROVALS",
+    tag: "High Priority",
+    color: "#FFF3E0",
+    icon: ClipboardDocumentCheckIcon
+  }
+};
+
+//propertycomponent page
+
+
+export const filterOptions = [
+  { id: 'all', label: 'All' },
+  { id: 'available', label: 'Available' },
+  { id: 'occupied', label: 'Occupied' },
+  { id: 'under-review', label: 'Under Review' },
+];
+
+
+export const propertyStatus = {
+  available: 'available',
+  occupied: 'occupied',
+  underReview: 'under_review',
+  vacant: 'vacant',
+};
+
+export const ownerPropertiesData = [
+  {
+    id: 1,
+    name: 'The Azure Heights Villa',
+    location: 'Malibu, USA',
+    rating: 4.9,
+    beds: 4,
+    baths: 3,
+    sqft: 3200,
+    price: 12500,
+    status: propertyStatus.available,
+    statusLabel: 'Vacant',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&h=400&fit=crop',
+    occupancyStatus: propertyStatus.available,
+  },
+  {
+    id: 2,
+    name: 'Skyline Loft',
+    location: 'New York, USA',
+    rating: 4.7,
+    beds: 2,
+    baths: 2,
+    sqft: 1850,
+    price: 8200,
+    status: propertyStatus.occupied,
+    statusLabel: 'Currently Occupied',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=400&fit=crop',
+    occupancyStatus: propertyStatus.occupied,
+  },
+  {
+    id: 3,
+    name: 'Cotswold Cottage',
+    location: 'Oxford, UK',
+    rating: 4.8,
+    beds: 3,
+    baths: 2,
+    sqft: 2100,
+    price: 4500,
+    status: propertyStatus.underReview,
+    statusLabel: 'Vacant',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop',
+    occupancyStatus: propertyStatus.vacant,
+  },
+  {
+    id: 4,
+    name: 'Emerald Bay Estate',
+    location: 'Lake Tahoe, USA',
+    rating: 5.0,
+    beds: 6,
+    baths: 5,
+    sqft: 5800,
+    price: 18900,
+    status: propertyStatus.available,
+    statusLabel: 'Vacant',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop',
+    occupancyStatus: propertyStatus.available,
+  },
+  {
+    id: 5,
+    name: 'The Greenwich Flat',
+    location: 'London, UK',
+    rating: 4.6,
+    beds: 1,
+    baths: 1,
+    sqft: 950,
+    price: 3200,
+    status: propertyStatus.occupied,
+    statusLabel: 'Currently Occupied',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop',
+    occupancyStatus: propertyStatus.occupied,
+  },
+  {
+    id: 6,
+    name: 'Nexus Business Hub',
+    location: 'Berlin, Germany',
+    rating: 4.9,
+    beds: null,
+    baths: null,
+    rooms: 12,
+    capacity: 40,
+    sqft: 4500,
+    price: 24000,
+    status: propertyStatus.underReview,
+    statusLabel: 'Vacant',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop',
+    occupancyStatus: propertyStatus.vacant,
+    isCommercial: true,
+  },
+];
+
+
+export const sortOptions = [
+  { id: 'newest', label: 'Newest' },
+  { id: 'oldest', label: 'Oldest' },
+  { id: 'price-high', label: 'Price: High to Low' },
+  { id: 'price-low', label: 'Price: Low to High' },
+  { id: 'rating', label: 'Highest Rated' },
+];
+
+
+export const propertyTypeOptions = [
+  { id: 'all', label: 'All' },
+  { id: 'residential', label: 'Residential' },
+  { id: 'commercial', label: 'Commercial' },
+  { id: 'luxury', label: 'Luxury' },
+];
+
+// Bookings constant data
+export const bookingStatsData = [
+  {
+    id: 'total',
+    label: 'TOTAL BOOKINGS',
+    value: 47,
+    subtext: '↗12%',
+    color: 'blue'
+  },
+  {
+    id: 'pending',
+    label: 'PENDING',
+    value: 7,
+    subtext: 'Action required soon',
+    color: 'orange'
+  },
+  {
+    id: 'confirmed',
+    label: 'CONFIRMED',
+    value: 23,
+    subtext: 'Currently active',
+    color: 'blue'
+  },
+  {
+    id: 'completed',
+    label: 'COMPLETED',
+    value: 15,
+    subtext: 'Historical records',
+    color: 'teal'
+  }
+];
+
+export const ownerBookingsData = [
+  {
+    id: '#BK-9281',
+    tenant: {
+      name: 'Elena Vance',
+      email: 'elena.v@curate.com',
+      phone: '+1 (555) 012-3456',
+      avatar: 'https://i.pravatar.cc/150?img=1'
+    },
+    property: {
+      name: 'The Glass Pavilion',
+      address: '1280 Metropolitan Ave, Downtown District'
+    },
+    dates: 'Oct 12 - Oct 18',
+    amount: '$12,400',
+    status: 'CONFIRMED',
+    specialRequest: 'We will be arriving late in the evening around 9 PM. Is there a possibility for a self check-in or late key pick up? Also, we require extra pillows if available.'
+  },
+  {
+    id: '#BK-9275',
+    tenant: {
+      name: 'Julian S. Aris',
+      email: 'j.aris@varepair.io',
+      phone: '+1 (555) 987-6543',
+      avatar: 'https://i.pravatar.cc/150?img=12'
+    },
+    property: {
+      name: 'Stone Hollow Residence',
+      address: '452 Canyon Road, Hillside Heights'
+    },
+    dates: 'Oct 15 - Oct 22',
+    amount: '$8,900',
+    status: 'PENDING',
+    specialRequest: 'Looking for a quiet room if possible.'
+  },
+  {
+    id: '#BK-9268',
+    tenant: {
+      name: 'Sarah Sterling',
+      email: 'sarah.s@global.co',
+      phone: '+44 20 7946 0958',
+      avatar: 'https://i.pravatar.cc/150?img=5'
+    },
+    property: {
+      name: 'The Brutalist Loft',
+      address: '89 Industrial Way, Tech District'
+    },
+    dates: 'Oct 01 - Oct 07',
+    amount: '$15,200',
+    status: 'COMPLETED'
+  },
+  {
+    id: '#BK-9264',
+    tenant: {
+      name: 'Markus Aurelius',
+      email: 'm.aurelius@law.com',
+      phone: '+39 06 1234 5678',
+      avatar: 'https://i.pravatar.cc/150?img=33'
+    },
+    property: {
+      name: 'Skyline Penthouse',
+      address: '777 Cloud View, Pinnacle Plaza'
+    },
+    dates: 'Oct 20 - Oct 30',
+    amount: '$22,000',
+    status: 'CONFIRMED'
+  },
+  {
+    id: '#BK-9259',
+    tenant: {
+      name: 'Leo Chen',
+      email: 'leo.chen@tech.cn',
+      phone: '+86 21 6123 4567',
+      avatar: 'https://i.pravatar.cc/150?img=14'
+    },
+    property: {
+      name: 'Zen Garden Suite',
+      address: '12 Bamboo Path, Serenity Gardens'
+    },
+    dates: 'Oct 05 - Oct 10',
+    amount: '$6,800',
+    status: 'COMPLETED'
+  },
+  {
+    id: '#BK-9255',
+    tenant: {
+      name: 'Beatrix Kiddo',
+      email: 'b.kiddo@sword.com',
+      phone: '+1 (555) 001-KILL',
+      avatar: 'https://i.pravatar.cc/150?img=9'
+    },
+    property: {
+      name: 'The Dojo Manor',
+      address: '88 Hanzo Street, Okinawa Hills'
+    },
+    dates: 'Nov 01 - Nov 05',
+    amount: '$18,500',
+    status: 'PENDING'
+  },
+  {
+    id: '#BK-9250',
+    tenant: {
+      name: 'Sam Flynn',
+      email: 's.flynn@grid.org',
+      phone: '+1 (555) 867-5309',
+      avatar: 'https://i.pravatar.cc/150?img=11'
+    },
+    property: {
+      name: 'Neon District Apartment',
+      address: '101 Cyber Way, Sector 7'
+    },
+    dates: 'Oct 18 - Oct 25',
+    amount: '$9,200',
+    status: 'CONFIRMED'
+  },
+  {
+    id: '#BK-9245',
+    tenant: {
+      name: 'Diane Lockhart',
+      email: 'd.lockhart@partners.com',
+      phone: '+1 (555) 234-5678',
+      avatar: 'https://i.pravatar.cc/150?img=20'
+    },
+    property: {
+      name: 'The Victorian Estate',
+      address: '221B Baker Street, Heritage Row'
+    },
+    dates: 'Dec 10 - Dec 24',
+    amount: '$45,000',
+    status: 'PENDING'
+  }
+];
+
+export const bookingFilterOptions = [
+  { id: 'all', label: 'All' },
+  { id: 'pending', label: 'Pending' },
+  { id: 'confirmed', label: 'Confirmed' },
+  { id: 'completed', label: 'Completed' },
+  { id: 'rejected', label: 'Rejected' }
+];
+
+export const socialLogins = [
+  {
+    name: "Google",
+    icon: "https://www.svgrepo.com/show/355037/google.svg",
+  },
+  {
+    name: "Apple",
+    icon: "https://www.svgrepo.com/show/303108/apple-black-logo.svg",
+  },
+];
+// ─── Stats Cards Data ───────────────────────────────────────────────────────
+export const earningsStats = [
+  {
+    id: 1,
+    label: "Total Earnings",
+    value: "PKR 4.2M",
+    badge: "ALL TIME",
+    badgeColor: "bg-gray-100 text-gray-500",
+    valueColor: "text-blue-600",
+    icon: "wallet",
+  },
+  {
+    id: 2,
+    label: "This Month Revenue",
+    value: "PKR 342,000",
+    badge: "+23%",
+    badgeColor: "bg-green-50 text-green-600",
+    valueColor: "text-gray-900",
+    icon: "trending-up",
+  },
+  {
+    id: 3,
+    label: "Pending Payout",
+    value: "PKR 145,000",
+    badge: "REQUEST PAYOUT",
+    badgeColor: "bg-orange-500 text-white",
+    valueColor: "text-orange-500",
+    icon: "clock",
+    hasAction: true,
+  },
+  {
+    id: 4,
+    label: "Next Payout Date",
+    value: "Oct 28",
+    badge: "In 5 days",
+    badgeColor: "bg-blue-50 text-blue-500",
+    valueColor: "text-gray-900",
+    icon: "calendar",
+  },
+];
+
+export const revenueChartData = [
+  { date: "SEP 25", value: 85000 },
+  { date: "OCT 02", value: 120000 },
+  { date: "OCT 09", value: 145000 },
+  { date: "OCT 16", value: 210000 },
+  { date: "CURRENT", value: 342000 },
+];
+
+export const chartPeriods = ["7 Days", "1 Month", "6 Months", "1 Year"];
+
+export const propertiesEarnings = [
+  {
+    id: 1,
+    name: "Azure Heights Villa",
+    address: "DHA Phase 6, Karachi",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=80&h=60&fit=crop",
+    bookings: 24,
+    occupancy: 78,
+    revenue: "PKR 85,400",
+    trend: "up",
+  },
+  {
+    id: 2,
+    name: "Skyline Loft 402",
+    address: "Gulberg III, Lahore",
+    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=80&h=60&fit=crop",
+    bookings: 18,
+    occupancy: 55,
+    revenue: "PKR 52,100",
+    trend: "down",
+  },
+  {
+    id: 3,
+    name: "The Heritage Suite",
+    address: "Bahria Town, Islamabad",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=80&h=60&fit=crop",
+    bookings: 31,
+    occupancy: 88,
+    revenue: "PKR 112,000",
+    trend: "up",
+  },
+];
+
+export const payoutHistory = [
+  {
+    id: "#PAY-99281",
+    date: "Oct 12, 2023",
+    method: "Bank Transfer",
+    methodIcon: "bank",
+    amount: "PKR 88,200",
+    status: "COMPLETED",
+    statusColor: "bg-green-100 text-green-700",
+  },
+  {
+    id: "#PAY-99204",
+    date: "Sep 28, 2023",
+    method: "PayPal",
+    methodIcon: "paypal",
+    amount: "PKR 124,000",
+    status: "PROCESSING",
+    statusColor: "bg-blue-100 text-blue-700",
+  },
+  {
+    id: "#PAY-99115",
+    date: "Sep 14, 2023",
+    method: "JazzCash",
+    methodIcon: "jazzcash",
+    amount: "PKR 45,000",
+    status: "PENDING",
+    statusColor: "bg-orange-100 text-orange-700",
+  },
+];
+
+
+export const paymentMethods = [
+  { id: "bank", label: "Bank" },
+  { id: "paypal", label: "PayPal" },
+  { id: "jazzcash", label: "JazzCash" },
+];
+
+
+export const weeklyIntensity = [
+  { day: "MON", value: 40 },
+  { day: "TUE", value: 65 },
+  { day: "WED", value: 55 },
+  { day: "THU", value: 90 },
+  { day: "FRI", value: 72 },
+  { day: "SAT", value: 48 },
+  { day: "SUN", value: 30 },
+];
+
+export const weeklyStats = {
+  highestDay: "Thursday",
+  dailyAverage: "PKR 12,400",
+};
+
+export const pendingAlert = {
+  message: "You have a pending payout of PKR 145,000 scheduled for processing.",
+};
+
+export const userProfile = {
+  fullName: "Julian Marcovici",
+  email: "julian.marcovici@estate.com",
+  phone: "555-0123-456",
+  alternativePhone: "",
+  dateOfBirth: "1985-06-15",
+  gender: "Male",
+  nationality: "United States",
+  idPassport: "A12345678",
+  role: "Primary Account Owner",
+  accountStatus: "Verified Owner",
+  avatar: null,
+};
+
+export const residentialAddress = {
+  addressLine1: "452 High Street, Apartment 4B",
+  addressLine2: "",
+  city: "Austin",
+  state: "Texas",
+  country: "United States",
+  postalCode: "78701",
+};
+
+export const genderOptions = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+  { value: "Non-binary", label: "Non-binary" },
+  { value: "Prefer not to say", label: "Prefer not to say" },
+];
+
+export const nationalityOptions = [
+  { value: "United States", label: "United States" },
+  { value: "United Kingdom", label: "United Kingdom" },
+  { value: "Canada", label: "Canada" },
+  { value: "Pakistan", label: "Pakistan" },
+  { value: "India", label: "India" },
+];
+
+export const phoneCountryCodes = [
+  { code: "+1", flag: "🇺🇸", country: "US" },
+  { code: "+92", flag: "🇵🇰", country: "PK" },
+  { code: "+91", flag: "🇮🇳", country: "IN" },
+];
+
+export const privacyNotice = {
+  text: "Your personal data is encrypted and stored according to our strict privacy policy.",
+  buttonLabel: "View Privacy Policy",
+  policyUrl: "/privacy-policy",
+};
+
+export const unsavedChangesNotice = "You have unsaved changes in your personal information.";
+
+// Sidebar ya Inbox mein dikhne wali chats ki list
+export const chatThreads = [
+  {
+    id: 1,
+    name: "Julianne Moore",
+    property: "Villa Azure, Unit 402",
+    time: "10:42 AM",
+    preview: "The kitchen sink is leaking ...",
+    avatar: null,
+    unread: true,
+    active: true,
+  },
+  {
+    id: 2,
+    name: "Marcus Vane",
+    property: "The Glass House",
+    time: "09:15 AM",
+    preview: "I've sent the lease renewal ...",
+    avatar: null,
+    unread: true,
+    active: false,
+  },
+  {
+    id: 3,
+    name: "David Chen",
+    property: "Mountain Retreat",
+    time: "Yesterday",
+    preview: "Thanks for the quick respons...",
+    avatar: null,
+    unread: false,
+    active: false,
+  },
+  {
+    id: 4,
+    name: "Sarah Jenkins",
+    property: "Urban Loft 22",
+    time: "Aug 22",
+    preview: "I'll be out of town next week, ...",
+    avatar: null,
+    unread: false,
+    active: false,
+  },
+];
+
+// Specific chat ki messages history (ID ke mutabiq)
+export const messageHistory = {
+  1: [
+    {
+      id: 1,
+      type: "system",
+      text: "Maintenance request #482 created for Villa Azure",
+      date: "YESTERDAY",
+      showDate: true,
+    },
+    {
+      id: 2,
+      type: "sent",
+      text: "Hi Julianne, I've received your note about the kitchen sink. I'll have our plumber take a look at it tomorrow morning between 9 AM and 11 AM. Does that work for you?",
+      time: "16:45",
+      showDate: false,
+    },
+    {
+      id: 3,
+      type: "received",
+      text: "That works perfectly! I'll be home. Also, the faucet in the master bath has been a bit stiff lately if he has time to check that too?",
+      time: "17:12",
+      showDate: false,
+      showDateLabel: "TODAY",
+    },
+    {
+      id: 4,
+      type: "received",
+      text: "The kitchen sink is leaking again since this morning, much worse than before. Can the plumber come earlier?",
+      time: "10:42",
+      showDate: false,
+    },
+  ],
+};
+
+// Inbox ko filter karne ke liye tabs
+export const inboxFilters = [
+  { id: "all", label: "All", badge: null },
+  { id: "unread", label: "Unread", badge: 3 },
+  { id: "archived", label: "Archived", badge: null },
+];
+
+// Woh user jiski chat abhi open hai
+export const activeChatPartner = {
+  id: 1,
+  name: "Julianne Moore",
+  property: "Villa Azure, Unit 402",
+  bookingUrl: "/bookings/villa-azure",
+  propertyUrl: "/properties/villa-azure",
+};
+
+// addNewProperty
+// ─── STEP CONFIG ────────────────────────────────────────────────────────────
+export const steps = [
+  { id: 1, key: "basicInfo", label: "BASIC INFO" },
+  { id: 2, key: "details", label: "DETAILS" },
+  { id: 3, key: "photos", label: "PHOTOS" },
+  { id: 4, key: "pricing", label: "PRICING" },
+  { id: 5, key: "review", label: "REVIEW" },
+];
+
+// ─── STEP BANNERS ────────────────────────────────────────────────────────────
+export const stepBanners = {
+  1: { type: "info", text: "All new property listings are subject to administrative review within 24 hours." },
+  2: { type: "warning", text: "Please ensure all required information is accurate. Property details once submitted may require administrative approval to change." },
+  3: { type: "warning", text: "Missing high-resolution photos may lower property visibility by up to 40%. Please ensure all media meets our quality guidelines." },
+  4: { type: "warning", text: "Pricing details must be verified by local market regulations before publishing." },
+  5: { type: "warning", text: "Please ensure all pricing details are final. Changes after submission may require admin approval." },
+};
+
+// ─── BASIC INFO ──────────────────────────────────────────────────────────────
+export const propertyTypes = [
+  "Residential Apartment", "Commercial Office", "Villa / House",
+  "Studio Apartment", "Penthouse", "Warehouse", "Shop / Retail", "Plot / Land",
+];
+
+export const listingCategories = ["For Rent", "For Sale"];
+
+export const cities = [
+  "Lahore", "Karachi", "Islamabad", "Rawalpindi", "Faisalabad",
+  "Multan", "Peshawar", "Quetta", "Sialkot", "Gujranwala",
+];
+
+export const provinces = [
+  "Punjab", "Sindh", "Khyber Pakhtunkhwa", "Balochistan",
+  "Islamabad Capital Territory", "Gilgit-Baltistan", "Azad Kashmir",
+];
+
+// ─── DETAILS ─────────────────────────────────────────────────────────────────
+export const furnishingOptions = [
+  { value: "fully", label: "FULLY FURNISHED", icon: "🛋️" },
+  { value: "semi", label: "SEMI FURNISHED", icon: "🪑" },
+  { value: "unfurn", label: "UNFURNISHED", icon: "🚪" },
+];
+
+export const lifestyleAmenities = [
+  { key: "wifi", label: "WiFi", icon: "📶" },
+  { key: "ac", label: "AC", icon: "❄️" },
+  { key: "pool", label: "Pool", icon: "🏊" },
+  { key: "gym", label: "Gym", icon: "🏋️" },
+  { key: "security", label: "Security", icon: "🔒" },
+  { key: "garden", label: "Garden", icon: "🌳" },
+  { key: "balcony", label: "Balcony", icon: "🏗️" },
+  { key: "heating", label: "Heating", icon: "🔥" },
+];
+
+export const infrastructureItems = [
+  { key: "gated", label: "Gated Community" },
+  { key: "generator", label: "Backup Generator" },
+  { key: "water", label: "Water Tank" },
+  { key: "solar", label: "Solar Panels" },
+  { key: "cctv", label: "CCTV System" },
+  { key: "fire", label: "Fire Alarm" },
+];
+
+// ─── PRICING ─────────────────────────────────────────────────────────────────
+export const currencies = ["USD ($)", "PKR (₨)", "EUR (€)", "GBP (£)", "AED (د.إ)"];
+
+export const periods = ["Per Month", "Per Year", "Per Day", "Per Week"];
+
+export const minRentalPeriods = ["1 Month", "3 Months", "6 Months", "1 Year"];
+
+export const maxRentalPeriods = ["No Limit", "6 Months", "1 Year", "2 Years"];
+
+export const utilities = [
+  { key: "electricity", label: "Electricity" },
+  { key: "water", label: "Water" },
+  { key: "gas", label: "Gas" },
+  { key: "internet", label: "Internet" },
+  { key: "cableTV", label: "Cable TV" },
+];
+
+export const rulesToggles = [
+  { key: "petsAllowed", label: "Pets Allowed", desc: "Are domestic animals permitted on premises?" },
+  { key: "smokingAllowed", label: "Smoking Allowed", desc: "Is smoking permitted within the building units?" },
+  { key: "childrenWelcome", label: "Children Welcome", desc: "Is the property child-friendly and safe for minors?" },
+];
+
+// ─── PHOTOS ──────────────────────────────────────────────────────────────────
+export const mediaChecklist = [
+  { key: "exterior", label: "Main Exterior Shot" },
+  { key: "living", label: "Living Spaces" },
+  { key: "bedroom", label: "Master Bedroom" },
+  { key: "floorplan", label: "Floor Plans" },
+  { key: "amenities", label: "Amenities/Common Areas" },
+];
+
+export const proTips = [
+  'Shoot during "Golden Hour" for soft, warm lighting.',
+  "Use wide-angle lenses to capture the scale of rooms.",
+  "Declutter spaces to allow tenants to visualize themselves.",
+  "Capture unique architectural details like crown molding.",
+];
+
+
+// =====================
+// Pricing Page Constants
+// =====================
+
+export const pricingHero = {
+  heading: "Simple, Transparent",
+  headingHighlight: "Pricing.",
+  subheading:
+    "Scale your real estate portfolio with professional-grade tools designed for the modern architectural mindset. No hidden fees.",
+};
+
+export const billingToggle = {
+  monthly: "Monthly",
+  annually: "Annually",
+  saveBadge: "SAVE 20%",
+};
+
+export const pricingPlans = [
+  {
+    id: "free",
+    tier: "Entry Tier",
+    name: "Free Plan",
+    tagline: "Forever Free",
+    monthlyPrice: 0,
+    annualPrice: 0,
+    annualBilled: null,
+    saveBadge: null,
+    isMostPopular: false,
+    features: [
+      "1 Property",
+      "Basic Dashboard",
+      "Tenant Requests",
+    ],
+    ctaLabel: "GET STARTED",
+    ctaVariant: "outline",
+  },
+  {
+    id: "monthly",
+    tier: "Standard Tier",
+    name: "Monthly Plan",
+    tagline: "Scalable Solutions",
+    monthlyPrice: 19,
+    annualPrice: 19,
+    annualBilled: null,
+    saveBadge: null,
+    isMostPopular: true,
+    features: [
+      "Up to 10 Properties",
+      "Full Dashboard",
+      "Tenant Management",
+      "Standard Analytics",
+    ],
+    ctaLabel: "GET STARTED",
+    ctaVariant: "solid",
+  },
+  {
+    id: "annual",
+    tier: "Professional Tier",
+    name: "Annual Plan",
+    tagline: null,
+    monthlyPrice: 19,
+    annualPrice: 15,
+    annualBilled: "BILLED $180/YEAR",
+    saveBadge: "SAVE 20%",
+    isMostPopular: false,
+    features: [
+      "Unlimited Properties",
+      "Advanced Analytics",
+      "Priority Support",
+      "All Features Included",
+    ],
+    ctaLabel: "GET STARTED",
+    ctaVariant: "outline",
+  },
+];
+
+export const trustedBrands = ["STRUCT", "URBANIST", "VILLA.IO", "SKYLINE"];
+
+export const trustedLabel = "POWERING ARCHITECTURAL PORTFOLIOS GLOBALLY";
+export const footer = {
+  copyright: "© 2024 The Digital Estate. All rights reserved.",
+  links: [
+    { label: "Terms of Service", href: "#" },
+    { label: "Privacy Policy", href: "#" },
+    { label: "Contact Support", href: "#" },
+    { label: "Security", href: "#" },
+  ],
+};
+
+export const userDashboardStatsData = [
+  { value: 12, label: "Total Bookings", badge: "+2 This Week", id: "totalBookings" },
+  { value: 2, label: "Upcoming Stays", id: "upcomingStays" },
+  { value: 45, label: "Saved Properties", id: "savedProperties" },
+  { value: 8, label: "Favorite Locations", id: "favoriteLocations" },
+];
+
+export const userDashboardSidebarLinksData = [
+  { label: "Dashboard", path: "/dashboard", id: "dashboard" },
+  { label: "Bookings", path: "/dashboard/bookings", id: "bookings" },
+  { label: "Saved", path: "/dashboard/saved", id: "saved" },
+  { label: "Messages", path: "/dashboard/messages", id: "messages" },
+  { label: "Settings", path: "/dashboard/settings", id: "settings" },
+];
+
+export const ownerDashboardStatsData = [
+  {
+    id: "totalProperties",
+    label: "Total Properties",
+    count: "24",
+    changePercent: "+2 this month",
+    bgColor: "bg-blue-50",
+    textColor: "text-blue-600",
+    badgeBg: "bg-orange-50",
+    badgeText: "text-orange-600"
+  },
+  {
+    id: "occupied",
+    label: "Currently Occupied",
+    count: "18",
+    changePercent: "+15%",
+    bgColor: "bg-blue-50",
+    textColor: "text-blue-500",
+    badgeBg: "bg-blue-50",
+    badgeText: "text-blue-500"
+  },
+  {
+    id: "revenue",
+    label: "This Month Revenue",
+    count: "$14,250",
+    changePercent: "+18%",
+    bgColor: "bg-blue-50",
+    textColor: "text-blue-600",
+    badgeBg: "bg-blue-50",
+    badgeText: "text-blue-500"
+  },
+  {
+    id: "requests",
+    label: "Booking Requests",
+    count: "7",
+    tag: "Needs Action",
+    bgColor: "bg-orange-50",
+    textColor: "text-orange-600",
+    badgeBg: "bg-orange-800",
+    badgeText: "text-white"
+  }
+];
+
+export const propertyPerformanceData = [
+  {
+    id: 1,
+    name: "The Azure Penthouse",
+    rating: 4.9,
+    bookings: 124,
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=100&h=100&fit=crop",
+    color: "bg-blue-600"
+  },
+  {
+    id: 2,
+    name: "Loft 42 Heritage",
+    rating: 4.7,
+    bookings: 89,
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=100&h=100&fit=crop",
+    color: "bg-blue-500"
+  },
+  {
+    id: 3,
+    name: "Silverwood Manor",
+    rating: 4.5,
+    bookings: 42,
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=100&h=100&fit=crop",
+    color: "bg-blue-400"
+  }
+];
+
+export const earningsSummaryChartData = [
+  { month: 'S', height: 40 },
+  { month: 'O', height: 70 },
+  { month: 'N', height: 60 },
+  { month: 'D', height: 80 },
+  { month: 'J', height: 75 },
+  { month: 'F', height: 100 },
+];
+
+export const payoutData = {
+  availableAmount: "$12,450.00",
+  totalEarnings: "$84,200.00",
+};
+
+export const avatarColors = [
+  "bg-rose-400",
+  "bg-violet-400",
+  "bg-amber-400",
+  "bg-teal-400",
+  "bg-sky-400",
+  "bg-pink-400",
+];
+
+// Stripe & Checkout Constants
+export const STRIPE_PUBLIC_KEY = "pk_test_51TOEpnRsBZnMLAV16VcGUZ2qLD8H4OL13WI6w327AboTHyjh3liTc3fO3M9tHdtnYH2GMZJAygEhoBPi2UfRXwbh009ckJxLlQ";
+
+export const stripeCardStyle = {
+  style: {
+    base: {
+      color: "#1f2937",
+      fontFamily: "'Inter', sans-serif",
+      fontSmoothing: "antialiased",
+      fontSize: "16px",
+      "::placeholder": {
+        color: "#9ca3af",
+      },
+    },
+    invalid: {
+      color: "#ef4444",
+      iconColor: "#ef4444",
+    },
+  },
+};
+
+export const footerSections = [
+  {
+    title: "Platform",
+    links: [
+      "Property Search",
+      "Lease & Rent",
+      "Investment Plans",
+      "Market Trends",
+      "Calculators",
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      "About Us",
+      "Our Team",
+      "Careers",
+      "Press Release",
+      "Privacy Policy",
+    ],
+  },
+  {
+    title: "Support",
+    links: ["Help Center", "Contact Support", "Feedback"],
+  },
+];
+
+export const footerDescription = "Leading the way in modern real estate solutions. We make finding, investing, and managing properties simple, transparent, and efficient for everyone.";
+
+export const mockReservationData = {
+  checkIn: "📅 Oct 05, 2024",
+  checkOut: "📅 Oct 10, 2024",
+  guests: "2 Adults, 1 Child",
+  nights: 5,
+  paymentMethod: "Credit Card (Ending in 4421)"
 };

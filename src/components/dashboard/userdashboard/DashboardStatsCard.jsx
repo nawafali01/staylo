@@ -1,9 +1,4 @@
-import React from "react";
-import { dashboardStatsCardIconMap } from "../../../data/index";
-
-export default function DashboardStatsCard({ icon, value, label, badge }) {
-  const Icon = dashboardStatsCardIconMap[icon];
-
+export default function DashboardStatsCard({ icon: Icon, value, label, badge }) {
   return (
     <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between mb-4">

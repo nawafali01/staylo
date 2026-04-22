@@ -1,6 +1,6 @@
 import React from "react";
 import { MapPinIcon } from "@heroicons/react/24/outline";
-import { priorityProperties } from "../../../data";
+import { adminPriorityProperties } from "../../../data";
 
 const PriorityProperties = () => {
   return (
@@ -12,44 +12,44 @@ const PriorityProperties = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {priorityProperties.map((prop) => (
+        {adminPriorityProperties.map((property) => (
           <div
-            key={prop.id}
+            key={property.id}
             className="rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 group"
           >
             <div className="relative h-48 overflow-hidden">
               <img
-                src={prop.image}
+                src={property.image}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                alt={prop.title}
+                alt={property.title}
               />
               <span
                 className={`absolute top-3 left-3 text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm ${
-                  prop.tag === "MANAGED"
+                  property.tag === "MANAGED"
                     ? "bg-blue-500 text-white"
                     : "bg-orange-500 text-white"
                 }`}
               >
-                {prop.tag}
+                {property.tag}
               </span>
             </div>
             <div className="p-5">
               <h4 className="font-bold text-base text-gray-900 mb-2">
-                {prop.title}
+                {property.title}
               </h4>
               <p className="text-sm text-gray-500 flex items-center gap-1.5 mb-4">
-                <MapPinIcon className="w-4 h-4" /> {prop.location}
+                <MapPinIcon className="w-4 h-4" /> {property.location}
               </p>
               <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                 <span className="text-sm font-medium text-gray-600 flex items-center gap-2 whitespace-nowrap">
                   <div
                     className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                      prop.status === "Occupied"
+                      property.status === "Occupied"
                         ? "bg-green-500"
                         : "bg-orange-400"
                     }`}
                   />
-                  {prop.status}
+                  {property.status}
                 </span>
                 <button className="text-sm font-semibold text-blue-600 hover:text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors whitespace-nowrap">
                   Manage

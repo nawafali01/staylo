@@ -57,11 +57,10 @@ export default function BookingCard({ booking }) {
           </p>
         </div>
         <button
-          className={`w-full py-2 rounded-lg text-sm font-medium transition-all ${
-            booking.priceColor === "blue"
+          className={`w-full py-2 rounded-lg text-sm font-medium transition-all ${booking.priceColor === "blue"
               ? "bg-blue-600 text-white hover:bg-blue-700"
               : "border border-gray-200 text-gray-500 hover:bg-gray-50"
-          }`}
+            }`}
         >
           View Details
         </button>

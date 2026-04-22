@@ -1,8 +1,20 @@
-import React from "react";
-import { statsData, iconMap } from "../../../data";
-import { CheckCircleIcon, ChartBarIcon } from "@heroicons/react/24/outline";
+import {
+  CheckCircleIcon,
+  ChartBarIcon,
+  UserIcon,
+  BuildingOfficeIcon,
+  CalendarIcon,
+  ClipboardDocumentListIcon,
+} from "@heroicons/react/24/outline";
 
 const StatsOverview = () => {
+  const stats = [
+    { id: 1, title: 'TOTAL USERS', value: '1,240', percentage: '+12%', color: 'bg-blue-500', icon: UserIcon },
+    { id: 2, title: 'TOTAL PROPERTIES', value: '450', percentage: '+5.4%', color: 'bg-blue-500', icon: BuildingOfficeIcon },
+    { id: 3, title: 'TOTAL BOOKINGS', value: '820', percentage: '+22%', color: 'bg-blue-500', icon: CalendarIcon },
+    { id: 4, title: 'PENDING APPROVALS', value: '15', percentage: 'High Priority', color: 'bg-orange-500', icon: ClipboardDocumentListIcon }
+  ];
+
   return (
     <div className="mb-8">
       {/* Header with Buttons */}
@@ -19,8 +31,8 @@ const StatsOverview = () => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {statsData.map((item) => {
-          const Icon = iconMap[item.id];
+        {stats.map((item) => {
+          const Icon = item.icon;
           return (
             <div
               key={item.id}
@@ -28,7 +40,7 @@ const StatsOverview = () => {
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={`p-3 rounded-xl ${item.color} bg-opacity-10`}>
-                  {Icon && <Icon className="w-6 h-6 text-gray-700" />}
+                  <Icon className="w-6 h-6 text-gray-700" />
                 </div>
                 <span
                   className={`text-xs font-semibold px-3 py-1 rounded-full ${

@@ -1,9 +1,31 @@
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRightOnRectangleIcon, CubeIcon } from "@heroicons/react/24/outline";
-import { sidebarLinks, sidebarIconMap } from "../../../data/index";
+import {
+  ArrowRightOnRectangleIcon,
+  CubeIcon,
+  Squares2X2Icon,
+  BookOpenIcon,
+  HeartIcon,
+  ChatBubbleOvalLeftIcon,
+  Cog6ToothIcon,
+} from "@heroicons/react/24/outline";
+
+import { userDashboardSidebarLinksData } from "../../../data/index";
 
 export default function Sidebar() {
   const location = useLocation();
+
+  const icons = {
+    dashboard: Squares2X2Icon,
+    bookings: BookOpenIcon,
+    saved: HeartIcon,
+    messages: ChatBubbleOvalLeftIcon,
+    settings: Cog6ToothIcon,
+  };
+
+  const links = userDashboardSidebarLinksData.map((link) => ({
+    ...link,
+    icon: icons[link.id],
+  }));
 
   return (
     <aside className="w-64 bg-slate-900 min-h-screen p-6 flex flex-col">
@@ -17,9 +39,9 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex-1 space-y-1.5">
-        {sidebarLinks.map((link) => {
-          const Icon = sidebarIconMap[link.icon];
+        {links.map((link) => {
           const isActive = location.pathname === link.path;
+          const Icon = link.icon;
 
           return (
             <Link
@@ -31,11 +53,9 @@ export default function Sidebar() {
                   : "text-slate-400 hover:bg-slate-800 hover:text-white"
               }`}
             >
-              {Icon && (
-                <Icon
-                  className={`h-5 w-5 transition-colors ${isActive ? "text-white" : "text-slate-500 group-hover:text-white"}`}
-                />
-              )}
+              <Icon
+                className={`h-5 w-5 transition-colors ${isActive ? "text-white" : "text-slate-500 group-hover:text-white"}`}
+              />
               <span className="text-sm font-semibold">{link.label}</span>
             </Link>
           );

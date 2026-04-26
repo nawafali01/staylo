@@ -8,10 +8,11 @@ export default function DashboardLayout({
   userRole,
   userImage,
   searchPlaceholder,
+  isAdmin,
 }) {
   return (
     <div className="flex">
-      <SideBar links={links} />
+      <SideBar links={links} isAdmin={isAdmin} />
 
       <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
         <DashboardNavbar

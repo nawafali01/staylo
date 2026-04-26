@@ -1,5 +1,3 @@
-import Sidebar from "../../dashboard/userdashboard/Sidebar";
-import DashboardNavbar from "../../dashboard/userdashboard/DashboardNavbar";
 import BookingCard from "./BookingCard";
 import { bookings } from "../../../data/index";
 import {

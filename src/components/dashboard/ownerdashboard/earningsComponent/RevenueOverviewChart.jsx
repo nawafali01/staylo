@@ -1,93 +1,66 @@
-import { useState } from "react";
-import { revenueChartData, chartPeriods } from "../../../../data";
+import { useState, useMemo } from "react";
+import { revenueStatsData, revenuePeriodOptions } from "../../../../data";
 import { buildSmoothPath } from "../../../../utils/feature";
+import { RevenueSVG } from "../../../../assets/svg/RevenueOverviewChartSVG";
 
-export default function RevenueOverviewChart() {
+function RevenueOverviewChart() {
     const [activePeriod, setActivePeriod] = useState("1 Month");
-    const width = 560;
-    const height = 200;
-    const padding = 40;
 
-    const { path, coords } = buildSmoothPath(revenueChartData, width, height, padding);
+    const chartWidth = 560;
+    const chartHeight = 200;
+    const chartPadding = 40;
 
-    const areaPath =
-        path +
-        ` L ${coords[coords.length - 1].x} ${height - padding} L ${coords[0].x} ${height - padding} Z`;
+    const { coords } = useMemo(() =>
+        buildSmoothPath(revenueStatsData, chartWidth, chartHeight, chartPadding),
+        [chartWidth, chartHeight, chartPadding]
+    );
 
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-            <div className="flex items-start justify-between mb-4">
-                <div>
-                    <h3 className="font-semibold text-gray-800 text-sm">Revenue Overview</h3>
-                    <p className="text-xs text-gray-400">Performance over selected period</p>
-                </div>
-                <div className="flex items-center gap-1 bg-gray-50 rounded-xl p-1">
-                    {chartPeriods.map((period) => (
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 hover:shadow-md transition-shadow duration-300">
+
+            <div className="flex items-center justify-between mb-6">
+                <header>
+                    <h3 className="font-bold text-slate-800 text-base leading-tight">Revenue Overview</h3>
+                    <p className="text-[11px] text-slate-400 font-medium mt-1">Real-time performance analytics</p>
+                </header>
+
+                <nav className="flex items-center gap-1 bg-slate-50 border border-slate-100 rounded-xl p-1">
+                    {revenuePeriodOptions.map((period) => (
                         <button
                             key={period}
                             onClick={() => setActivePeriod(period)}
-                            className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-all ${activePeriod === period
-                                    ? "bg-white text-blue-600 shadow-sm"
-                                    : "text-gray-400 hover:text-gray-600"
+                            className={`text-[10px] px-3 py-1.5 rounded-lg font-semibold transition-all duration-200 ${activePeriod === period
+                                ? "bg-white text-blue-600 shadow-sm ring-1 ring-slate-100"
+                                : "text-slate-400 hover:text-slate-600 hover:bg-slate-100/50"
                                 }`}
                         >
                             {period}
                         </button>
                     ))}
-                </div>
+                </nav>
             </div>
 
-            <div className="w-full overflow-hidden">
-                <svg
-                    viewBox={`0 0 ${width} ${height}`}
-                    className="w-full"
-                    preserveAspectRatio="none"
-                    style={{ height: 180 }}
-                >
-                    <defs>
-                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.15" />
-                            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.01" />
-                        </linearGradient>
-                    </defs>
+            <div className="w-full">
+                <RevenueSVG
+                    className="w-full h-auto overflow-visible"
+                    style={{ maxHeight: "180px" }}
+                />
 
-                    {/* Area fill */}
-                    <path d={areaPath} fill="url(#chartGradient)" />
-
-                    {/* Line */}
-                    <path
-                        d={path}
-                        fill="none"
-                        stroke="#3b82f6"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-
-                    {/* Data points */}
-                    {coords.map((coord, index) => (
-                        <g key={index}>
-                            <circle cx={coord.x} cy={coord.y} r="4" fill="white" stroke="#3b82f6" strokeWidth="2" />
-                            {index === coords.length - 2 && (
-                                <circle cx={coord.x} cy={coord.y} r="6" fill="#3b82f6" opacity="0.2" />
-                            )}
-                        </g>
-                    ))}
-                </svg>
-
-                {/* X-axis labels */}
-                <div className="flex justify-between px-2 mt-1">
-                    {revenueChartData.map((data, index) => (
+                <div className="flex justify-between items-center px-1 mt-4 border-t border-slate-50 pt-3">
+                    {revenueStatsData.map((item, index) => (
                         <span
-                            key={index}
-                            className={`text-xs ${data.date === "CURRENT" ? "text-blue-500 font-semibold" : "text-gray-400"
+                            key={`label-${index}`}
+                            className={`text-[10px] font-bold tracking-wider ${index === coords.length - 1 ? "text-blue-600" : "text-slate-400"
                                 }`}
                         >
-                            {data.date}
+                            {item.date}
                         </span>
                     ))}
                 </div>
             </div>
+
         </div>
     );
 }
+
+export default RevenueOverviewChart;

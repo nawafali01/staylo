@@ -24,13 +24,12 @@ const Navbar = () => {
           <div className="flex justify-center">
             <ul className="flex items-center gap-8 list-none m-0 p-0">
               {navLinks.map((link) => (
-                <li key={link}>
-                  {/* 2. Link component use karein */}
+                <li key={link.label}>
                   <Link
-                    to={link === "Home" ? "/" : null}
+                    to={link.to}
                     className="text-gray-600 hover:text-yellow-900 transition-all duration-200 text-sm font-medium"
                   >
-                    {link}
+                    {link.label}
                   </Link>
                 </li>
               ))}

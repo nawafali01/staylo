@@ -1,4 +1,6 @@
-import { ArrowRightIcon, MapPinIcon, InboxIcon, SparklesIcon, ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
+import { ArrowRightIcon, MapPinIcon } from '@heroicons/react/24/outline';
+import { homeProperties, propertyCardIconMap } from '../../../data';
 
 const HomePropertyCards = () => {
   return (
@@ -16,7 +18,7 @@ const HomePropertyCards = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {properties.map((property) => (
+        {homeProperties.map((property) => (
           <article key={property.id} className="group border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-white">
 
             <div className="relative overflow-hidden cursor-pointer">
@@ -55,10 +57,10 @@ const HomePropertyCards = () => {
 
               <footer className="flex justify-between text-gray-600">
                 {property.stats.map((stat, index) => {
-                  const Icon = stat.icon;
+                  const Icon = propertyCardIconMap[stat.icon];
                   return (
                     <div key={index} className="flex flex-col items-center gap-1">
-                      <Icon className="h-5 w-5 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                      {Icon && <Icon className="h-5 w-5 text-gray-400 group-hover:text-blue-500 transition-colors" />}
                       <span className="text-[10px] font-medium text-gray-700 uppercase">{stat.label}</span>
                     </div>
                   );

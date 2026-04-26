@@ -70,7 +70,7 @@ const AppRoutes = () => {
       <Route element={<ProtectedRoutes />}>
         <Route
           path="/admin"
-          element={<DashboardLayout links={adminSidebarLinks} />}
+          element={<DashboardLayout links={adminSidebarLinks} isAdmin={true} />}
         >
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<AdminDashboardPage />} />

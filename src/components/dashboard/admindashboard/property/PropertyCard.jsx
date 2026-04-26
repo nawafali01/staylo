@@ -5,7 +5,6 @@ import { getStatusColor } from "../../../../utils/feature";
 const PropertyCard = ({ property }) => {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
-      {/* Image */}
       <div className="relative h-64 bg-gray-200 overflow-hidden group">
         <img
           src={property.image}
@@ -19,8 +18,7 @@ const PropertyCard = ({ property }) => {
         </span>
       </div>
 
-      {/* Content */}
-      <div className="p-5">
+      \      <div className="p-5">
         <div className="flex items-start justify-between mb-3">
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 hover:text-blue-600 cursor-pointer transition-colors">

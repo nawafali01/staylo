@@ -1,5 +1,5 @@
-import { useRef, useEffect } from "react";
 import MessageAvatar from "./MessageAvatar";
+import { useChatScroll } from "../../../../utils/feature";
 
 const DateLabel = ({ label }) => (
   <div className="flex items-center justify-center my-4">
@@ -18,30 +18,23 @@ const SystemMessage = ({ text }) => (
 );
 
 const ChatMessages = ({ messages, activeUser }) => {
-  const bottomRef = useRef(null);
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  const bottomRef = useChatScroll(messages);
 
   return (
     <div className="flex-1 overflow-y-auto px-5 py-4 space-y-1">
       {messages.map((msg) => (
         <div key={msg.id}>
-          {msg.showDate && <DateLabel label="YESTERDAY" />}
           {msg.showDateLabel && <DateLabel label={msg.showDateLabel} />}
-
           {msg.type === "system" && <SystemMessage text={msg.text} />}
+
 
           {msg.type === "sent" && (
             <div className="flex justify-end mb-2">
               <div className="max-w-[65%]">
-                <div className="bg-blue-600 text-white text-sm rounded-2xl rounded-tr-sm px-4 py-3 leading-relaxed shadow-sm">
+                <div className="bg-blue-600 text-white text-sm rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm">
                   {msg.text}
                 </div>
-                <p className="text-[10px] text-slate-400 text-right mt-1 mr-1">
-                  {msg.time}
-                </p>
+                <p className="text-[10px] text-slate-400 text-right mt-1 mr-1">{msg.time}</p>
               </div>
             </div>
           )}
@@ -50,17 +43,16 @@ const ChatMessages = ({ messages, activeUser }) => {
             <div className="flex items-end gap-2 mb-2">
               <MessageAvatar name={activeUser.name} size="sm" />
               <div className="max-w-[65%]">
-                <div className="bg-white border border-slate-100 text-slate-700 text-sm rounded-2xl rounded-tl-sm px-4 py-3 leading-relaxed shadow-sm">
+                <div className="bg-white border border-slate-100 text-slate-700 text-sm rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
                   {msg.text}
                 </div>
-                <p className="text-[10px] text-slate-400 mt-1 ml-1">
-                  {msg.time}
-                </p>
+                <p className="text-[10px] text-slate-400 mt-1 ml-1">{msg.time}</p>
               </div>
             </div>
           )}
         </div>
       ))}
+
       <div ref={bottomRef} />
     </div>
   );

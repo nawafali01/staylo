@@ -7,7 +7,6 @@ import {
 const BookingRow = ({ booking }) => {
   return (
     <tr className="border-b border-gray-100 hover:bg-gray-50">
-      {/* Property */}
       <td className="py-4 px-4">
         <div className="flex items-center gap-3">
           <img
@@ -26,7 +25,6 @@ const BookingRow = ({ booking }) => {
         </div>
       </td>
 
-      {/* Guest */}
       <td className="py-4 px-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-gray-700 text-white flex items-center justify-center font-medium">
@@ -41,7 +39,6 @@ const BookingRow = ({ booking }) => {
         </div>
       </td>
 
-      {/* Booking Dates */}
       <td className="py-4 px-4">
         <div className="font-medium text-gray-900">
           {booking.bookingDates.checkIn} -
@@ -54,7 +51,6 @@ const BookingRow = ({ booking }) => {
         </div>
       </td>
 
-      {/* Payment */}
       <td className="py-4 px-4">
         <span
           className={`px-3 py-1 rounded-md text-xs font-medium ${getPaymentStyle(booking.payment)}`}
@@ -63,7 +59,6 @@ const BookingRow = ({ booking }) => {
         </span>
       </td>
 
-      {/* Status */}
       <td className="py-4 px-4">
         <div className="flex items-center gap-2">
           <span
@@ -75,7 +70,6 @@ const BookingRow = ({ booking }) => {
         </div>
       </td>
 
-      {/* Action */}
       <td className="py-4 px-4">
         <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">
           View Details

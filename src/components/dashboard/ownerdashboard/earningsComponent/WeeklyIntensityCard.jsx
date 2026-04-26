@@ -9,28 +9,23 @@ export default function WeeklyIntensityCard() {
         Weekly Intensity
       </h3>
 
-      {/* Bar chart */}
       <div className="flex items-end gap-2 h-16 mb-3">
         {weeklyIntensity.map((dayData) => (
           <div key={dayData.day} className="flex-1 flex flex-col items-center gap-1">
             <div
-              className={`w-full rounded-t-md transition-all ${
-                dayData.day === "THU" ? "bg-blue-600" : "bg-blue-100"
-              }`}
+              className={`w-full rounded-t-md transition-all ${dayData.day === "THU" ? "bg-blue-600" : "bg-blue-100"
+                }`}
               style={{ height: `${(dayData.value / maxVal) * 56}px` }}
             />
           </div>
         ))}
       </div>
-
-      {/* Day labels */}
       <div className="flex gap-2 mb-4">
         {weeklyIntensity.map((dayData) => (
           <div key={dayData.day} className="flex-1 text-center">
             <span
-              className={`text-xs font-medium ${
-                dayData.day === "THU" ? "text-blue-600" : "text-gray-400"
-              }`}
+              className={`text-xs font-medium ${dayData.day === "THU" ? "text-blue-600" : "text-gray-400"
+                }`}
             >
               {dayData.day}
             </span>

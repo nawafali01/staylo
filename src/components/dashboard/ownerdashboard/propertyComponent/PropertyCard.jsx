@@ -7,7 +7,6 @@ import {
   UsersIcon,
   BuildingOfficeIcon,
 } from "@heroicons/react/24/outline";
-
 import { getOwnerPropertyStatusStyles } from "../../../../utils/feature";
 
 const PropertyCard = ({ property }) => {
@@ -15,14 +14,12 @@ const PropertyCard = ({ property }) => {
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-      {/* Property Image */}
       <div className="relative h-64">
         <img
           src={property.image}
           alt={property.name}
           className="w-full h-full object-cover"
         />
-        {/* Status Badge */}
         <div className="absolute top-4 right-4">
           <span
             className={`${statusStyles.badge} px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5`}
@@ -35,9 +32,7 @@ const PropertyCard = ({ property }) => {
         </div>
       </div>
 
-      {/* Property Details */}
       <div className="p-5">
-        {/* Name and Rating */}
         <div className="flex items-start justify-between mb-2">
           <h3 className="text-lg font-semibold text-gray-900">
             {property.name}
@@ -50,13 +45,11 @@ const PropertyCard = ({ property }) => {
           </div>
         </div>
 
-        {/* Location */}
         <div className="flex items-center gap-1.5 text-gray-600 mb-4">
           <MapPinIcon className="w-4 h-4" />
           <span className="text-sm">{property.location}</span>
         </div>
 
-        {/* Property Stats */}
         <div className="flex items-center gap-4 mb-5 pb-5 border-b border-gray-100">
           {property.isCommercial ? (
             <>
@@ -119,7 +112,7 @@ const PropertyCard = ({ property }) => {
             Edit Property
           </button>
           <button className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
-           <Link to={`/owner/property-details/${property.id}`}>View Details</Link>
+            <Link to={`/owner/property-details/${property.id}`}>View Details</Link>
           </button>
         </div>
 

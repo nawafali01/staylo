@@ -1,19 +1,11 @@
 import { useState } from "react";
-import { BuildingLibraryIcon, CurrencyDollarIcon, DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
+import {
+    BuildingLibraryIcon,
+    CurrencyDollarIcon,
+    DevicePhoneMobileIcon,
+} from "@heroicons/react/24/outline";
 import { paymentMethods } from "../../../../data";
-
-const MethodButton = ({ method, icon, isActive, onClick }) => (
-    <button
-        onClick={onClick}
-        className={`flex-1 flex flex-col items-center gap-1 py-2.5 rounded-xl border text-xs font-medium transition-all ${isActive
-                ? "border-blue-500 bg-blue-50 text-blue-600"
-                : "border-gray-100 text-gray-400 hover:border-gray-200"
-            }`}
-    >
-        {icon}
-        {method.label}
-    </button>
-);
+import MethodButton from "./MethodButton";
 
 export default function RequestPayoutCard() {
     const [selectedMethod, setSelectedMethod] = useState("bank");
@@ -26,7 +18,6 @@ export default function RequestPayoutCard() {
                 Funds are available for immediate withdrawal to your linked accounts.
             </p>
 
-            {/* Available Balance */}
             <div className="bg-blue-50 rounded-xl p-4 mb-4">
                 <p className="text-xs font-semibold text-blue-400 uppercase tracking-wide mb-1">
                     Available Balance
@@ -34,7 +25,6 @@ export default function RequestPayoutCard() {
                 <p className="text-2xl font-bold text-blue-700">PKR 212,400</p>
             </div>
 
-            {/* Payment Method */}
             <div className="mb-4">
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
                     Payment Method
@@ -61,7 +51,6 @@ export default function RequestPayoutCard() {
                 </div>
             </div>
 
-            {/* Amount */}
             <div className="mb-4">
                 <div className="flex items-center justify-between mb-2">
                     <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Amount</p>
@@ -74,13 +63,12 @@ export default function RequestPayoutCard() {
                     <input
                         type="text"
                         value={amount}
-                        onChange={(event) => setAmount(event.target.value)}
+                        onChange={(e) => setAmount(e.target.value)}
                         className="flex-1 text-sm font-semibold text-gray-800 outline-none bg-transparent"
                     />
                 </div>
             </div>
 
-            {/* Submit */}
             <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-3 rounded-xl transition-colors">
                 Submit Request
             </button>

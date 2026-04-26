@@ -1,9 +1,8 @@
-import OwnerHeader from "./Header.jsx";
-import OwnerSidebar from "./Sidebar.jsx";
+
 import StatCard from "./StatCard.jsx";
 import PropertySection from "./PropertySection.jsx";
 import ActivitySection from "./ActivitySection.jsx";
-import { dashboardStats } from "../../../../data/index.js";
+import { ownerDashboardStatsData as dashboardStats } from "../../../../data/index.js";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 const OwnerIndex = () => {
@@ -11,10 +10,10 @@ const OwnerIndex = () => {
     <div className="w-full min-h-screen bg-gray-50 overflow-hidden">
       <div className="dashboard-layout">
         <div className="hidden lg:block lg:w-[240px] fixed left-0 top-0 h-full border-r border-gray-100 bg-white">
-          <OwnerSidebar />
+
         </div>
         <div className="flex-1 lg:ml-[240px] overflow-hidden">
-          <OwnerHeader />
+
 
           <main className="px-4 py-6">
             <div className="flex justify-between items-center mb-6">

@@ -4,7 +4,6 @@ import { formatCurrency } from "../../../../utils/feature";
 const BookingsStats = ({ stats }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      {/* Total Revenue Card */}
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <div className="text-sm text-gray-600 mb-2">TOTAL REVENUE</div>
         <div className="text-4xl font-bold text-blue-600 mb-2">
@@ -16,7 +15,6 @@ const BookingsStats = ({ stats }) => {
         </div>
       </div>
 
-      {/* Total Bookings Card */}
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <div className="text-sm text-gray-600 mb-2">TOTAL BOOKINGS</div>
         <div className="text-4xl font-bold text-gray-900 mb-2">
@@ -27,7 +25,6 @@ const BookingsStats = ({ stats }) => {
         </div>
       </div>
 
-      {/* Active Bookings Card */}
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <div className="text-sm text-gray-600 mb-2">ACTIVE BOOKINGS</div>
         <div className="text-4xl font-bold text-gray-900 mb-2">

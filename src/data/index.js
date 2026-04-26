@@ -37,6 +37,9 @@ import {
   ChatBubbleLeftRightIcon,
   ChartBarIcon,
   BuildingOffice2Icon,
+  BuildingLibraryIcon,
+  CurrencyDollarIcon,
+  DevicePhoneMobileIcon,
 } from '@heroicons/react/24/outline';
 
 export const aboutFeatureIconList = {
@@ -2106,10 +2109,10 @@ export const footer = {
 };
 
 export const userDashboardStatsData = [
-  { value: 12, label: "Total Bookings", badge: "+2 This Week", id: "totalBookings" },
-  { value: 2, label: "Upcoming Stays", id: "upcomingStays" },
-  { value: 45, label: "Saved Properties", id: "savedProperties" },
-  { value: 8, label: "Favorite Locations", id: "favoriteLocations" },
+  { value: 12, label: "Total Bookings", badge: "+2 This Week", id: "totalBookings", icon: CalendarIcon },
+  { value: 2, label: "Upcoming Stays", id: "upcomingStays", icon: HomeIcon },
+  { value: 45, label: "Saved Properties", id: "savedProperties", icon: HeartIcon },
+  { value: 8, label: "Favorite Locations", id: "favoriteLocations", icon: MapPinIcon },
 ];
 
 export const userDashboardSidebarLinksData = [
@@ -2213,7 +2216,6 @@ export const avatarColors = [
   "bg-pink-400",
 ];
 
-// Stripe & Checkout Constants
 export const STRIPE_PUBLIC_KEY = "pk_test_51TOEpnRsBZnMLAV16VcGUZ2qLD8H4OL13WI6w327AboTHyjh3liTc3fO3M9tHdtnYH2GMZJAygEhoBPi2UfRXwbh009ckJxLlQ";
 
 export const stripeCardStyle = {
@@ -2270,3 +2272,88 @@ export const mockReservationData = {
   nights: 5,
   paymentMethod: "Credit Card (Ending in 4421)"
 };
+
+export const adminStatsOverviewData = [
+  { id: 1, title: 'TOTAL USERS', value: '1,240', percentage: '+12%', color: 'bg-blue-500' },
+  { id: 2, title: 'TOTAL PROPERTIES', value: '450', percentage: '+5.4%', color: 'bg-blue-500' },
+  { id: 3, title: 'TOTAL BOOKINGS', value: '820', percentage: '+22%', color: 'bg-blue-500' },
+  { id: 4, title: 'PENDING APPROVALS', value: '15', percentage: 'High Priority', color: 'bg-orange-500' },
+];
+
+export const urgencyStyles = {
+  critical: "bg-red-100 text-red-600",
+  warning: "bg-yellow-100 text-yellow-700",
+  normal: "bg-gray-100 text-gray-600",
+};
+
+export const avatarSizeMap = {
+  sm: "w-8 h-8 text-[10px]",
+  md: "w-11 h-11 text-xs",
+  lg: "w-12 h-12 text-sm",
+};
+
+export const userAvatarColors = [
+  "bg-blue-500", "bg-purple-500", "bg-pink-500",
+  "bg-indigo-500", "bg-teal-500", "bg-orange-500"
+];
+
+export const profileUnsavedNotice = "You have unsaved changes in your profile settings.";
+
+export const tabsConfig = [
+  { id: "all", label: "All" },
+  { id: "unread", label: "Unread" },
+  { id: "archived", label: "Archived" },
+];
+
+export const dateOptions = {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+};
+
+export const revenuePeriodOptions = ["1 Week", "1 Month", "3 Months", "Year"];
+
+export const revenueStatsData = [
+  { date: "JAN", value: 45 },
+  { date: "FEB", value: 52 },
+  { date: "MAR", value: 48 },
+  { date: "APR", value: 70 },
+  { date: "MAY", value: 65 },
+  { date: "JUN", value: 85 },
+  { date: "JUL", value: 80 },
+];
+
+export const methodIcons = {
+  bank: BuildingLibraryIcon,
+  paypal: CurrencyDollarIcon,
+  jazzcash: DevicePhoneMobileIcon,
+};
+
+export const payoutTableHeaders = [
+  "TRANSACTION ID",
+  "DATE",
+  "METHOD",
+  "AMOUNT",
+  "STATUS",
+];
+
+export const propertyTableHeaders = [
+  "PROPERTY",
+  "BOOKINGS",
+  "OCCUPANCY",
+  "REVENUE",
+  "TREND",
+];
+
+export const reviewTermsData = {
+  title: "I agree to the Terms & Conditions",
+  description: "By submitting this listing, you confirm that all information provided is accurate and that you have the legal right to list this property. Your listing will be reviewed within 24–48 hours before going live.",
+  warning: "Your property will be submitted for admin review. This typically takes 24-48 hours.",
+};
+
+export const reviewPropertyDetailsConfig = [
+  { icon: "🛏️", label: "Bedrooms", key: "bedrooms" },
+  { icon: "🚿", label: "Bathrooms", key: "bathrooms" },
+  { icon: "📐", label: "Total Area", key: "propertySize", suffix: " sqft" },
+  { icon: "🛋️", label: "Furnishing", key: "furnishing", format: "furnishing" },
+];

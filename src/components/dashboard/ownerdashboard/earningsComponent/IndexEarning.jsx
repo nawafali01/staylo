@@ -9,10 +9,8 @@ import PayoutHistoryTable from "./PayoutHistoryTable";
 export default function EarningsPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      {/* Alert Banner */}
-      <PayoutAlertBanner />
 
-      {/* Page Header */}
+      <PayoutAlertBanner />
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Earnings & Payouts</h1>
         <p className="text-sm text-gray-400 mt-1">
@@ -20,24 +18,16 @@ export default function EarningsPage() {
           estate.
         </p>
       </div>
-
-      {/* Stats Row */}
       <EarningsStatsCards />
-
-      {/* Main Grid: Chart + Sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-        {/* Left: Chart (spans 2 cols) */}
+
         <div className="lg:col-span-2">
           <RevenueOverviewChart />
         </div>
-
-        {/* Right: Request Payout */}
         <div>
           <RequestPayoutCard />
         </div>
       </div>
-
-      {/* Properties Table + Weekly Intensity */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
         <div className="lg:col-span-2">
           <EarningsByProperty />
@@ -46,8 +36,6 @@ export default function EarningsPage() {
           <WeeklyIntensityCard />
         </div>
       </div>
-
-      {/* Payout History */}
       <PayoutHistoryTable />
     </div>
   );

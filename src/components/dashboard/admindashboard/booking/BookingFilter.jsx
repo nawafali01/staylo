@@ -6,24 +6,21 @@ import {
 const BookingFilters = ({ tabs, activeTab, onTabChange }) => {
   return (
     <div className="flex items-center justify-between bg-gray-200 h-20 mb-6">
-      {/* Filter Tabs */}
       <div className="flex gap-2">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => onTabChange(tab)}
-            className={`px-6 py-2 rounded-lg font-medium transition-colors ${
-              activeTab === tab
+            className={`px-6 py-2 rounded-lg font-medium transition-colors ${activeTab === tab
                 ? "bg-blue-50 text-blue-600"
                 : "bg-gray-50 text-gray-600 hover:bg-gray-100"
-            }`}
+              }`}
           >
             {tab}
           </button>
         ))}
       </div>
 
-      {/* Search and Filter */}
       <div className="flex items-center gap-3">
         <div className="relative">
           <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />

@@ -9,7 +9,6 @@ import {
 export default function UserDirectoryTable({ users }) {
   return (
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-      {/* Table Header */}
       <div className="flex items-center justify-between p-6 border-b border-gray-200">
         <h3 className="text-lg font-semibold text-gray-900">Directory</h3>
         <div className="flex gap-2">
@@ -22,7 +21,6 @@ export default function UserDirectoryTable({ users }) {
         </div>
       </div>
 
-      {/* Table Column Headers */}
       <div className="grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 border-b border-gray-200">
         <div className="col-span-5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
           User
@@ -38,14 +36,12 @@ export default function UserDirectoryTable({ users }) {
         </div>
       </div>
 
-      {/* Table Body */}
       <div className="divide-y divide-gray-200">
         {users.map((user) => (
           <div
             key={user.id}
             className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 transition-colors items-center"
           >
-            {/* User Info */}
             <div className="col-span-5 flex items-center gap-3">
               <img
                 src={user.avatar}
@@ -58,38 +54,32 @@ export default function UserDirectoryTable({ users }) {
               </div>
             </div>
 
-            {/* Role Badge */}
             <div className="col-span-2">
               <span
-                className={`inline-flex px-3 py-1 rounded-md text-sm font-medium ${
-                  user.role === "Owner"
+                className={`inline-flex px-3 py-1 rounded-md text-sm font-medium ${user.role === "Owner"
                     ? "bg-blue-50 text-blue-700"
                     : "bg-gray-100 text-gray-700"
-                }`}
+                  }`}
               >
                 {user.role}
               </span>
             </div>
 
-            {/* Status */}
             <div className="col-span-3">
               <div className="flex items-center gap-2">
                 <div
-                  className={`w-2 h-2 rounded-full ${
-                    user.status === "Active" ? "bg-green-500" : "bg-gray-300"
-                  }`}
+                  className={`w-2 h-2 rounded-full ${user.status === "Active" ? "bg-green-500" : "bg-gray-300"
+                    }`}
                 />
                 <span
-                  className={`text-sm font-medium ${
-                    user.status === "Active" ? "text-gray-900" : "text-gray-500"
-                  }`}
+                  className={`text-sm font-medium ${user.status === "Active" ? "text-gray-900" : "text-gray-500"
+                    }`}
                 >
                   {user.status}
                 </span>
               </div>
             </div>
 
-            {/* Action Button */}
             <div className="col-span-2">
               <button className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors">
                 Edit

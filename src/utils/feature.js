@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useRef, useEffect } from "react";
 import {
   contactFormInitialValues,
   defaultUser,
@@ -7,7 +8,10 @@ import {
   defaultPrivacy,
   defaultLanguage,
   properties,
+  userProfile,
+  residentialAddress
 } from "../data/index";
+
 
 export const getStyle = (date, checkIn, checkOut) => {
   if (!date) return "";
@@ -201,7 +205,7 @@ export const getStatusColor = (status) => {
   const s = status?.toLowerCase();
   switch (s) {
     case 'approved':
-      return 'bg-white/90 text-blue-600 backdrop-blur-sm'; 
+      return 'bg-white/90 text-blue-600 backdrop-blur-sm';
     case 'pending':
       return 'bg-orange-100 text-orange-600';
     case 'rejected':
@@ -340,4 +344,234 @@ export const buildSmoothPath = (points, width, height, padding = 40) => {
   return { path, coords };
 };
 
+export const useProfileSettings = () => {
+  const [profile, setProfile] = useState(userProfile);
+  const [address, setAddress] = useState(residentialAddress);
+  const [hasUnsaved, setHasUnsaved] = useState(true);
+
+  const handleProfileChange = (field, value) => {
+    setProfile((prev) => ({ ...prev, [field]: value }));
+    setHasUnsaved(true);
+  };
+
+  const handleAddressChange = (field, value) => {
+    setAddress((prev) => ({ ...prev, [field]: value }));
+    setHasUnsaved(true);
+  };
+
+  const saveChanges = () => {
+    console.log("Saved Data:", { profile, address });
+    setHasUnsaved(false);
+    alert("Changes saved successfully!");
+  };
+
+  const discardChanges = () => {
+    setHasUnsaved(false);
+
+  };
+
+  return {
+    profile,
+    address,
+    hasUnsaved,
+    handleProfileChange,
+    handleAddressChange,
+    saveChanges,
+    discardChanges,
+  };
+};
+
+export const useChatScroll = (dependency) => {
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [dependency]);
+
+  return bottomRef;
+};
+
+import { chatThreads, messageHistory, dateOptions } from "../data/index";
+
+export const useChatMessages = () => {
+  const [activeTab, setActiveTab] = useState("all");
+  const [activeChatId, setActiveChatId] = useState(1);
+  const [threads, setThreads] = useState(chatThreads);
+  const [history, setHistory] = useState(messageHistory);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const activeChatPartner = threads.find((t) => t.id === activeChatId);
+  const currentMessages = history[activeChatId] || [];
+
+  const filteredThreads = threads.filter((thread) => {
+    const matchSearch =
+      thread.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      thread.property.toLowerCase().includes(searchQuery.toLowerCase());
+
+    if (activeTab === "unread") return matchSearch && thread.unread;
+    if (activeTab === "archived") return false;
+    return matchSearch;
+  });
+
+  const handleSend = (text) => {
+    const newMessage = {
+      id: Date.now(),
+      type: "sent",
+      text,
+      time: new Date().toLocaleTimeString("en-US", dateOptions),
+    };
+
+    setHistory((prev) => ({
+      ...prev,
+      [activeChatId]: [...(prev[activeChatId] || []), newMessage],
+    }));
+
+    setThreads((prev) =>
+      prev.map((t) =>
+        t.id === activeChatId ? { ...t, preview: text, time: "Just now" } : t
+      )
+    );
+  };
+
+  return {
+    state: {
+      activeTab,
+      activeChatId,
+      searchQuery,
+      filteredThreads,
+      activeChatPartner,
+      currentMessages,
+      threads
+    },
+    actions: {
+      setActiveTab,
+      setActiveChatId,
+      setSearchQuery,
+      handleSend
+    }
+  };
+};
+
+export function buildLinearPath(data, width, height, padding) {
+  if (!data || data.length === 0) return { path: "", coords: [] };
+
+  const maxValue = Math.max(...data.map((d) => d.value));
+
+  const coords = data.map((d, i) => ({
+    x: padding + (i * (width - padding * 2)) / (data.length - 1),
+    y: height - padding - (d.value / maxValue) * (height - padding * 2),
+  }));
+
+  let path = `M ${coords[0].x} ${coords[0].y}`;
+
+  for (let i = 1; i < coords.length; i++) {
+    path += ` L ${coords[i].x} ${coords[i].y}`;
+  }
+
+  return { path, coords };
+}
+
+export const useReviewStep = (data) => {
+  const [agreed, setAgreed] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const amenitiesList = Object.entries(data?.amenities || {})
+    .filter(([, value]) => value)
+    .map(([key]) => key);
+
+  const infraList = Object.entries(data?.infrastructure || {})
+    .filter(([, value]) => value)
+    .map(([key]) => key);
+
+  return { agreed, setAgreed, submitted, setSubmitted, amenitiesList, infraList };
+};
+
+export const useBasicInfoStep = (data, onChange) => {
+  const setField = (field, val) => onChange({ ...data, [field]: val });
+  const isValid =
+    data.title &&
+    data.description &&
+    data.propertyType &&
+    data.listingCategory &&
+    data.streetAddress &&
+    data.city &&
+    data.province;
+
+  return { setField, isValid };
+};
+
+export const useDetailsStep = (data, onChange) => {
+  const setField = (field, val) => onChange({ ...data, [field]: val });
+
+  const toggleAmenity = (key) => {
+    const current = data.amenities || {};
+    setField("amenities", { ...current, [key]: !current[key] });
+  };
+
+  const toggleInfra = (key) => {
+    const current = data.infrastructure || {};
+    setField("infrastructure", { ...current, [key]: !current[key] });
+  };
+
+  const isValid =
+    data.bedrooms && data.bathrooms && data.propertySize && data.furnishing;
+
+  return { setField, toggleAmenity, toggleInfra, isValid };
+};
+
+export const usePhotosStep = (data, onChange) => {
+  const photos = data.photos || [];
+
+  const handleFiles = (event) => {
+    const files = Array.from(event.target.files);
+    const newPhotos = files.map((file, index) => ({
+      id: Date.now() + index,
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
+    onChange({ ...data, photos: [...photos, ...newPhotos] });
+  };
+
+  const removePhoto = (id) =>
+    onChange({ ...data, photos: photos.filter((photo) => photo.id !== id) });
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const files = Array.from(event.dataTransfer.files);
+    const newPhotos = files.map((file, index) => ({
+      id: Date.now() + index,
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
+    onChange({ ...data, photos: [...photos, ...newPhotos] });
+  };
+
+  const checklistDone = {
+    exterior: photos.length >= 1,
+    living: photos.length >= 2,
+    bedroom: photos.length >= 3,
+    floorplan: false,
+    amenities: false,
+  };
+
+  return { photos, handleFiles, removePhoto, handleDrop, checklistDone };
+};
+
+export const usePricingStep = (data, onChange) => {
+  const setField = (field, val) => onChange({ ...data, [field]: val });
+
+  const toggleUtil = (key) => {
+    const curr = data.utilities || {};
+    setField("utilities", { ...curr, [key]: !curr[key] });
+  };
+
+  const toggleRule = (key) => {
+    const curr = data.rules || {};
+    setField("rules", { ...curr, [key]: !curr[key] });
+  };
+
+  const isValid = data.baseAmount && data.availableFrom;
+
+  return { setField, toggleUtil, toggleRule, isValid };
+};
 

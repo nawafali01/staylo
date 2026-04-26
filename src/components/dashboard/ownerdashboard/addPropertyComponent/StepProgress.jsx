@@ -13,17 +13,15 @@ export default function StepProgress({ currentStep }) {
             key={step.id}
             className="flex items-center flex-1 last:flex-none"
           >
-            {/* Circle + Label */}
             <div className="flex flex-col items-center gap-1.5">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all
-                ${
-                  isActive
+                ${isActive
                     ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-200"
                     : isDone
                       ? "bg-blue-600 border-blue-600 text-white"
                       : "bg-white border-gray-300 text-gray-400"
-                }`}
+                  }`}
               >
                 {isDone ? (
                   <SimpleCheckIcon className="w-4 h-4 stroke-[2.5]" />
@@ -39,7 +37,6 @@ export default function StepProgress({ currentStep }) {
               </span>
             </div>
 
-            {/* Connector */}
             {index < steps.length - 1 && (
               <div className="flex-1 h-0.5 mx-2 mb-5">
                 <div

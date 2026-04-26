@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Filter from "./Filter.jsx";
 import PropertySearch from "./PropertySearch.jsx";
 import PropertyCard from "./PropertyCard.jsx";
-import { Properties } from "../../../data/index.js";
+import { properties } from "../../..";
 import {
   AdjustmentsHorizontalIcon,
   XMarkIcon,

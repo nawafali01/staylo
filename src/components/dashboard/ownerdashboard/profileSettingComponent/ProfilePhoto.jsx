@@ -4,24 +4,21 @@ import { EditIcon } from "../../../../assets/svg";
 const ProfilePhoto = ({ profile }) => {
   return (
     <div className="bg-white p-8 border-r border-slate-50 flex flex-col items-center border-b md:border-b-0">
-      {/* Avatar Container */}
       <div className="relative mb-4">
         <div className="w-28 h-28 rounded-full overflow-hidden ring-4 ring-blue-50 shadow-inner bg-slate-100">
           {profile.avatar ? (
             <img
               src={profile.avatar}
               alt={profile.fullName}
-              className="w-full h-full object-cover" // Important: Taakay image stretch na ho
+              className="w-full h-full object-cover"
             />
           ) : (
-            // Fallback: Agar image na ho to initials ya placeholder
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-500 text-white text-2xl font-bold">
               {profile.fullName.charAt(0)}
             </div>
           )}
         </div>
 
-        {/* Edit Button */}
         <button className="absolute bottom-1 right-1 bg-blue-600 p-2 rounded-full border-2 border-white shadow-sm text-white hover:bg-blue-700 transition active:scale-90">
           <EditIcon className="w-3.5 h-3.5" />
         </button>

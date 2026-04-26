@@ -11,7 +11,6 @@ import ReviewStep from "./ReviewStep";
 export default function AddPropertyFeature() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    // Basic Info defaults
     listingCategory: "For Rent",
     propertyType: "Residential Apartment",
   });
@@ -20,7 +19,7 @@ export default function AddPropertyFeature() {
 
   return (
     <div className="max-w-[860px] w-full">
-      {/* Page heading */}
+
       <div className="mb-5">
         <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
           Add New Property
@@ -31,13 +30,10 @@ export default function AddPropertyFeature() {
         </p>
       </div>
 
-      {/* Alert Banner */}
       {banner && <AlertBanner type={banner.type} text={banner.text} />}
 
-      {/* Step Progress */}
       <StepProgress currentStep={step} />
 
-      {/* Step Pages */}
       {step === 1 && (
         <BasicInfoStep
           data={formData}

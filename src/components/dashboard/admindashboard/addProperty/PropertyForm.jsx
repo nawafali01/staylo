@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-
 import {
   bedRoomOptions,
   bathRoomOptions,
@@ -19,7 +18,6 @@ const PropertyForm = () => {
 
   return (
     <div className="flex-1 bg-white rounded-2xl p-10 shadow-sm">
-      {/* Property Title */}
       <div className="mb-6">
         <label className="block text-sm font-semibold text-gray-900 mb-2">
           Property Title
@@ -34,7 +32,6 @@ const PropertyForm = () => {
         />
       </div>
 
-      {/* Rent & Location */}
       <div className="grid grid-cols-2 gap-5 mb-6">
         <div>
           <label className="block text-sm font-semibold text-gray-900 mb-2">
@@ -64,7 +61,6 @@ const PropertyForm = () => {
         </div>
       </div>
 
-      {/* Bedrooms & Bathrooms */}
       <div className="grid grid-cols-2 gap-5 mb-6">
         <div>
           <label className="block text-sm font-semibold text-gray-900 mb-2">
@@ -109,8 +105,7 @@ const PropertyForm = () => {
         </div>
       </div>
 
-      {/* Description */}
-      <div className="mb-6">
+      \      <div className="mb-6">
         <label className="block text-sm font-semibold text-gray-900 mb-2">
           Property Description
         </label>
@@ -124,7 +119,6 @@ const PropertyForm = () => {
         />
       </div>
 
-      {/* Buttons */}
       <div className="flex justify-end gap-4 pt-4">
         <button
           type="button"

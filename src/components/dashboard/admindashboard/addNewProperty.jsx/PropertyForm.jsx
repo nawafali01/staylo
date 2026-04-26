@@ -19,7 +19,6 @@ const PropertyForm = () => {
 
   return (
     <div className="flex-1 bg-white rounded-2xl p-10 shadow-sm">
-      {/* Property Title */}
       <div className="mb-6">
         <label className="block text-sm font-semibold text-gray-900 mb-2">
           Property Title
@@ -107,7 +106,7 @@ const PropertyForm = () => {
         </div>
       </div>
 
-     
+
       <div className="mb-6">
         <label className="block text-sm font-semibold text-gray-900 mb-2">
           Property Description
@@ -122,7 +121,7 @@ const PropertyForm = () => {
         />
       </div>
 
-    
+
       <div className="flex justify-end gap-4 pt-4">
         <button
           type="button"

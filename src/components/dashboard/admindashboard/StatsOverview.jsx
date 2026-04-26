@@ -6,18 +6,12 @@ import {
   CalendarIcon,
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
+import { adminStatsOverviewData } from "../../../data";
 
 const StatsOverview = () => {
-  const stats = [
-    { id: 1, title: 'TOTAL USERS', value: '1,240', percentage: '+12%', color: 'bg-blue-500', icon: UserIcon },
-    { id: 2, title: 'TOTAL PROPERTIES', value: '450', percentage: '+5.4%', color: 'bg-blue-500', icon: BuildingOfficeIcon },
-    { id: 3, title: 'TOTAL BOOKINGS', value: '820', percentage: '+22%', color: 'bg-blue-500', icon: CalendarIcon },
-    { id: 4, title: 'PENDING APPROVALS', value: '15', percentage: 'High Priority', color: 'bg-orange-500', icon: ClipboardDocumentListIcon }
-  ];
 
   return (
     <div className="mb-8">
-      {/* Header with Buttons */}
       <div className="flex items-center justify-end gap-3 mb-6 -mt-20">
         <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-medium">
           <CheckCircleIcon className="w-5 h-5" />
@@ -29,7 +23,6 @@ const StatsOverview = () => {
         </button>
       </div>
 
-      {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((item) => {
           const Icon = item.icon;
@@ -43,11 +36,10 @@ const StatsOverview = () => {
                   <Icon className="w-6 h-6 text-gray-700" />
                 </div>
                 <span
-                  className={`text-xs font-semibold px-3 py-1 rounded-full ${
-                    item.id === 4
-                      ? "bg-orange-50 text-orange-600"
-                      : "bg-blue-50 text-blue-600"
-                  }`}
+                  className={`text-xs font-semibold px-3 py-1 rounded-full ${item.id === 4
+                    ? "bg-orange-50 text-orange-600"
+                    : "bg-blue-50 text-blue-600"
+                    }`}
                 >
                   {item.percentage}
                 </span>

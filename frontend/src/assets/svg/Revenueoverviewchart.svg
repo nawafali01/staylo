@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RevenueOverviewChart.svg
+  
+  React component mein use karne ka tarika:
+  
+  Option 1 — Inline SVG (recommended, taake gradient IDs conflict na karein):
+    import { ReactComponent as RevenueChart } from './RevenueOverviewChart.svg';
+    <RevenueChart />
+  
+  Option 2 — <img> tag:
+    <img src="./RevenueOverviewChart.svg" alt="Revenue Overview Chart" />
+  
+  Note: Agar aap actual data se path generate karna chahte hain toh
+  buildSmoothPath() utility se "path" aur "coords" values nikaal kar
+  is file ke <path> aur <circle> elements mein replace karein.
+-->
+<svg
+  viewBox="0 0 560 200"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="Revenue Overview Chart"
+  overflow="visible"
+>
+  <defs>
+    <!-- Soft Blue Gradient for Area Fill -->
+    <linearGradient id="revenueFillGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.00" />
+    </linearGradient>
+  </defs>
+
+  <!--
+    ============================================================
+    AREA FILL PATH
+    Yeh "areaPath" hai: line path + baseline tak close kiya gaya
+    
+    Format:
+      [smooth line] L [lastX] [baselineY] L [firstX] [baselineY] Z
+    
+    baselineY = chartHeight - chartPadding = 200 - 40 = 160
+    Replace kar dein apni actual buildSmoothPath() output se.
+    ============================================================
+  -->
+  <path
+    d="M40 130 C90 110 140 80 190 90 C240 100 290 50 340 30 C390 10 440 60 490 40 C515 30 535 20 520 15 L520 160 L40 160 Z"
+    fill="url(#revenueFillGradient)"
+  />
+
+  <!--
+    ============================================================
+    MAIN STROKE LINE
+    Yahi woh smooth cubic bezier path hai jo buildSmoothPath() return karta hai.
+    Apni actual "path" variable ki value yahan paste karein.
+    ============================================================
+  -->
+  <path
+    d="M40 130 C90 110 140 80 190 90 C240 100 290 50 340 30 C390 10 440 60 490 40 C515 30 535 20 520 15"
+    fill="none"
+    stroke="#3b82f6"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!--
+    ============================================================
+    DATA POINTS
+    Har ek "coord" ke liye ek <g> group hai.
+    coords array se x, y values replace karein.
+    
+    Last data point (index === coords.length - 1) pe
+    extra pulse circle bhi hai.
+    ============================================================
+  -->
+
+  <!-- Point 0 — coords[0] -->
+  <g>
+    <circle cx="40"  cy="130" r="6"   fill="#3b82f6" opacity="0.15" />
+    <circle cx="40"  cy="130" r="3.5" fill="white"   stroke="#3b82f6" stroke-width="2" />
+  </g>
+
+  <!-- Point 1 — coords[1] -->
+  <g>
+    <circle cx="140" cy="80"  r="6"   fill="#3b82f6" opacity="0.15" />
+    <circle cx="140" cy="80"  r="3.5" fill="white"   stroke="#3b82f6" stroke-width="2" />
+  </g>
+
+  <!-- Point 2 — coords[2] -->
+  <g>
+    <circle cx="240" cy="100" r="6"   fill="#3b82f6" opacity="0.15" />
+    <circle cx="240" cy="100" r="3.5" fill="white"   stroke="#3b82f6" stroke-width="2" />
+  </g>
+
+  <!-- Point 3 — coords[3] -->
+  <g>
+    <circle cx="340" cy="30"  r="6"   fill="#3b82f6" opacity="0.15" />
+    <circle cx="340" cy="30"  r="3.5" fill="white"   stroke="#3b82f6" stroke-width="2" />
+  </g>
+
+  <!-- Point 4 — coords[4] -->
+  <g>
+    <circle cx="440" cy="60"  r="6"   fill="#3b82f6" opacity="0.15" />
+    <circle cx="440" cy="60"  r="3.5" fill="white"   stroke="#3b82f6" stroke-width="2" />
+  </g>
+
+  <!-- Point 5 (LAST) — coords[5] — pulse circle bhi hai -->
+  <g>
+    <circle cx="520" cy="15"  r="8"   fill="#3b82f6" opacity="0.15">
+      <!--
+        React mein yeh animate-pulse Tailwind class se hota tha.
+        Pure SVG mein CSS animation use karein ya React mein
+        className="animate-pulse" wapas laaga dein.
+      -->
+    </circle>
+    <circle cx="520" cy="15"  r="6"   fill="#3b82f6" opacity="0.15" />
+    <circle cx="520" cy="15"  r="3.5" fill="white"   stroke="#3b82f6" stroke-width="2" />
+  </g>
+
+</svg>

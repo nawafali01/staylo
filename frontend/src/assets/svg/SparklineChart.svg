@@ -1,0 +1,14 @@
+<svg 
+  viewBox="0 0 240 80" 
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="none"
+>
+  <polyline
+    fill="none"
+    stroke="#2563eb"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    points="0,60 40,30 80,50 120,20 160,60 200,30 240,40"
+  />
+</svg>

@@ -2303,12 +2303,6 @@ export const adminStatsOverviewData = [
   { id: 4, title: 'PENDING APPROVALS', value: '15', percentage: 'High Priority', color: 'bg-orange-500', icon: CalendarIcon },
 ];
 
-export const urgencyStyles = {
-  critical: "bg-red-100 text-red-600",
-  warning: "bg-yellow-100 text-yellow-700",
-  normal: "bg-gray-100 text-gray-600",
-};
-
 export const avatarSizeMap = {
   sm: "w-8 h-8 text-[10px]",
   md: "w-11 h-11 text-xs",

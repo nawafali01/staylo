@@ -19,38 +19,26 @@ const SignInForm = () => {
     setError("");
     setLoading(true);
 
-    const correctPassword = "admin123";
-
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Simulation delay
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
+      const storedUser = JSON.parse(localStorage.getItem("fakeUser"));
 
-      if (password !== correctPassword) {
-        throw new Error("Email ya password galat hai");
+      if (!storedUser) {
+        throw new Error("No user found. Please sign up first.");
       }
 
-      const fakeUser = {
-        id: 1,
-        email: email,
-        name: "Test User",
-        role: "admin",
-      };
-      const fakeToken = "dummy-token-123";
-
-      dispatch(
-        loginSuccess({
-          user: fakeUser,
-          token: fakeToken,
-        }),
-      );
-
-      if (fakeUser.role === "admin") {
-        navigate("/admin/dashboard");
-      } else if (fakeUser.role === "owner") {
-        navigate("/owner/dashboard");
-      } else {
-        navigate("/dashboard");
+      if (email !== storedUser.email || password !== storedUser.password) {
+        throw new Error("Invalid email or password!");
       }
+
+      const fakeToken = "dummy-jwt-token";
+      localStorage.setItem("token", fakeToken);
+
+      localStorage.setItem("user", JSON.stringify(storedUser));
+
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -115,6 +103,7 @@ const SignInForm = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 required
+                minLength={6}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"

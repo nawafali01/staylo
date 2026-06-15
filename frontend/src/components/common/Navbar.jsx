@@ -1,22 +1,33 @@
-import { Link } from "react-router-dom"; // 1. Link import karein
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { navLinks } from "../../data";
 import logo from "../../assets/logo/stayloLogo.png";
+import { handleLogout } from "../../utils/authUtils";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+
+  // Re-check token every time the route changes
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, [location]);
+
+  const onLogout = () => {
+    handleLogout(navigate);
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav className="sticky top-0 z-50 bg-white/20 backdrop-blur-lg border-b border-gray-200 h-20 flex items-center px-6">
-      <div className="max-w-7xl mx-auto w-full px-6 py-4  ">
-        {" "}
-        {/* w-full add kiya taake grid sahi kaam kare */}
+      <div className="max-w-7xl mx-auto w-full px-6 py-4">
         <div className="grid grid-cols-3 items-center">
-          {/* Logo - Click karne par Home par jaye */}
+
+          {/* Logo */}
           <div className="flex items-center">
             <Link to="/">
-              <img
-                src={logo}
-                alt="Logo"
-                className="h-24 w-auto cursor-pointer"
-              />
+              <img src={logo} alt="Logo" className="h-24 w-auto cursor-pointer" />
             </Link>
           </div>
 
@@ -36,12 +47,38 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Buttons */}
+          {/* Auth Buttons */}
           <div className="flex items-center justify-end gap-3">
-            <Link to="/signup" className="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg cursor-pointer hover:bg-amber-700 transition-all duration-200">
-              Get Started
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <button
+                  onClick={() => {
+                    const user = JSON.parse(localStorage.getItem("user"));
+                    if (user?.role === "admin") navigate("/admin/dashboard");
+                    else if (user?.role === "owner") navigate("/owner/dashboard");
+                    else navigate("/user/dashboard");
+                  }}
+                  className="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg cursor-pointer hover:bg-blue-700 transition-all duration-200"
+                >
+                  Dashboard
+                </button>
+                <button
+                  onClick={onLogout}
+                  className="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg cursor-pointer hover:bg-blue-700 transition-all duration-200"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/signin"
+                className="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg cursor-pointer hover:bg-blue-700 transition-all duration-200"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
+
         </div>
       </div>
     </nav>

@@ -53,42 +53,41 @@ const AppRoutes = () => {
 
       {/* User Dashboard */}
 
-      <Route path="/user" element={<DashboardLayout links={sidebarLinks} />}>
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<UserDashboardPage />} />
-        <Route path="bookings" element={<UserDashboardBooking />} />
-        <Route path="saved" element={<UserDashboardSaved />} />
-        <Route path="messages" element={<UserDashboardMessagesPage />} />
-        <Route path="settings" element={<UserdashboardSetting />} />
-      </Route>
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/user" element={<DashboardLayout links={sidebarLinks} />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<UserDashboardPage />} />
+          <Route path="bookings" element={<UserDashboardBooking />} />
+          <Route path="saved" element={<UserDashboardSaved />} />
+          <Route path="messages" element={<UserDashboardMessagesPage />} />
+          <Route path="settings" element={<UserdashboardSetting />} />
+        </Route>
 
-      {/* Admin Dashboard */}
+        <Route
+          path="/admin"
+          element={<DashboardLayout links={adminSidebarLinks} isAdmin={true} />}
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboardPage />} />
+          <Route path="property" element={<AdminDashboardProperty />} />
+          <Route path="bookings" element={<AdminDashboardBooking />} />
+          <Route path="users" element={<AdminDashboardUser />} />
+          <Route path="reports" element={<AdminDashboardReport />} />
+          <Route path="add-property" element={<AddNewProperty />} />
+        </Route>
 
-      <Route
-        path="/admin"
-        element={<DashboardLayout links={adminSidebarLinks} isAdmin={true} />}
-      >
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<AdminDashboardPage />} />
-        <Route path="property" element={<AdminDashboardProperty />} />
-        <Route path="bookings" element={<AdminDashboardBooking />} />
-        <Route path="users" element={<AdminDashboardUser />} />
-        <Route path="reports" element={<AdminDashboardReport />} />
-        <Route path="add-property" element={<AddNewProperty />} />
-      </Route>
-
-      {/* Owner Dashboard */}
-      <Route
-        path="/owner"
-        element={<DashboardLayout links={ownerSidebarLinks} />}
-      >
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<OwnerDashboardPage />} />
-        <Route path="properties" element={<OwnerProperties />} />
-        <Route path="bookings" element={<OwnerBookings />} />
-        <Route path="earning" element={<OwnerEarning />} />
-        <Route path="profile" element={<OwnerProfile />} />
-        <Route path="message" element={<IndexMessages />} />
+        <Route
+          path="/owner"
+          element={<DashboardLayout links={ownerSidebarLinks} />}
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<OwnerDashboardPage />} />
+          <Route path="properties" element={<OwnerProperties />} />
+          <Route path="bookings" element={<OwnerBookings />} />
+          <Route path="earning" element={<OwnerEarning />} />
+          <Route path="profile" element={<OwnerProfile />} />
+          <Route path="message" element={<IndexMessages />} />
+        </Route>
       </Route>
     </Routes>
   );

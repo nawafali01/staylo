@@ -24,13 +24,11 @@ const userSchema = new Schema({
     },
     fullname: {
         type: String,
-        required: true,
         trim: true,
         index: true
     },
     phoneNumber: {
         type: String,
-        required: [true, "Phone number is required"],
         trim: true
     },
     avatar: {

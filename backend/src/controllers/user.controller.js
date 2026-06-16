@@ -1,27 +1,26 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { ApiError } from "../utils/apiError.js";
+import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
-import { ApiResponse } from "../utils/apiResponse.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 const generatedAccessandRefreshTokens = async (userId) => {
     try {
         const user = await User.findById(userId)
         const accessToken = await user.generateAccessToken()
         const refreshToken = await user.generateRefreshToken()
-        //    refresh token ko backend main save karny k liye
+        // Save the refresh token in the database
         user.refreshToken = refreshToken
         await user.save({ validateBeforeSave: false })
         return { refreshToken, accessToken }
 
     } catch (error) {
-        // console.log("Mera Asli Error Yeh Hai:", error);
-        throw new ApiError(500, "something went wrong while genereting refresh and access token. ")
+        throw new ApiError(500, "Something went wrong while generating refresh and access tokens.")
     }
 }
 
 const registerUser = asyncHandler(async (req, res) => {
-    // 1. Frontend se simple text data get karna
+    // 1. Get user data from request body
     const { fullname, email, username, password, phoneNumber, role } = req.body;
 
     // 2. Validation check
@@ -34,12 +33,11 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     // 3. Unique check
-    const existedUser = await User.findOne({
-        $or: [{ username }, { email }]
-    });
+    const existedUser = await User.findOne({ email });
+
 
     if (existedUser) {
-        throw new ApiError(409, "User with email or username already exists");
+        throw new ApiError(409, "User with email already exists");
     }
 
     // 4. Role status logic
@@ -48,10 +46,10 @@ const registerUser = asyncHandler(async (req, res) => {
         userStatus = "pending";
     }
 
-    // 5. Database mein create karna (Avatar abhi empty string jayega)
+    // 5. Create user in database (avatar is initially empty)
     const user = await User.create({
         fullname,
-        avatar: "", // Baad mein user profile update karke change kar sakega
+        avatar: "", // The user can update their profile avatar later
         email,
         password,
         username: username.toLowerCase(),
@@ -72,15 +70,15 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-    // 1. Data lena req.body se
+    // 1. Get login data from request body
     const { email, username, password } = req.body;
 
-    // 2. Validation check (email ya username mein se ek cheez honi chahiye)
+    // 2. Validation check (either username or email must be provided)
     if (!username && !email) {
         throw new ApiError(400, "Username or email is required");
     }
 
-    // 3. User ko find karna database mein
+    // 3. Find the user in the database
     const user = await User.findOne({
         $or: [{ username }, { email }]
     });
@@ -104,7 +102,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     // Cookie ke liye secure options set karna
     const options = {
-        httpOnly: true, // Is se frontend ka JS cookies ko read nahi kar sakega (Secure approach)
+        httpOnly: true, // Prevents frontend JS from reading cookies (Secure approach)
         secure: true
     };
 
@@ -125,12 +123,12 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
-    // req.user humein 'verifyJWT' middleware se milega
+    // req.user is populated by 'verifyJWT' middleware
     await User.findByIdAndUpdate(
         req.user._id,
         {
             $unset: {
-                refreshToken: 1 // Database se refresh token field ko remove kar rahe hain
+                refreshToken: 1 // Remove the refresh token from the database
             }
         },
         {
@@ -152,7 +150,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
-    // 1. Frontend se incoming refresh token nikalna (cookies ya body se)
+    // 1. Extract the incoming refresh token from cookies or body
     const incomingRefreshToken = req.cookies?.refreshToken || req.body.refreshToken;
 
     if (!incomingRefreshToken) {
@@ -160,20 +158,20 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
     try {
-        // 2. Token ko decode karna
+        // 2. Decode the token
         const decodedToken = jwt.verify(
             incomingRefreshToken,
             process.env.REFRESH_TOKEN_SECRET
         );
 
-        // 3. Database se user find karna
+        // 3. Find the user in the database
         const user = await User.findById(decodedToken?._id);
 
         if (!user) {
             throw new ApiError(401, "Invalid refresh token");
         }
 
-        // 4. Match karna ke jo token aaya hai wo database wale token se match hota hai ya nahi
+        // 4. Verify that the provided token matches the one stored in the database
         if (incomingRefreshToken !== user?.refreshToken) {
             throw new ApiError(401, "Refresh token has expired or been used");
         }
@@ -183,10 +181,10 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
             secure: true
         };
 
-        // 5. Naye tokens generate karna (Variables ke naam exact match hone chahiye)
+        // 5. Generate new tokens
         const { accessToken, refreshToken: newRefreshToken } = await generatedAccessandRefreshTokens(user._id);
 
-        // 6. Cookies set karke response bhejna
+        // 6. Set cookies and send response
         return res
             .status(200)
             .cookie("accessToken", accessToken, options)
@@ -205,24 +203,24 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 });
 
 const changeCurrentPassword = asyncHandler(async (req, res) => {
-    // 1. Frontend se purana aur naya password lena
+    // 1. Get old and new passwords from the request body
     const { oldPassword, newPassword } = req.body;
 
-    // 2. req.user se current logged-in user ko database se find karna
-    const user = await User.findById(req.user?._id); // 🌟 Fixed: req.user?._id use kiya
+    // 2. Find the current logged-in user in the database via req.user
+    const user = await User.findById(req.user?._id); // Fixed: using req.user?._id for safer access
 
-    // 3. Purana password verify karna
+    // 3. Verify the old password
     const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
 
     if (!isPasswordCorrect) {
         throw new ApiError(400, "Invalid old password");
     }
 
-    // 4. Naya password assign karna (Mongoose hook isko khud hash kar dega)
+    // 4. Assign the new password (it will be hashed by the Mongoose hook)
     user.password = newPassword;
     await user.save({ validateBeforeSave: false });
 
-    // 5. Success response bhejna
+    // 5. Send success response
     return res
         .status(200)
         .json(
@@ -236,7 +234,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
         .json(
             new ApiResponse(
                 200,
-                req.user, // Isme password aur refreshToken pehle se hi excluded hain (verifyJWT ki wajah se)
+                req.user, // Select fields are already excluded via verifyJWT middleware
                 "Current user fetched successfully"
             )
         );

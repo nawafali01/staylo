@@ -28,4 +28,17 @@ app.use("/api/v1/bookings", bookingRouter);
 
 // http://localhost:8000/api/v1/users/register
 
+// Global error handler — must be registered AFTER all routes
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+
+    return res.status(statusCode).json({
+        success: false,
+        statusCode,
+        message,
+        errors: err.errors || []
+    });
+});
+
 export { app }

@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginSuccess } from "../../../redux/slices/authSlice";
 import { EmailIcon, LockIcon, EyeIcon } from "../../../assets/svg";
+import { toast } from "react-hot-toast";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const SignInForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
 
     try {
@@ -53,10 +52,11 @@ const SignInForm = () => {
       }
 
       // Redirect to home after successful login
+      toast.success("Logged in successfully!");
       navigate("/home");
     } catch (err) {
       // Handle connection errors or validation failures
-      setError(err.message || "Server connection error. Please try again later.");
+      toast.error(err.message || "Server connection error. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -72,12 +72,6 @@ const SignInForm = () => {
           <p className="text-gray-500 mb-6">
             Please enter your details to sign in
           </p>
-
-          {error && (
-            <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl animate-pulse">
-              {error}
-            </div>
-          )}
         </div>
 
         <form className="space-y-5" onSubmit={handleSubmit}>

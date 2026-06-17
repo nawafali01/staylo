@@ -1,14 +1,18 @@
+import { useSelector } from "react-redux"; // 👈 Redux se logged-in user nikalne ke liye
 import { toast } from "react-hot-toast";
-import { useChatMessages } from "../../../../utils/feature";
-import { tabsConfig } from "../../../../data";
+import { useChatMessages } from "../../../utils/feature";
+import { tabsConfig } from "../../../data";
 import ConversationItem from "./MessageConversationItem";
 import ChatHeader from "./MessageChatHeader";
 import ChatMessages from "./MessageChatMessages";
 import ChatInput from "./MessageChatInput";
-import { SearchIcon } from "../../../../assets/svg";
+import { SearchIcon } from "../../../assets/svg";
 
-const IndexMessages = () => {
-  const { state, actions } = useChatMessages();
+const IndexMessages = ({ dashboardType = "owner" }) => {
+  const { state, actions } = useChatMessages(dashboardType);
+
+  // 👥 Redux se current logged-in user (Alex Rivers) ka data uthaya
+  const { user } = useSelector((state) => state.auth);
 
   const {
     activeTab,
@@ -20,11 +24,44 @@ const IndexMessages = () => {
     threads
   } = state;
 
+  // 🔥 AUTOMATIC LIVE TESTING FUNCTION (No Postman Needed!)
+  const triggerAutoChatTest = async () => {
+    if (!user) return toast.error("Jaani pehle login kar lo!");
+
+    const testPayload = {
+      receiverId: user._id, // 💡 Jugaar: Apni hi ID ko receiver bana rahe hain taake thread create ho jaye
+      subject: "Inquiry about Downtown Luxury Apartment",
+      text: "Salam Alex! Yeh automatic live test message hai database thread check karne ke liye.",
+    };
+
+    try {
+      const response = await fetch("http://localhost:8000/api/v1/bookings/messages/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}` // LocalStorage se direct token uthaya
+        },
+        body: JSON.stringify(testPayload),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        toast.success("🔥 Boom! Database mein conversation successfully create ho gayi hai! Ab page refresh (F5) karo.");
+      } else {
+        toast.error("Backend Error: " + result.message);
+      }
+    } catch (error) {
+      console.error("Test failed:", error);
+      toast.error("Backend server nahi chal raha ya Port galat hai!");
+    }
+  };
+
   return (
     <div className="flex h-screen bg-white overflow-hidden">
       <div className="w-[280px] border-r border-slate-100 flex flex-col shrink-0">
         <div className="px-4 pt-5 pb-3">
           <h2 className="text-xl font-extrabold text-slate-800 tracking-tight mb-3">Messages</h2>
+
           <div className="flex items-center gap-2 bg-slate-100 rounded-xl px-3 py-2">
             <SearchIcon className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             <input

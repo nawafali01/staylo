@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { toast } from "react-hot-toast";
 import {
   LockClosedIcon,
   Cog6ToothIcon,
@@ -103,7 +104,7 @@ const UserDashboardSetting = () => {
               Save Password
             </button>
           </AccountSettingsCard>
-          <AccountSettingsSecurity onEnable={() => alert("2FA started")} />
+          <AccountSettingsSecurity onEnable={() => toast.success("2FA started")} />
         </div>
 
         <div className="flex flex-col gap-6">

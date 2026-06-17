@@ -560,7 +560,7 @@ export const sidebarLinks = [
   { label: "Dashboard", icon: RectangleGroupIcon, path: "/user/dashboard" },
   { label: "Bookings", icon: CalendarIcon, path: "/user/bookings" },
   { label: "Saved", icon: HeartIcon, path: "/user/saved" },
-  { label: "Messages", icon: ChatBubbleLeftRightIcon, path: "/user/messages" },
+  { label: "Messages", icon: ChatBubbleLeftRightIcon, path: "/user/message" },
   { label: "Settings", icon: Cog6ToothIcon, path: "/user/settings" },
 ];
 
@@ -944,6 +944,7 @@ export const adminSidebarLinks = [
   { label: "Bookings", icon: CalendarIcon, path: "/admin/bookings" },
   { label: "Users", icon: UserIcon, path: "/admin/users" },
   { label: "Reports", icon: ChartBarIcon, path: "/admin/reports" },
+  { label: "Messages", icon: ChatBubbleLeftRightIcon, path: "/admin/message" },
 ];
 export const userStatistics = [
   { title: "TOTAL USERS", value: "1,284", trend: "12% this month", trendUp: true, icon: "↗", color: "text-green-600" },

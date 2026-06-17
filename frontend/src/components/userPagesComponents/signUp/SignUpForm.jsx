@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CubeIcon } from "@heroicons/react/24/outline";
+import { toast } from "react-hot-toast";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -37,11 +38,11 @@ const SignUpForm = () => {
     e.preventDefault();
 
     if (formData.password.length < 6) {
-      alert("Password must be at least 6 characters!");
+      toast.error("Password must be at least 6 characters!");
       return;
     }
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      toast.error("Passwords do not match!");
       return;
     }
 
@@ -66,15 +67,15 @@ const SignUpForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Signup successful! Redirecting to login...");
+        toast.success("Signup successful! Redirecting to login...");
         navigate("/signin");
       } else {
         // Use backend error message if available (e.g., "Email already exists")
-        alert(data.message || "Something went wrong during signup!");
+        toast.error(data.message || "Something went wrong during signup!");
       }
     } catch (error) {
       console.error("Connection Error:", error);
-      alert("Cannot connect to server. Make sure your backend is running!");
+      toast.error("Cannot connect to server. Make sure your backend is running!");
     } finally {
       setLoading(false); // Stop loading
     }

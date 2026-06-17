@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
+import { toast } from "react-hot-toast";
 
 import {
   bedRoomOptions,
@@ -135,7 +136,10 @@ const PropertyForm = () => {
         <button
           type="submit"
           className="px-8 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30"
-          onClick={() => console.log("Submitting Data:", formData)}
+          onClick={() => {
+            console.log("Submitting Data:", formData);
+            toast.success("Property added successfully!");
+          }}
         >
           Add Property
         </button>

@@ -1,5 +1,5 @@
-import { SimpleCheckIcon } from "../../../../../assets/svg";
-import { lifestyleAmenities } from "../../../../../data";
+import { SimpleCheckIcon } from "../../../../assets/svg";
+import { lifestyleAmenities } from "../../../../data";
 
 export default function LifestyleAmenities({ data, toggleAmenity }) {
   return (

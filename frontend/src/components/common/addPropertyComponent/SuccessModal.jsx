@@ -1,6 +1,6 @@
-import { SimpleCheckIcon } from "../../../../assets/svg";
+import { SimpleCheckIcon } from "../../../assets/svg";
 import { useDispatch } from "react-redux";
-import { closeAddPropertyModal } from "../../../../redux/slices/modalSlice";
+import { closeAddPropertyModal } from "../../../redux/slices/modalSlice";
 
 export default function SuccessModal() {
   const dispatch = useDispatch();

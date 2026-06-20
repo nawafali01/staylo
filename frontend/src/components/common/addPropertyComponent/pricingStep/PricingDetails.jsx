@@ -1,7 +1,7 @@
 import PricingSection from "./PricingSection";
 import PricingSelectField from "./PricingSelectField";
-import { currencies, periods } from "../../../../../data";
-import { SimpleCheckIcon } from "../../../../../assets/svg";
+import { currencies, periods } from "../../../../data";
+import { SimpleCheckIcon } from "../../../../assets/svg";
 
 export default function PricingDetails({ data, setField }) {
   return (

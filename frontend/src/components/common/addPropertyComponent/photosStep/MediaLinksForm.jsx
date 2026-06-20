@@ -1,4 +1,4 @@
-import { DoubleLinkIcon, PlayCircleIcon } from "../../../../../assets/svg";
+import { DoubleLinkIcon, PlayCircleIcon } from "../../../../assets/svg";
 
 export default function MediaLinksForm({ data, onChange }) {
   return (

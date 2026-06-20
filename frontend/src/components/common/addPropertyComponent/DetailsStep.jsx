@@ -1,4 +1,4 @@
-import { useDetailsStep } from "../../../../utils/feature";
+import { useDetailsStep } from "../../../utils/feature";
 import RoomDetailsForm from "./detailsStep/RoomDetailsForm";
 import FurnishingStatus from "./detailsStep/FurnishingStatus";
 import LifestyleAmenities from "./detailsStep/LifestyleAmenities";

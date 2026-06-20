@@ -1,5 +1,5 @@
-import { mediaChecklist, proTips } from "../../../../../data";
-import { SimpleCheckIcon } from "../../../../../assets/svg";
+import { mediaChecklist, proTips } from "../../../../data";
+import { SimpleCheckIcon } from "../../../../assets/svg";
 
 export default function TipsAndChecklist({ checklistDone }) {
   return (

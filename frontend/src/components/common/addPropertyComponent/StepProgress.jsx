@@ -1,5 +1,5 @@
-import { steps } from "../../../../data";
-import { SimpleCheckIcon } from "../../../../assets/svg";
+import { steps } from "../../../data";
+import { SimpleCheckIcon } from "../../../assets/svg";
 
 export default function StepProgress({ currentStep }) {
   return (

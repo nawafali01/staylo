@@ -1,4 +1,4 @@
-import { usePhotosStep } from "../../../../utils/feature";
+import { usePhotosStep } from "../../../utils/feature";
 import PhotoUploader from "./photosStep/PhotoUploader";
 import MediaLinksForm from "./photosStep/MediaLinksForm";
 import TipsAndChecklist from "./photosStep/TipsAndChecklist";

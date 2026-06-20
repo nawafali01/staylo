@@ -1,5 +1,5 @@
-import { listingCategories, propertyTypes } from "../../../../../data";
-import { ChevronDownIcon } from "../../../../../assets/svg";
+import { listingCategories, propertyTypes } from "../../../../data";
+import { ChevronDownIcon } from "../../../../assets/svg";
 
 export default function PropertyIdentityForm({ data, setField }) {
   return (

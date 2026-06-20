@@ -1,4 +1,4 @@
-import { EditIcon } from "../../../../../assets/svg";
+import { EditIcon } from "../../../../assets/svg";
 
 export default function ReviewCard({ title, subtitle, onEdit, children }) {
   return (

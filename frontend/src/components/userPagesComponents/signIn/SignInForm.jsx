@@ -51,9 +51,9 @@ const SignInForm = () => {
         dispatch(loginSuccess({ user, token }));
       }
 
-      // Redirect to home after successful login
+      // Redirect to pricing after successful login
       toast.success("Logged in successfully!");
-      navigate("/home");
+      navigate("/pricing");
     } catch (err) {
       // Handle connection errors or validation failures
       toast.error(err.message || "Server connection error. Please try again later.");

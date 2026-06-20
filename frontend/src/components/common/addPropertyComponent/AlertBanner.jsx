@@ -1,7 +1,7 @@
 import {
   WarningTriangleIcon,
   InfoExclamationIcon,
-} from "../../../../assets/svg";
+} from "../../../assets/svg";
 
 export default function AlertBanner({ type = "info", text }) {
   const isWarning = type === "warning";

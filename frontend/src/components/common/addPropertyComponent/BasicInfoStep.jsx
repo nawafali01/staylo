@@ -1,6 +1,6 @@
 import PropertyIdentityForm from "./basicInfoStep/PropertyIdentityForm";
 import LocationForm from "./basicInfoStep/LocationForm";
-import { useBasicInfoStep } from "../../../../utils/feature";
+import { useBasicInfoStep } from "../../../utils/feature";
 
 export default function BasicInfoStep({ data, onChange, onNext }) {
   const { setField, isValid } = useBasicInfoStep(data, onChange);

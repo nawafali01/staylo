@@ -1,5 +1,5 @@
-import { cities, provinces } from "../../../../../data";
-import { ChevronDownIcon, LocationPinIcon, LocationMapPreview } from "../../../../../assets/svg";
+import { cities, provinces } from "../../../../data";
+import { ChevronDownIcon, LocationPinIcon, LocationMapPreview } from "../../../../assets/svg";
 
 export default function LocationForm({ data, setField }) {
   return (

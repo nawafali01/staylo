@@ -1,4 +1,4 @@
-import { infrastructureItems } from "../../../../../data";
+import { infrastructureItems } from "../../../../data";
 
 export default function InfrastructureSafety({ data, toggleInfra }) {
   return (

@@ -1,5 +1,5 @@
 import SuccessModal from "./SuccessModal";
-import { useReviewStep } from "../../../../utils/feature";
+import { useReviewStep } from "../../../utils/feature";
 import ReviewBasicInfo from "./reviewStep/ReviewBasicInfo";
 import ReviewPropertyDetails from "./reviewStep/ReviewPropertyDetails";
 import ReviewPhotos from "./reviewStep/ReviewPhotos";

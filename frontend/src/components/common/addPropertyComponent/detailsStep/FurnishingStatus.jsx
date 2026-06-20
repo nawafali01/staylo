@@ -1,4 +1,4 @@
-import { furnishingOptions } from "../../../../../data";
+import { furnishingOptions } from "../../../../data";
 
 export default function FurnishingStatus({ data, setField }) {
   return (

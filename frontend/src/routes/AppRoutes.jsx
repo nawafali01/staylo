@@ -51,9 +51,8 @@ const AppRoutes = () => {
         <Route path="/payment/:planId" element={<Payment />} />
       </Route>
 
-      {/* User Dashboard */}
-
-      <Route element={<ProtectedRoutes />}>
+      {/* User Dashboard — only accessible by role: user */}
+      <Route element={<ProtectedRoutes allowedRoles={["user"]} />}>
         <Route path="/user" element={<DashboardLayout links={sidebarLinks} />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<UserDashboardPage />} />
@@ -62,7 +61,10 @@ const AppRoutes = () => {
           <Route path="message" element={<UserDashboardMessagesPage />} />
           <Route path="settings" element={<UserdashboardSetting />} />
         </Route>
+      </Route>
 
+      {/* Admin Dashboard — only accessible by role: admin */}
+      <Route element={<ProtectedRoutes allowedRoles={["admin"]} />}>
         <Route
           path="/admin"
           element={<DashboardLayout links={adminSidebarLinks} isAdmin={true} />}
@@ -76,7 +78,10 @@ const AppRoutes = () => {
           <Route path="add-property" element={<AddNewProperty />} />
           <Route path="message" element={<IndexMessages dashboardType="admin" />} />
         </Route>
+      </Route>
 
+      {/* Owner Dashboard — only accessible by role: owner */}
+      <Route element={<ProtectedRoutes allowedRoles={["owner"]} />}>
         <Route
           path="/owner"
           element={<DashboardLayout links={ownerSidebarLinks} />}

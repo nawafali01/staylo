@@ -1,5 +1,5 @@
 import ReviewCard from "./ReviewCard";
-import { reviewPropertyDetailsConfig } from "../../../../../data";
+import { reviewPropertyDetailsConfig } from "../../../../data";
 
 export default function ReviewPropertyDetails({ data, amenitiesList, onEdit }) {
   const getFormattedValue = (item, data) => {

@@ -1,5 +1,5 @@
-import { SimpleCheckIcon, InfoExclamationIcon } from "../../../../../assets/svg";
-import { reviewTermsData } from "../../../../../data";
+import { SimpleCheckIcon, InfoExclamationIcon } from "../../../../assets/svg";
+import { reviewTermsData } from "../../../../data";
 
 export default function ReviewTerms({ agreed, setAgreed }) {
   return (

@@ -1,4 +1,4 @@
-import { EditIcon } from "../../../../../assets/svg";
+import { EditIcon } from "../../../../assets/svg";
 
 export default function ReviewFinancials({ data, onEdit }) {
   return (

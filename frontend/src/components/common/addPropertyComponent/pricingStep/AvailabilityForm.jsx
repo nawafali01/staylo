@@ -1,6 +1,6 @@
 import PricingSection from "./PricingSection";
 import PricingSelectField from "./PricingSelectField";
-import { minRentalPeriods, maxRentalPeriods } from "../../../../../data";
+import { minRentalPeriods, maxRentalPeriods } from "../../../../data";
 
 export default function AvailabilityForm({ data, setField }) {
   return (

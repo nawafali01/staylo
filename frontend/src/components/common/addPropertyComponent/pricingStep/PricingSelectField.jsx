@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "../../../../../assets/svg";
+import { ChevronDownIcon } from "../../../../assets/svg";
 
 export default function PricingSelectField({ label, value, options, onChange }) {
   return (

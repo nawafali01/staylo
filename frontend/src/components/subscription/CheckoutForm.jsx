@@ -56,10 +56,10 @@ const CheckoutForm = ({ planPrice, planName }) => {
           Welcome to the {planName}. Your subscription is now active.
         </p>
         <button
-          onClick={() => (window.location.href = "/owner/dashboard")}
+          onClick={() => (window.location.href = "/home")}
           className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200"
         >
-          GO TO DASHBOARD
+          CONTINUE TO HOME
         </button>
       </div>
     );

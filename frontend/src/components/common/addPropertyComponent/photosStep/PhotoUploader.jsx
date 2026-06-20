@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { UploadCloudIcon } from "../../../../../assets/svg";
+import { UploadCloudIcon } from "../../../../assets/svg";
 
 export default function PhotoUploader({ photos, handleFiles, removePhoto, handleDrop }) {
   const fileRef = useRef(null);

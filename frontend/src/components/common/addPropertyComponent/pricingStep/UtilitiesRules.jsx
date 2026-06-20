@@ -1,6 +1,6 @@
 import PricingSection from "./PricingSection";
-import { SimpleCheckIcon } from "../../../../../assets/svg";
-import { utilities, rulesToggles } from "../../../../../data";
+import { SimpleCheckIcon } from "../../../../assets/svg";
+import { utilities, rulesToggles } from "../../../../data";
 
 export default function UtilitiesRules({ data, toggleUtil, toggleRule }) {
   return (

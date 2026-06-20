@@ -28,7 +28,7 @@ import OwnerProperties from "../pages/ownerDashboardPages/OwnerProperties";
 import OwnerBookings from "../pages/ownerDashboardPages/OwnerBookings";
 import OwnerEarning from "../pages/ownerDashboardPages/OwnerEarning";
 import OwnerProfile from "../pages/ownerDashboardPages/OwnerProfile";
-import IndexMessages from "../components/dashboard/ownerdashboard/messageComponent/IndexMessages";
+import IndexMessages from "../components/common/messages/IndexMessages";
 import Pricing from "../pages/userPages/Pricing";
 import Payment from "../pages/userPages/Payment";
 
@@ -51,44 +51,49 @@ const AppRoutes = () => {
         <Route path="/payment/:planId" element={<Payment />} />
       </Route>
 
-      {/* User Dashboard */}
-
-      <Route path="/user" element={<DashboardLayout links={sidebarLinks} />}>
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<UserDashboardPage />} />
-        <Route path="bookings" element={<UserDashboardBooking />} />
-        <Route path="saved" element={<UserDashboardSaved />} />
-        <Route path="messages" element={<UserDashboardMessagesPage />} />
-        <Route path="settings" element={<UserdashboardSetting />} />
+      {/* User Dashboard — only accessible by role: user */}
+      <Route element={<ProtectedRoutes allowedRoles={["user"]} />}>
+        <Route path="/user" element={<DashboardLayout links={sidebarLinks} />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<UserDashboardPage />} />
+          <Route path="bookings" element={<UserDashboardBooking />} />
+          <Route path="saved" element={<UserDashboardSaved />} />
+          <Route path="message" element={<UserDashboardMessagesPage />} />
+          <Route path="settings" element={<UserdashboardSetting />} />
+        </Route>
       </Route>
 
-      {/* Admin Dashboard */}
-
-      <Route
-        path="/admin"
-        element={<DashboardLayout links={adminSidebarLinks} isAdmin={true} />}
-      >
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<AdminDashboardPage />} />
-        <Route path="property" element={<AdminDashboardProperty />} />
-        <Route path="bookings" element={<AdminDashboardBooking />} />
-        <Route path="users" element={<AdminDashboardUser />} />
-        <Route path="reports" element={<AdminDashboardReport />} />
-        <Route path="add-property" element={<AddNewProperty />} />
+      {/* Admin Dashboard — only accessible by role: admin */}
+      <Route element={<ProtectedRoutes allowedRoles={["admin"]} />}>
+        <Route
+          path="/admin"
+          element={<DashboardLayout links={adminSidebarLinks} isAdmin={true} />}
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboardPage />} />
+          <Route path="property" element={<AdminDashboardProperty />} />
+          <Route path="bookings" element={<AdminDashboardBooking />} />
+          <Route path="users" element={<AdminDashboardUser />} />
+          <Route path="reports" element={<AdminDashboardReport />} />
+          <Route path="add-property" element={<AddNewProperty />} />
+          <Route path="message" element={<IndexMessages dashboardType="admin" />} />
+        </Route>
       </Route>
 
-      {/* Owner Dashboard */}
-      <Route
-        path="/owner"
-        element={<DashboardLayout links={ownerSidebarLinks} />}
-      >
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<OwnerDashboardPage />} />
-        <Route path="properties" element={<OwnerProperties />} />
-        <Route path="bookings" element={<OwnerBookings />} />
-        <Route path="earning" element={<OwnerEarning />} />
-        <Route path="profile" element={<OwnerProfile />} />
-        <Route path="message" element={<IndexMessages />} />
+      {/* Owner Dashboard — only accessible by role: owner */}
+      <Route element={<ProtectedRoutes allowedRoles={["owner"]} />}>
+        <Route
+          path="/owner"
+          element={<DashboardLayout links={ownerSidebarLinks} />}
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<OwnerDashboardPage />} />
+          <Route path="properties" element={<OwnerProperties />} />
+          <Route path="bookings" element={<OwnerBookings />} />
+          <Route path="earning" element={<OwnerEarning />} />
+          <Route path="profile" element={<OwnerProfile />} />
+          <Route path="message" element={<IndexMessages />} />
+        </Route>
       </Route>
     </Routes>
   );

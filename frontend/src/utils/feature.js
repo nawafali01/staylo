@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
+import socket from "../services/socket";
 import {
   contactFormInitialValues,
   defaultUser,
@@ -363,7 +365,7 @@ export const useProfileSettings = () => {
   const saveChanges = () => {
     console.log("Saved Data:", { profile, address });
     setHasUnsaved(false);
-    alert("Changes saved successfully!");
+    toast.success("Changes saved successfully!");
   };
 
   const discardChanges = () => {
@@ -394,15 +396,173 @@ export const useChatScroll = (dependency) => {
 
 import { chatThreads, messageHistory, dateOptions } from "../data/index";
 
-export const useChatMessages = () => {
-  const [activeTab, setActiveTab] = useState("all");
-  const [activeChatId, setActiveChatId] = useState(1);
-  const [threads, setThreads] = useState(chatThreads);
-  const [history, setHistory] = useState(messageHistory);
-  const [searchQuery, setSearchQuery] = useState("");
 
+export const useChatMessages = (dashboardType = "owner") => {
+  // 👥 Redux state se current logged-in user nikal liya
+  const { user } = useSelector((state) => state.auth);
+
+  const [activeTab, setActiveTab] = useState("all");
+  const [activeChatId, setActiveChatId] = useState(null); // Default null kiya jab tak data na aaye
+  const [threads, setThreads] = useState([]); // Static chatThreads hata kar empty array
+  const [currentMessages, setCurrentMessages] = useState([]); // messageHistory state ki bajaye array mesh
+  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // 1. API FETCH: Sab se pehle user ke mutabik saari active conversations load karna
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchConversations = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:8000/api/v1/bookings/conversations", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          },
+          credentials: "include", // ⚠️ Cookie Token pass karne ke liye zaroori hai
+        });
+        const result = await response.json();
+
+        if (result.success && result.data.length > 0) {
+          const formattedThreads = result.data.map((chat) => {
+            // Logged-in user ke ilawa jo doosra banda hai wo humara partner hai
+            const partner = chat.participants.find((p) => p._id !== user._id) || {};
+
+            return {
+              id: chat._id, // MongoDB thread ID
+              name: partner.name || "Chat Partner",
+              avatar: partner.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150",
+              property: chat.subject || "Property Inquiry", // UI field compatibility
+              preview: chat.lastMessage || "No messages yet.",
+              time: new Date(chat.updatedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+              unread: false,
+              partnerId: partner._id,
+            };
+          });
+
+          setThreads(formattedThreads);
+          // Auto select first chat if available
+          setActiveChatId(formattedThreads[0].id);
+        }
+      } catch (error) {
+        console.error("❌ Error fetching conversations:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchConversations();
+  }, [user]);
+
+  // 2. API FETCH: Jab bhi activeChatId change ho, database se us thread ke puraane messages lana
+  useEffect(() => {
+    if (!activeChatId) return;
+
+    const fetchMessages = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/api/v1/bookings/messages/${activeChatId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          },
+          credentials: "include",
+        });
+        const result = await response.json();
+
+        if (result.success) {
+          // UI chat layout ke dynamic map structure par map karna
+          const formattedMsgs = result.data.map(msg => ({
+            id: msg._id,
+            type: msg.senderId === user._id ? "sent" : "received", // 👈 Check user matching
+            text: msg.text,
+            time: new Date(msg.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+          }));
+          setCurrentMessages(formattedMsgs);
+        }
+      } catch (error) {
+        console.error("❌ Error fetching thread messages:", error);
+      }
+    };
+
+    fetchMessages();
+  }, [activeChatId, user]);
+
+  // 3. LIVE SOCKETS: Live socket setup incoming messages ke liye
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("receive_message", (newMessage) => {
+      // A. Agar usi thread ka message aya hai jo khula hua hai
+      if (newMessage.conversationId === activeChatId) {
+        const isMe = newMessage.senderId === user?._id;
+        setCurrentMessages((prev) => [
+          ...prev,
+          {
+            id: newMessage._id || Date.now(),
+            type: isMe ? "sent" : "received",
+            text: newMessage.text,
+            time: "Just now",
+          }
+        ]);
+      }
+
+      // B. Sidebar updates (Preview change karna aur top par lana)
+      setThreads((prevThreads) =>
+        prevThreads.map((t) =>
+          t.id === newMessage.conversationId
+            ? {
+              ...t,
+              preview: newMessage.text,
+              time: "Just now",
+              unread: newMessage.conversationId !== activeChatId,
+            }
+            : t
+        )
+      );
+    });
+
+    return () => {
+      socket.off("receive_message");
+    };
+  }, [activeChatId, user]);
+
+  // 4. ACTION HANDLER: Input box se click ya enter maarne par bhejba
+  const handleSend = (text) => {
+    if (!text.trim() || !activeChatId || !user) return;
+
+    const payload = {
+      conversationId: activeChatId,
+      senderId: user._id,
+      senderName: user.name,
+      text: text,
+    };
+
+    // Live socket par fire kiya
+    socket.emit("send_message", payload);
+
+    // Optimistic UI Update: Local UI par foran dikhane ke liye
+    setCurrentMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        type: "sent",
+        text: text,
+        time: "Just now",
+      },
+    ]);
+
+    setThreads((prev) =>
+      prev.map((t) =>
+        t.id === activeChatId ? { ...t, preview: text, time: "Just now" } : t
+      )
+    );
+  };
+
+  // UI Filter Methods
   const activeChatPartner = threads.find((t) => t.id === activeChatId);
-  const currentMessages = history[activeChatId] || [];
 
   const filteredThreads = threads.filter((thread) => {
     const matchSearch =
@@ -414,26 +574,6 @@ export const useChatMessages = () => {
     return matchSearch;
   });
 
-  const handleSend = (text) => {
-    const newMessage = {
-      id: Date.now(),
-      type: "sent",
-      text,
-      time: new Date().toLocaleTimeString("en-US", dateOptions),
-    };
-
-    setHistory((prev) => ({
-      ...prev,
-      [activeChatId]: [...(prev[activeChatId] || []), newMessage],
-    }));
-
-    setThreads((prev) =>
-      prev.map((t) =>
-        t.id === activeChatId ? { ...t, preview: text, time: "Just now" } : t
-      )
-    );
-  };
-
   return {
     state: {
       activeTab,
@@ -442,14 +582,15 @@ export const useChatMessages = () => {
       filteredThreads,
       activeChatPartner,
       currentMessages,
-      threads
+      threads,
+      loading
     },
     actions: {
       setActiveTab,
       setActiveChatId,
       setSearchQuery,
-      handleSend
-    }
+      handleSend,
+    },
   };
 };
 

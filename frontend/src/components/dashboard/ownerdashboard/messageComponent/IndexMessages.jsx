@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { useChatMessages } from "../../../../utils/feature";
 import { tabsConfig } from "../../../../data";
 import ConversationItem from "./MessageConversationItem";
@@ -80,8 +81,8 @@ const IndexMessages = () => {
         <div className="flex-1 flex flex-col overflow-hidden">
           <ChatHeader
             user={activeChatPartner}
-            onArchive={() => alert("Archived!")}
-            onBlock={() => alert("Blocked!")}
+            onArchive={() => toast.success("Archived!")}
+            onBlock={() => toast.error("Blocked!")}
           />
           <div className="flex-1 overflow-hidden flex flex-col bg-slate-50">
             <ChatMessages messages={currentMessages} activeUser={activeChatPartner} />

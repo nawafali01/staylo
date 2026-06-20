@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginSuccess } from "../../../redux/slices/authSlice";
 import { EmailIcon, LockIcon, EyeIcon } from "../../../assets/svg";
+import { toast } from "react-hot-toast";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -16,43 +16,47 @@ const SignInForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
 
-    const correctPassword = "admin123";
-
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-
-      if (password !== correctPassword) {
-        throw new Error("Email ya password galat hai");
-      }
-
-      const fakeUser = {
-        id: 1,
-        email: email,
-        name: "Test User",
-        role: "admin",
-      };
-      const fakeToken = "dummy-token-123";
-
-      dispatch(
-        loginSuccess({
-          user: fakeUser,
-          token: fakeToken,
+      // Call the real backend API instead of placeholder logic
+      const response = await fetch("http://localhost:8000/api/v1/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
         }),
-      );
+      });
 
-      if (fakeUser.role === "admin") {
-        navigate("/admin/dashboard");
-      } else if (fakeUser.role === "owner") {
-        navigate("/owner/dashboard");
-      } else {
-        navigate("/dashboard");
+      const data = await response.json();
+      console.log("Backend Login Response Data:", data);
+
+      if (!response.ok) {
+        // Handle backend errors (e.g., 401 Unauthorized or 400 Bad Request)
+        throw new Error(data.message || "Invalid email or password!");
       }
+
+      // Extract token and user based on backend response structure
+      const token = data?.data?.accessToken || data?.token;
+      const user = data?.data?.user || data?.user;
+
+      if (token) localStorage.setItem("token", token);
+      if (user) localStorage.setItem("user", JSON.stringify(user));
+
+      // Update Redux authentication state
+      if (user) {
+        dispatch(loginSuccess({ user, token }));
+      }
+
+      // Redirect to pricing after successful login
+      toast.success("Logged in successfully!");
+      navigate("/pricing");
     } catch (err) {
-      setError(err.message);
+      // Handle connection errors or validation failures
+      toast.error(err.message || "Server connection error. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -68,12 +72,6 @@ const SignInForm = () => {
           <p className="text-gray-500 mb-6">
             Please enter your details to sign in
           </p>
-
-          {error && (
-            <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl animate-pulse">
-              {error}
-            </div>
-          )}
         </div>
 
         <form className="space-y-5" onSubmit={handleSubmit}>
@@ -88,9 +86,10 @@ const SignInForm = () => {
               <input
                 type="email"
                 required
+                disabled={loading}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm disabled:opacity-50"
                 placeholder="name@company.com"
               />
             </div>
@@ -115,15 +114,18 @@ const SignInForm = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 required
+                minLength={6}
+                disabled={loading}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+                className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm disabled:opacity-50"
                 placeholder="••••••••"
               />
               <button
                 type="button"
+                disabled={loading}
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 dynamic-eye-toggle"
               >
                 <EyeIcon className="w-5 h-5" />
               </button>
@@ -133,9 +135,11 @@ const SignInForm = () => {
           <div className="flex items-center gap-2">
             <input
               type="checkbox"
-              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              id="rememberMe"
+              disabled={loading}
+              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 disabled:opacity-50"
             />
-            <label className="text-sm text-gray-600">
+            <label htmlFor="rememberMe" className="text-sm text-gray-600 selection:bg-transparent">
               Keep me logged in for 30 days
             </label>
           </div>
@@ -143,7 +147,8 @@ const SignInForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full bg-[#3b82f6] hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 transition-all active:scale-[0.98] mt-6 text-lg ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
+            className={`relative z-50 w-full bg-[#3b82f6] hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 transition-all active:scale-[0.98] mt-6 text-lg ${loading ? "opacity-70 cursor-not-allowed" : ""
+              }`}
           >
             {loading ? "Processing..." : "Sign In to Dashboard"}
           </button>
@@ -155,8 +160,6 @@ const SignInForm = () => {
             Sign up for free
           </a>
         </div>
-
-        {/* Social logins niche waale wese hi rahenge */}
       </div>
     </div>
   );

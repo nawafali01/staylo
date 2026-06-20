@@ -1,10 +1,20 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
-const ProtectedRoutes = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+const ProtectedRoutes = ({ allowedRoles }) => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  return isLoggedIn ? <Outlet /> : <Navigate to="/signin" />;
+  if (!token) {
+    return <Navigate to="/signin" />;
+  }
+
+  if (allowedRoles && !allowedRoles.includes(user?.role)) {
+    toast.error("Unauthorized access! Access Denied.");
+    return <Navigate to="/home" />;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoutes;

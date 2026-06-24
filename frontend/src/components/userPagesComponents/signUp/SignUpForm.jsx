@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CubeIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
+import GoogleAuthButton from "../../common/GoogleAuthButton";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -67,8 +68,8 @@ const SignUpForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("Signup successful! Redirecting to login...");
-        navigate("/signin");
+        toast.success("Signup successful!");
+        navigate("/pricing"); // Redirect to pricing after signup as well
       } else {
         // Use backend error message if available (e.g., "Email already exists")
         toast.error(data.message || "Something went wrong during signup!");
@@ -238,24 +239,7 @@ const SignUpForm = () => {
             </span>
           </div>
 
-          {/* <div className="grid grid-cols-2 gap-4">
-            <button type="button" className="flex items-center justify-center gap-2 border border-gray-200 py-3 rounded-xl hover:bg-gray-50 transition-all text-sm font-bold text-gray-700">
-              <img
-                src="https://www.svgrepo.com/show/355037/google.svg"
-                className="w-5 h-5"
-                alt="Google"
-              />
-              Google
-            </button>
-            <button type="button" className="flex items-center justify-center gap-2 border border-gray-200 py-3 rounded-xl hover:bg-gray-50 transition-all text-sm font-bold text-gray-700">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                className="w-5 h-5"
-                alt="Apple"
-              />
-              Apple
-            </button>
-          </div> */}
+          <GoogleAuthButton label="Sign up with Google" />
 
           <button
             type="submit"

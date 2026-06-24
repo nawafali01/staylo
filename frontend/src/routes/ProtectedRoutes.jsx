@@ -6,6 +6,7 @@ const ProtectedRoutes = ({ allowedRoles }) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!token) {
+    toast.error("Please sign in to access this page!");
     return <Navigate to="/signin" />;
   }
 

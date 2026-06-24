@@ -21,10 +21,11 @@ const PricingCard = ({ plan, isAnnual }) => {
       )}
 
       <div
-        className={`flex flex-col flex-1 rounded-2xl p-8 bg-white ${plan.isMostPopular
-          ? "border-2 border-blue-600 shadow-lg"
-          : "border border-gray-200"
-          }`}
+        className={`pricing-card flex flex-col flex-1 rounded-3xl p-8 bg-white border ${
+          plan.isMostPopular
+            ? "border-blue-600 shadow-xl"
+            : "border-gray-200 shadow-sm"
+        }`}
       >
         <p className="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">
           {plan.tier}
@@ -41,8 +42,12 @@ const PricingCard = ({ plan, isAnnual }) => {
             <p className="text-sm text-gray-500">{plan.tagline}</p>
           ) : null}
         </div>
+
         <div className="mb-2">
-          <span className="text-5xl font-extrabold text-gray-900">
+          <span
+            className="price-amount text-5xl font-extrabold text-gray-900"
+            style={{ transition: "color 0.3s ease" }}
+          >
             ${price}
           </span>
           {price > 0 && (
@@ -77,10 +82,11 @@ const PricingCard = ({ plan, isAnnual }) => {
 
         <button
           onClick={handleSubscribe}
-          className={`w-full py-3 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-200 ${plan.ctaVariant === "solid"
-            ? "bg-blue-600 text-white hover:bg-blue-700"
-            : "border border-gray-300 text-gray-800 hover:border-blue-600 hover:text-blue-600"
-            }`}
+          className={`w-full py-3 rounded-xl text-sm font-bold tracking-widest uppercase transition-all duration-300 ${
+            plan.ctaVariant === "solid"
+              ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md"
+              : "cta-outline border border-gray-300 text-gray-800"
+          }`}
         >
           {plan.ctaLabel}
         </button>

@@ -1,0 +1,5 @@
+[33m86bfe87[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfix/signin-issues[m[33m)[m Added Joi validation middleware and code structure + also add continue with google feature
+[33m2df60a6[m[33m ([m[1;31morigin/fix/signin-issues[m[33m)[m Fix the protecting routing and structuring component
+[33mb3219d7[m add toast library and also config the websoket
+[33m3b20845[m fix: clean up comments and add websocket.io
+[33m616a460[m fix: resolved issues on sign in page and updated login logic

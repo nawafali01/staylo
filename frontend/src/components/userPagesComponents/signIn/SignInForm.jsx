@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginSuccess } from "../../../redux/slices/authSlice";
 import { EmailIcon, LockIcon, EyeIcon } from "../../../assets/svg";
 import { toast } from "react-hot-toast";
+import GoogleAuthButton from "../../common/GoogleAuthButton";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -153,6 +154,17 @@ const SignInForm = () => {
             {loading ? "Processing..." : "Sign In to Dashboard"}
           </button>
         </form>
+
+        <div className="relative my-8 text-center">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-100"></div>
+          </div>
+          <span className="relative bg-white px-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            Or continue with
+          </span>
+        </div>
+
+        <GoogleAuthButton label="Sign in with Google" />
 
         <div className="mt-8 text-center text-sm text-gray-600">
           Don't have an account?{" "}

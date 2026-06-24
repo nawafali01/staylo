@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useNavigate } from "react-router-dom";
 import { stripeCardStyle } from "../../data";
 import {
   SuccessCheckIcon,
@@ -12,6 +13,7 @@ import {
 const CheckoutForm = ({ planPrice, planName }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
@@ -56,7 +58,7 @@ const CheckoutForm = ({ planPrice, planName }) => {
           Welcome to the {planName}. Your subscription is now active.
         </p>
         <button
-          onClick={() => (window.location.href = "/home")}
+          onClick={() => navigate("/home")}
           className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200"
         >
           CONTINUE TO HOME

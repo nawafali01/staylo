@@ -1,8 +1,8 @@
-import React from 'react';
-import ConfirmBookingPageComponent from '../../components/userPagesComponents/confirmPropertyBooking/ConfirmBookingPage';
+import React from "react";
+import Index from "../../components/userPagesComponents/confirmPropertyBooking/index";
 
 const ConfirmBookingPage = () => {
-  return <ConfirmBookingPageComponent />;
+  return <Index />;
 };
 
 export default ConfirmBookingPage;

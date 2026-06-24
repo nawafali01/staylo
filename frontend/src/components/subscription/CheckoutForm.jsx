@@ -5,10 +5,10 @@ import { stripeCardStyle } from "../../data";
 import {
   SuccessCheckIcon,
   ErrorInfoIcon,
-  LoadingSpinner,
   ShieldLockIcon,
   CreditCardIcon,
 } from "../../assets/svg";
+import Loader from "../../common/Loader";
 
 const CheckoutForm = ({ planPrice, planName }) => {
   const stripe = useStripe();
@@ -95,7 +95,7 @@ const CheckoutForm = ({ planPrice, planName }) => {
       >
         {processing ? (
           <div className="flex items-center justify-center gap-3">
-            <LoadingSpinner className="h-5 w-5 text-gray-400" />
+            <Loader className="h-5 w-5 text-gray-400" />
             PROCESSING...
           </div>
         ) : (

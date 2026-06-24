@@ -36,24 +36,6 @@ const PricingPage = () => {
           </div>
         </div>
       </main>
-
-      {/*      
-      <footer className="border-t border-gray-200 py-6 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-400">{footer.copyright}</p>
-          <div className="flex flex-wrap gap-5">
-            {footer.links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-xs text-gray-400 hover:text-gray-700 transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer> */}
     </div>
   );
 };

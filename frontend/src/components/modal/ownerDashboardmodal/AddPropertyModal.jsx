@@ -16,13 +16,13 @@ const AddPropertyModal = ({ isOpen }) => {
   return (
     <>
       <div
-        className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 transition-opacity"
+        className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] transition-opacity"
         onClick={handleClose}
       />
 
-      <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
+      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 pointer-events-none">
         <div
-          className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto border border-slate-200"
+          className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto border border-slate-200 animate-in fade-in zoom-in duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-100 px-8 py-6 flex items-start justify-between rounded-t-3xl z-10">

@@ -4,25 +4,22 @@ const propertySchema = new Schema({
     title: {
         type: String,
         required: true,
-        trim: true,
         index: true
     },
     description: {
         type: String,
         required: true,
-        trim: true
     },
     price: {
         type: Number,
         required: true
     },
     location: {
-        type: String, // City/Province
+        type: String,
         required: true,
-        trim: true
     },
     listingCategory: {
-        type: String, // For Rent, For Sale
+        type: String,
         enum: ["For Rent", "For Sale"]
     },
     propertyType: {
@@ -47,7 +44,7 @@ const propertySchema = new Schema({
         default: 0
     },
     propertySize: {
-        type: Number, // sqft
+        type: Number,
         default: 0
     },
     furnishing: {
@@ -67,7 +64,7 @@ const propertySchema = new Schema({
     ],
     images: [
         {
-            type: String // Cloudinary URLs
+            type: String
         }
     ],
     isAvailable: {

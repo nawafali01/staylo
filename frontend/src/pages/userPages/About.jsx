@@ -1,8 +1,8 @@
 import React from "react";
-import AboutPage from "../../components/userPagesComponents/about/AboutPage";
+import Index from "../../components/userPagesComponents/about/index";
 
 const About = () => {
-  return <AboutPage />;
+  return <Index />;
 };
 
 export default About;

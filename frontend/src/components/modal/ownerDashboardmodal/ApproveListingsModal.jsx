@@ -22,7 +22,7 @@ const ApproveListingsModal = ({ isOpen }) => {
 
       <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 pointer-events-none">
         <div
-          className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden pointer-events-auto border border-slate-200 flex flex-col"
+          className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden pointer-events-auto border border-slate-200 flex flex-col animate-in fade-in zoom-in duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="bg-white border-b border-slate-100 px-8 py-6 flex items-start justify-between">
@@ -47,7 +47,6 @@ const ApproveListingsModal = ({ isOpen }) => {
             </button>
           </div>
 
-          {/* Content */}
           <div className="flex-1 overflow-y-auto p-8 pt-4">
             <div className="space-y-4">
               {approvedUsersList.map((user) => (
@@ -79,7 +78,6 @@ const ApproveListingsModal = ({ isOpen }) => {
             </div>
           </div>
 
-          {/* Footer */}
           <div className="p-6 bg-slate-50 border-t border-slate-100 flex justify-end">
             <button
               onClick={handleClose}

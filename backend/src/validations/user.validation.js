@@ -2,8 +2,8 @@ import Joi from "joi";
 
 const registerSchema = Joi.object({
     fullname: Joi.string().trim().min(2).max(50).required(),
-    email: Joi.string().email().required(),
-    username: Joi.string().trim().alphanum().min(3).max(30).required(),
+    email: Joi.string().email().lowercase().required(),
+    username: Joi.string().trim().lowercase().alphanum().min(3).max(30).required(),
     password: Joi.string().min(6).required(),
     phoneNumber: Joi.string().pattern(/^[0-9]{10,15}$/).required().messages({
         "string.pattern.base": "Phone number must be 10-15 digits"
@@ -12,8 +12,8 @@ const registerSchema = Joi.object({
 });
 
 const loginSchema = Joi.object({
-    email: Joi.string().email().optional(),
-    username: Joi.string().trim().optional(),
+    email: Joi.string().email().lowercase().optional(),
+    username: Joi.string().trim().lowercase().optional(),
     password: Joi.string().required()
 }).or("email", "username").messages({
     "object.missing": "Either email or username is required"

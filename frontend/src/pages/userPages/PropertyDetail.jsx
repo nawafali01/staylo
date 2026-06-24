@@ -1,8 +1,8 @@
-import React from 'react'
-import PropertyDetailPage from '../../components/userPagesComponents/propertDetail/PropertyDetailPage'
+import React from "react";
+import Index from "../../components/userPagesComponents/propertyDetail/index";
 
 const PropertyDetail = () => {
-  return <PropertyDetailPage/>
-}
+  return <Index />;
+};
 
-export default PropertyDetail
+export default PropertyDetail;

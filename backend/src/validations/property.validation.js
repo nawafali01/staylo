@@ -5,7 +5,7 @@ const addPropertySchema = Joi.object({
     description: Joi.string().trim().min(10).required(),
     price: Joi.number().positive().required(),
     location: Joi.string().trim().required(),
-    city: Joi.string().trim().required()
+    city: Joi.string().trim().lowercase().required()
 });
 
 const updatePropertySchema = Joi.object({
@@ -13,7 +13,7 @@ const updatePropertySchema = Joi.object({
     description: Joi.string().trim().min(10).optional(),
     price: Joi.number().positive().optional(),
     location: Joi.string().trim().optional(),
-    city: Joi.string().trim().optional(),
+    city: Joi.string().trim().lowercase().optional(),
     isAvailable: Joi.boolean().optional()
 }).min(1).messages({
     "object.min": "At least one field is required to update"

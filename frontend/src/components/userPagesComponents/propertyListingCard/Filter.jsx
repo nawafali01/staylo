@@ -1,6 +1,6 @@
 import { MapPinIcon } from "@heroicons/react/24/outline";
 
-const Filter = () => {
+const Filter = ({ data }) => {
   return (
     <div className="w-64 border rounded-xl p-5 shadow-md sticky top-24 bg-white h-fit">
       <div className="flex justify-between items-center mb-6">
@@ -37,7 +37,7 @@ const Filter = () => {
       <div className="mt-4">
         <p className="text-sm font-semibold text-black">BEDROOMS</p>
         <div className="flex flex-wrap gap-2 mt-2">
-          {["Any", "+1", "+2", "+3", "+4"].map((option) => (
+          {data?.bedrooms?.map((option) => (
             <button
               key={option}
               className="border border-gray-300 rounded-lg px-3 py-1 text-sm font-medium bg-gray-500 text-white"
@@ -51,7 +51,7 @@ const Filter = () => {
       <div className="mt-4">
         <p className="text-xs font-semibold">PROPERTY TYPE</p>
         <div className="mt-2 space-y-2">
-          {["House", "Apartment", "Condo", "TownHouse"].map((type) => (
+          {data?.propertyTypes?.map((type) => (
             <div key={type} className="flex items-center gap-2">
               <input type="checkbox" />
               <label className="text-sm">{type}</label>

@@ -9,11 +9,6 @@ export const sendMessage = asyncHandler(async (req, res) => {
     const { receiverId, text, subject } = req.body;
     const senderId = req.user._id;
 
-    if (!receiverId || !text) {
-        throw new ApiError(400, "Receiver ID and text are required");
-    }
-
-    // Check if conversation already exists between these two participants
     let conversation = await Conversation.findOne({
         participants: { $all: [senderId, receiverId] }
     });
@@ -31,11 +26,9 @@ export const sendMessage = asyncHandler(async (req, res) => {
         text,
     });
 
-    // Update last message in conversation
     conversation.lastMessage = text;
     await conversation.save();
 
-    // Socket notification (optional here as it's done via emit in frontend too)
     const io = req.app.get("io");
     if (io) {
         io.to(conversation._id.toString()).emit("receive_message", {

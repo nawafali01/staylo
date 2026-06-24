@@ -1,8 +1,8 @@
-import React from 'react'
-import Contact from '../../components/userPagesComponents/contact/Contact'
+import React from "react";
+import Index from "../../components/userPagesComponents/contact/index";
 
-const ContactPage = () => {
-  return <Contact/>
-}
+const Contact = () => {
+  return <Index />;
+};
 
-export default ContactPage
+export default Contact;

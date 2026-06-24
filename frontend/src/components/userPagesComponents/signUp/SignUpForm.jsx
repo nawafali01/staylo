@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { CubeIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
 import GoogleAuthButton from "../../common/GoogleAuthButton";
+import Loader from "../../common/Loader";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,6 @@ const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // New state to handle request loading status
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -27,14 +27,12 @@ const SignUpForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Prevent numbers in name fields
   const handleNameKeyDown = (e) => {
     if (e.key >= '0' && e.key <= '9') {
       e.preventDefault();
     }
   };
 
-  // MAIN CONNECTION LOGIC HERE
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,20 +45,20 @@ const SignUpForm = () => {
       return;
     }
 
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
-      // Send request to the backend
+
       const response = await fetch("http://localhost:8000/api/v1/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: `${formData.firstName.toLowerCase()}${formData.lastName.toLowerCase()}`, // If current backend requires a username
+          username: `${formData.firstName.toLowerCase()}${formData.lastName.toLowerCase()}`,
           email: formData.email,
           password: formData.password,
-          firstName: formData.firstName, // If backend model accepts separate name fields
+          firstName: formData.firstName,
           lastName: formData.lastName,
         }),
       });
@@ -69,16 +67,17 @@ const SignUpForm = () => {
 
       if (response.ok) {
         toast.success("Signup successful!");
-        navigate("/pricing"); // Redirect to pricing after signup as well
+        navigate("/pricing");
       } else {
-        // Use backend error message if available (e.g., "Email already exists")
+
         toast.error(data.message || "Something went wrong during signup!");
       }
     } catch (error) {
       console.error("Connection Error:", error);
       toast.error("Cannot connect to server. Make sure your backend is running!");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
+
     }
   };
 
@@ -180,7 +179,7 @@ const SignUpForm = () => {
             </div>
           </div>
 
-          {/* Confirm Password Field */}
+
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               Confirm Password
@@ -244,9 +243,16 @@ const SignUpForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-indigo-700 transform transition active:scale-[0.98] mt-6 disabled:bg-indigo-400 disabled:cursor-not-allowed"
+            className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-indigo-700 transform transition active:scale-[0.98] mt-6 disabled:bg-indigo-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            {loading ? "Signing Up..." : "Sign Up"}
+            {loading ? (
+              <>
+                <Loader />
+                <span>Signing Up...</span>
+              </>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
 

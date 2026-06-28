@@ -1,7 +1,8 @@
+import React from 'react';
 import { avatarSizeMap, userAvatarColors } from "../../../data";
 import { getAvatarData } from "../../../utils/helpers";
 
-function MessageAvatar({ name = "User", size = "md", online = false }) {
+function Avatar({ name = "User", size = "md", online = false }) {
   const { initials, color } = getAvatarData(name, userAvatarColors);
 
   const avatarClass = avatarSizeMap[size] || avatarSizeMap.md;
@@ -20,4 +21,4 @@ function MessageAvatar({ name = "User", size = "md", online = false }) {
   );
 }
 
-export default MessageAvatar;
+export default Avatar;

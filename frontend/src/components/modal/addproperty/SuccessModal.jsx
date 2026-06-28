@@ -1,3 +1,4 @@
+import React from 'react';
 import { SimpleCheckIcon } from "../../../assets/svg";
 import { useDispatch } from "react-redux";
 import { closeAddPropertyModal } from "../../../redux/slices/modalSlice";

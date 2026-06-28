@@ -1,6 +1,7 @@
+import React from 'react';
 import { ChevronDownIcon } from "../../../../assets/svg";
 
-export default function PricingSelectField({ label, value, options, onChange }) {
+export default function SelectField({ label, value, options, onChange }) {
   return (
     <div>
       <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">

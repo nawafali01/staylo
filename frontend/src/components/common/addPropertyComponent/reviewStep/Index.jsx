@@ -1,9 +1,10 @@
-import ReviewCard from "./ReviewCard";
+import React from 'react';
+import Card from "./Card";
 import InfoField from "./InfoField";
 
-export default function ReviewBasicInfo({ data, onEdit }) {
+export default function BasicInfoIndex({ data, onEdit }) {
   return (
-    <ReviewCard
+    <Card
       title="Basic Info"
       subtitle="Essential property identity details"
       onEdit={() => onEdit(1)}
@@ -26,6 +27,6 @@ export default function ReviewBasicInfo({ data, onEdit }) {
           />
         </div>
       </div>
-    </ReviewCard>
+    </Card>
   );
 }

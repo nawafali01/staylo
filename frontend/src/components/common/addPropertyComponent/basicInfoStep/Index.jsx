@@ -1,7 +1,8 @@
+import React from 'react';
 import { listingCategories, propertyTypes } from "../../../../data";
 import { ChevronDownIcon } from "../../../../assets/svg";
 
-export default function PropertyIdentityForm({ data, setField }) {
+export default function BasicInfoIndex({ data, setField }) {
   return (
     <>
       <div className="grid grid-cols-[1fr_200px] gap-4 mb-5">
@@ -14,7 +15,7 @@ export default function PropertyIdentityForm({ data, setField }) {
             value={data.title || ""}
             onChange={(event) => setField("title", event.target.value)}
             placeholder="e.g. Modern Minimalist Villa"
-            className="w-full h-11 px-4 rounded-xl border border-gray-200 bg-gray-50 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full h-11 px-4 rounded-xl border border-gray-200 bg-gray-50 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           />
         </div>
         <div>

@@ -1,13 +1,14 @@
-import PricingSection from "./PricingSection";
-import PricingSelectField from "./PricingSelectField";
+import React from 'react';
+import Section from "./Section";
+import SelectField from "./SelectField";
 import { currencies, periods } from "../../../../data";
 import { SimpleCheckIcon } from "../../../../assets/svg";
 
-export default function PricingDetails({ data, setField }) {
+export default function PricingDetailsIndex({ data, setField }) {
   return (
-    <PricingSection label="Section 1: Pricing Details">
+    <Section label="Section 1: Pricing Details">
       <div className="grid grid-cols-3 gap-4 mb-4">
-        <PricingSelectField
+        <SelectField
           label="Currency"
           value={data.currency || "USD ($)"}
           options={currencies}
@@ -25,7 +26,7 @@ export default function PricingDetails({ data, setField }) {
             className="w-full h-11 px-4 rounded-xl border border-gray-200 bg-gray-50 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           />
         </div>
-        <PricingSelectField
+        <SelectField
           label="Period"
           value={data.period || "Per Month"}
           options={periods}
@@ -106,6 +107,6 @@ export default function PricingDetails({ data, setField }) {
           </div>
         )}
       </div>
-    </PricingSection>
+    </Section>
   );
 }

@@ -1,5 +1,5 @@
 import { usePricingStep } from "../../../utils/feature";
-import PricingDetails from "./pricingStep/PricingDetails";
+import PricingDetails from "./pricingStep/Index";
 import AvailabilityForm from "./pricingStep/AvailabilityForm";
 import UtilitiesRules from "./pricingStep/UtilitiesRules";
 

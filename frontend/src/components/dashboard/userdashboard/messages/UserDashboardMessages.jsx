@@ -1,7 +1,7 @@
-import IndexMessages from "../../../common/messages/IndexMessages";
+import MessagesIndex from "../../../common/messages/Index";
 
 const UserDashboardMessages = () => {
-  return <IndexMessages dashboardType="user" />;
+  return <MessagesIndex dashboardType="user" />;
 };
 
 export default UserDashboardMessages;

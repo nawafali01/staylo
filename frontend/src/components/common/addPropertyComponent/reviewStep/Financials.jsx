@@ -1,6 +1,7 @@
+import React from 'react';
 import { EditIcon } from "../../../../assets/svg";
 
-export default function ReviewFinancials({ data, onEdit }) {
+export default function Financials({ data, onEdit }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
       <div className="flex items-center justify-between mb-4">

@@ -1,4 +1,5 @@
-import MessageAvatar from "./MessageAvatar";
+import React from 'react';
+import Avatar from "./Avatar";
 
 function ConversationItem({ conversation, isActive, onClick }) {
   return (
@@ -9,7 +10,7 @@ function ConversationItem({ conversation, isActive, onClick }) {
           : "border-transparent hover:bg-slate-50"
         }`}
     >
-      <MessageAvatar
+      <Avatar
         name={conversation.name}
         size="md"
         online={conversation.unread}

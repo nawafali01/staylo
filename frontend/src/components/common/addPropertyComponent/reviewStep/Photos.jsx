@@ -1,10 +1,11 @@
-import ReviewCard from "./ReviewCard";
+import React from 'react';
+import Card from "./Card";
 
-export default function ReviewPhotos({ photos, onEdit }) {
+export default function Photos({ photos, onEdit }) {
   if (!photos || photos.length === 0) return null;
 
   return (
-    <ReviewCard
+    <Card
       title="Photos"
       subtitle="Property media"
       onEdit={() => onEdit(3)}
@@ -39,6 +40,6 @@ export default function ReviewPhotos({ photos, onEdit }) {
           </div>
         )}
       </div>
-    </ReviewCard>
+    </Card>
   );
 }

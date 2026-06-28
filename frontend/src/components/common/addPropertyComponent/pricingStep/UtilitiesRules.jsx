@@ -1,11 +1,12 @@
-import PricingSection from "./PricingSection";
+import React from 'react';
+import Section from "./Section";
 import { SimpleCheckIcon } from "../../../../assets/svg";
 import { utilities, rulesToggles } from "../../../../data";
 
 export default function UtilitiesRules({ data, toggleUtil, toggleRule }) {
   return (
     <>
-      <PricingSection label="Section 3: Utilities Included">
+      <Section label="Section 3: Utilities Included">
         <div className="flex flex-wrap gap-4">
           {utilities.map((utility) => {
             const checked = data.utilities?.[utility.key];
@@ -28,9 +29,9 @@ export default function UtilitiesRules({ data, toggleUtil, toggleRule }) {
             );
           })}
         </div>
-      </PricingSection>
+      </Section>
 
-      <PricingSection label="Section 4: Rules & Restrictions">
+      <Section label="Section 4: Rules & Restrictions">
         <div className="flex flex-col gap-3">
           {rulesToggles.map((rule) => {
             const on = data.rules?.[rule.key];
@@ -60,7 +61,7 @@ export default function UtilitiesRules({ data, toggleUtil, toggleRule }) {
             );
           })}
         </div>
-      </PricingSection>
+      </Section>
     </>
   );
 }

@@ -1,4 +1,5 @@
-import MessageAvatar from "./MessageAvatar";
+import React from 'react';
+import Avatar from "./Avatar";
 import {
   HomeSmallIcon,
   ArchiveIcon,
@@ -6,10 +7,10 @@ import {
   MoreIcon
 } from "../../../assets/svg";
 
-function MessageChatHeader({ user, onArchive, onBlock }) {
+function ChatHeader({ user, onArchive, onBlock }) {
   return (
     <div className="flex items-center gap-3 px-5 py-3.5 border-b border-slate-100 bg-white">
-      <MessageAvatar name={user.name} size="lg" online />
+      <Avatar name={user.name} size="lg" online />
 
       <div className="flex-1 min-w-0">
         <p className="text-sm font-bold text-slate-800">{user.name}</p>
@@ -65,4 +66,4 @@ function MessageChatHeader({ user, onArchive, onBlock }) {
   );
 }
 
-export default MessageChatHeader;
+export default ChatHeader;

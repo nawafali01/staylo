@@ -1,4 +1,4 @@
-import PropertyIdentityForm from "./basicInfoStep/PropertyIdentityForm";
+import PropertyIdentityForm from "./basicInfoStep/Index";
 import LocationForm from "./basicInfoStep/LocationForm";
 import { useBasicInfoStep } from "../../../utils/feature";
 

@@ -1,7 +1,8 @@
-import ReviewCard from "./ReviewCard";
+import React from 'react';
+import Card from "./Card";
 import { reviewPropertyDetailsConfig } from "../../../../data";
 
-export default function ReviewPropertyDetails({ data, amenitiesList, onEdit }) {
+export default function PropertyDetails({ data, amenitiesList, onEdit }) {
   const getFormattedValue = (item, data) => {
     if (item.format === "furnishing" && data.furnishing) {
       return data.furnishing.charAt(0).toUpperCase() + data.furnishing.slice(1) + " Furnished";
@@ -13,7 +14,7 @@ export default function ReviewPropertyDetails({ data, amenitiesList, onEdit }) {
   };
 
   return (
-    <ReviewCard
+    <Card
       title="Property Details"
       subtitle="Space, layout, and amenities"
       onEdit={() => onEdit(2)}
@@ -51,6 +52,6 @@ export default function ReviewPropertyDetails({ data, amenitiesList, onEdit }) {
           </div>
         </div>
       )}
-    </ReviewCard>
+    </Card>
   );
 }

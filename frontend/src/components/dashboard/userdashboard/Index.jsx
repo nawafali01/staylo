@@ -3,7 +3,7 @@ import RecentBookings from "./RecentBookings";
 import SavedProperties from "./SavedProperties";
 import { userDashboardStatsData } from "../../../data/index";
 
-export default function DashboardUI() {
+export default function UserDashboardIndex() {
   return (
     <>
       <h2 className="text-3xl font-bold text-slate-900">User Dashboard</h2>

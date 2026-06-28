@@ -1,10 +1,10 @@
-import SuccessModal from "./SuccessModal";
+import SuccessModal from "../../modal/addproperty/SuccessModal";
 import { useReviewStep } from "../../../utils/feature";
-import ReviewBasicInfo from "./reviewStep/ReviewBasicInfo";
-import ReviewPropertyDetails from "./reviewStep/ReviewPropertyDetails";
-import ReviewPhotos from "./reviewStep/ReviewPhotos";
-import ReviewTerms from "./reviewStep/ReviewTerms";
-import ReviewFinancials from "./reviewStep/ReviewFinancials";
+import BasicInfo from "./reviewStep/Index";
+import PropertyDetails from "./reviewStep/PropertyDetails";
+import Photos from "./reviewStep/Photos";
+import Terms from "./reviewStep/Terms";
+import Financials from "./reviewStep/Financials";
 
 export default function ReviewStep({ data, onBack, onEdit }) {
   const { 
@@ -20,17 +20,17 @@ export default function ReviewStep({ data, onBack, onEdit }) {
       <div className="grid grid-cols-[1fr_280px] gap-6">
         {/* Left */}
         <div className="flex flex-col gap-5">
-          <ReviewBasicInfo data={data} onEdit={onEdit} />
+          <BasicInfo data={data} onEdit={onEdit} />
           
-          <ReviewPropertyDetails 
+          <PropertyDetails 
             data={data} 
             amenitiesList={amenitiesList} 
             onEdit={onEdit} 
           />
 
-          <ReviewPhotos photos={data.photos} onEdit={onEdit} />
+          <Photos photos={data.photos} onEdit={onEdit} />
 
-          <ReviewTerms agreed={agreed} setAgreed={setAgreed} />
+          <Terms agreed={agreed} setAgreed={setAgreed} />
 
           {/* Footer Buttons */}
           <div className="flex justify-between pb-8">
@@ -58,7 +58,7 @@ export default function ReviewStep({ data, onBack, onEdit }) {
 
         {/* Right */}
         <div className="flex flex-col gap-5">
-          <ReviewFinancials data={data} onEdit={onEdit} />
+          <Financials data={data} onEdit={onEdit} />
         </div>
       </div>
 

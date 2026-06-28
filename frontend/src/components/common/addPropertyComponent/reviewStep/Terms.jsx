@@ -1,7 +1,8 @@
+import React from 'react';
 import { SimpleCheckIcon, InfoExclamationIcon } from "../../../../assets/svg";
 import { reviewTermsData } from "../../../../data";
 
-export default function ReviewTerms({ agreed, setAgreed }) {
+export default function Terms({ agreed, setAgreed }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
       <label className="flex items-start gap-3 cursor-pointer mb-4">

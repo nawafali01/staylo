@@ -1,7 +1,9 @@
-import { cities, provinces } from "../../../../data";
+import React from 'react';
+import { cities, provinces, locationSelectFields } from "../../../../data";
 import { ChevronDownIcon, LocationPinIcon, LocationMapPreview } from "../../../../assets/svg";
 
 export default function LocationForm({ data, setField }) {
+  const selectFields = locationSelectFields(cities, provinces);
   return (
     <div className="border-t border-gray-100 pt-6">
       <div className="flex items-center justify-between mb-5">
@@ -18,10 +20,7 @@ export default function LocationForm({ data, setField }) {
         className="w-full h-11 px-4 rounded-xl border border-gray-200 bg-gray-50 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all mb-4"
       />
       <div className="grid grid-cols-2 gap-4 mb-5">
-        {[
-          ["city", "Select City", cities],
-          ["province", "Select State/Province", provinces],
-        ].map(([field, placeholder, options]) => (
+        {selectFields.map(([field, placeholder, options]) => (
           <div key={field} className="relative">
             <select
               value={data[field] || ""}

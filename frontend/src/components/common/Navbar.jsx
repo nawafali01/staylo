@@ -9,7 +9,6 @@ const Navbar = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
-  // Re-check token every time the route changes
   useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem("token"));
   }, [location]);

@@ -8,7 +8,6 @@ const Footer = () => {
     <footer className="bg-[#001b3d] text-white py-12 px-6 md:px-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-10">
         <div className="lg:col-span-2">
-          {/* Logo ko Home par link kiya */}
           <Link to="/" className="flex items-center gap-4 mb-6 w-fit group">
             <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
               <img
@@ -32,7 +31,6 @@ const Footer = () => {
             <ul className="space-y-4 text-gray-400">
               {section.links.map((link) => (
                 <li key={link}>
-                  {/* Har link ko dynamic route par bheja */}
                   <Link
                     to={`/${link.toLowerCase().replace(/\s+/g, "-")}`}
                     className="hover:text-white cursor-pointer transition-colors block w-fit"

@@ -9,6 +9,8 @@ import {
 } from "../controllers/property.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.js";
+import { validate } from "../middlewares/validate.middleware.js";
+import { addPropertySchema, updatePropertySchema } from "../validations/property.validation.js";
 
 const router = Router();
 
@@ -20,13 +22,14 @@ router.route("/:propertyId").get(getPropertyById);
 router.route("/add-property").post(
     verifyJWT,
     upload.array("images", 10),
+    validate(addPropertySchema),
     addProperty
 );
 
 router.route("/my-properties").get(verifyJWT, getOwnerProperties);
 
 router.route("/:propertyId")
-    .put(verifyJWT, updateProperty)
+    .put(verifyJWT, validate(updatePropertySchema), updateProperty)
     .delete(verifyJWT, deleteProperty);
 
 export default router;

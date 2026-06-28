@@ -1,5 +1,5 @@
 import { useDetailsStep } from "../../../utils/feature";
-import RoomDetailsForm from "./detailsStep/RoomDetailsForm";
+import RoomDetailsForm from "./detailsStep/Index";
 import FurnishingStatus from "./detailsStep/FurnishingStatus";
 import LifestyleAmenities from "./detailsStep/LifestyleAmenities";
 import InfrastructureSafety from "./detailsStep/InfrastructureSafety";

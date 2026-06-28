@@ -28,7 +28,7 @@ import OwnerProperties from "../pages/ownerDashboardPages/OwnerProperties";
 import OwnerBookings from "../pages/ownerDashboardPages/OwnerBookings";
 import OwnerEarning from "../pages/ownerDashboardPages/OwnerEarning";
 import OwnerProfile from "../pages/ownerDashboardPages/OwnerProfile";
-import IndexMessages from "../components/common/messages/IndexMessages";
+import MessagesIndex from "../components/common/messages/Index";
 import Pricing from "../pages/userPages/Pricing";
 import Payment from "../pages/userPages/Payment";
 
@@ -76,7 +76,7 @@ const AppRoutes = () => {
           <Route path="users" element={<AdminDashboardUser />} />
           <Route path="reports" element={<AdminDashboardReport />} />
           <Route path="add-property" element={<AddNewProperty />} />
-          <Route path="message" element={<IndexMessages dashboardType="admin" />} />
+          <Route path="message" element={<MessagesIndex dashboardType="admin" />} />
         </Route>
       </Route>
 
@@ -92,7 +92,7 @@ const AppRoutes = () => {
           <Route path="bookings" element={<OwnerBookings />} />
           <Route path="earning" element={<OwnerEarning />} />
           <Route path="profile" element={<OwnerProfile />} />
-          <Route path="message" element={<IndexMessages />} />
+          <Route path="message" element={<MessagesIndex />} />
         </Route>
       </Route>
     </Routes>

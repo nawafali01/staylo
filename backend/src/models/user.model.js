@@ -7,16 +7,12 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        lowercase: true,
-        trim: true,
         index: true
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        lowercase: true,
-        trim: true,
     },
     password: {
         type: String,
@@ -24,44 +20,42 @@ const userSchema = new Schema({
     },
     fullname: {
         type: String,
-        trim: true,
         index: true
     },
     phoneNumber: {
         type: String,
-        trim: true
     },
     avatar: {
-        type: String, // Cloudinary URL (Profile picture ke liye accha hai, isko optional ya required rakh sakte hain)
+        type: String,
         default: ""
     },
     role: {
         type: String,
-        enum: ["user", "owner", "admin"], // Sirf yeh teen roles hi allow honge
-        default: "user" // By default naya account user ka banega
+        enum: ["user", "owner", "admin"],
+        default: "user"
     },
     status: {
         type: String,
         enum: ["pending", "approved", "rejected"],
-        default: "approved" // Users direct approved honge, lekin agar role owner hai to admin check karega
+        default: "approved"
     },
     refreshToken: {
         type: String,
     }
 }, { timestamps: true });
 
-// Password hashing hook
+// Hash password before saving
 userSchema.pre("save", async function () {
     if (!this.isModified("password")) return;
     this.password = await bcrypt.hash(this.password, 10);
 });
 
-// Password verification method
+// Verify password
 userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
 
-// Access Token Generation
+// Generate Access Token
 userSchema.methods.generateAccessToken = function () {
     return jwt.sign(
         {
@@ -69,7 +63,7 @@ userSchema.methods.generateAccessToken = function () {
             email: this.email,
             username: this.username,
             fullname: this.fullname,
-            role: this.role // JWT token mein role bhej rahe hain taake frontend/backend par use ho sake
+            role: this.role
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
@@ -78,7 +72,7 @@ userSchema.methods.generateAccessToken = function () {
     );
 };
 
-// Refresh Token Generation
+// Generate Refresh Token
 userSchema.methods.generateRefreshToken = function () {
     return jwt.sign(
         {

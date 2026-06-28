@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { loginSuccess } from "../../../redux/slices/authSlice";
 import { EmailIcon, LockIcon, EyeIcon } from "../../../assets/svg";
 import { toast } from "react-hot-toast";
+import GoogleAuthButton from "../../common/GoogleAuthButton";
+import Loader from "../../common/Loader";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +21,6 @@ const SignInForm = () => {
     setLoading(true);
 
     try {
-      // Call the real backend API instead of placeholder logic
       const response = await fetch("http://localhost:8000/api/v1/users/login", {
         method: "POST",
         headers: {
@@ -35,27 +36,22 @@ const SignInForm = () => {
       console.log("Backend Login Response Data:", data);
 
       if (!response.ok) {
-        // Handle backend errors (e.g., 401 Unauthorized or 400 Bad Request)
         throw new Error(data.message || "Invalid email or password!");
       }
 
-      // Extract token and user based on backend response structure
       const token = data?.data?.accessToken || data?.token;
       const user = data?.data?.user || data?.user;
 
       if (token) localStorage.setItem("token", token);
       if (user) localStorage.setItem("user", JSON.stringify(user));
 
-      // Update Redux authentication state
       if (user) {
         dispatch(loginSuccess({ user, token }));
       }
 
-      // Redirect to pricing after successful login
       toast.success("Logged in successfully!");
       navigate("/pricing");
     } catch (err) {
-      // Handle connection errors or validation failures
       toast.error(err.message || "Server connection error. Please try again later.");
     } finally {
       setLoading(false);
@@ -147,12 +143,30 @@ const SignInForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`relative z-50 w-full bg-[#3b82f6] hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 transition-all active:scale-[0.98] mt-6 text-lg ${loading ? "opacity-70 cursor-not-allowed" : ""
+            className={`relative z-50 w-full bg-[#3b82f6] hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 transition-all active:scale-[0.98] mt-6 text-lg flex items-center justify-center gap-2 ${loading ? "opacity-70 cursor-not-allowed" : ""
               }`}
           >
-            {loading ? "Processing..." : "Sign In to Dashboard"}
+            {loading ? (
+              <>
+                <Loader />
+                <span>Processing...</span>
+              </>
+            ) : (
+              "Sign In to Dashboard"
+            )}
           </button>
         </form>
+
+        <div className="relative my-8 text-center">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-100"></div>
+          </div>
+          <span className="relative bg-white px-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            Or continue with
+          </span>
+        </div>
+
+        <GoogleAuthButton label="Sign in with Google" />
 
         <div className="mt-8 text-center text-sm text-gray-600">
           Don't have an account?{" "}

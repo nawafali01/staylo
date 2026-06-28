@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CubeIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
+import GoogleAuthButton from "../../common/GoogleAuthButton";
+import Loader from "../../common/Loader";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +19,6 @@ const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // New state to handle request loading status
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -26,14 +27,12 @@ const SignUpForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Prevent numbers in name fields
   const handleNameKeyDown = (e) => {
     if (e.key >= '0' && e.key <= '9') {
       e.preventDefault();
     }
   };
 
-  // MAIN CONNECTION LOGIC HERE
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -46,20 +45,20 @@ const SignUpForm = () => {
       return;
     }
 
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
-      // Send request to the backend
+
       const response = await fetch("http://localhost:8000/api/v1/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: `${formData.firstName.toLowerCase()}${formData.lastName.toLowerCase()}`, // If current backend requires a username
+          username: `${formData.firstName.toLowerCase()}${formData.lastName.toLowerCase()}`,
           email: formData.email,
           password: formData.password,
-          firstName: formData.firstName, // If backend model accepts separate name fields
+          firstName: formData.firstName,
           lastName: formData.lastName,
         }),
       });
@@ -67,17 +66,18 @@ const SignUpForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("Signup successful! Redirecting to login...");
-        navigate("/signin");
+        toast.success("Signup successful!");
+        navigate("/pricing");
       } else {
-        // Use backend error message if available (e.g., "Email already exists")
+
         toast.error(data.message || "Something went wrong during signup!");
       }
     } catch (error) {
       console.error("Connection Error:", error);
       toast.error("Cannot connect to server. Make sure your backend is running!");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
+
     }
   };
 
@@ -179,7 +179,7 @@ const SignUpForm = () => {
             </div>
           </div>
 
-          {/* Confirm Password Field */}
+
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               Confirm Password
@@ -238,31 +238,21 @@ const SignUpForm = () => {
             </span>
           </div>
 
-          {/* <div className="grid grid-cols-2 gap-4">
-            <button type="button" className="flex items-center justify-center gap-2 border border-gray-200 py-3 rounded-xl hover:bg-gray-50 transition-all text-sm font-bold text-gray-700">
-              <img
-                src="https://www.svgrepo.com/show/355037/google.svg"
-                className="w-5 h-5"
-                alt="Google"
-              />
-              Google
-            </button>
-            <button type="button" className="flex items-center justify-center gap-2 border border-gray-200 py-3 rounded-xl hover:bg-gray-50 transition-all text-sm font-bold text-gray-700">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                className="w-5 h-5"
-                alt="Apple"
-              />
-              Apple
-            </button>
-          </div> */}
+          <GoogleAuthButton label="Sign up with Google" />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-indigo-700 transform transition active:scale-[0.98] mt-6 disabled:bg-indigo-400 disabled:cursor-not-allowed"
+            className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-indigo-700 transform transition active:scale-[0.98] mt-6 disabled:bg-indigo-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            {loading ? "Signing Up..." : "Sign Up"}
+            {loading ? (
+              <>
+                <Loader />
+                <span>Signing Up...</span>
+              </>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
 
